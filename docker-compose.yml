@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  angular:
+    hostname: localhost
+    build: turing-bank-front-end
+    ports:
+      - "4002:80"
+  nest:
+    build: turing-bank-back-end
+    ports:
+      - "3000:3000"
+    links:
+      - database
+
+  database:
+    image: mongo
