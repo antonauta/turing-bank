@@ -4,7 +4,7 @@ services:
   angular:
     build: turing-bank-front-end
     ports:
-      - "80:80"
+      - "4200:80"
   nest:
     build: turing-bank-back-end
     ports:
@@ -14,3 +14,4 @@ services:
 
   database:
     image: mongo
+    

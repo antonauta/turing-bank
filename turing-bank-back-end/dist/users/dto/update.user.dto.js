@@ -10,31 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const swagger_1 = require("@nestjs/swagger");
-class CreateUserDto {
+class UpdateUserDto {
 }
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "agency", void 0);
+], UpdateUserDto.prototype, "agency", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "preferredName", void 0);
+], UpdateUserDto.prototype, "preferredName", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "name", void 0);
+], UpdateUserDto.prototype, "name", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "email", void 0);
+], UpdateUserDto.prototype, "email", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "cpf", void 0);
+], UpdateUserDto.prototype, "cpf", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "password", void 0);
-exports.CreateUserDto = CreateUserDto;
-//# sourceMappingURL=create.user.dto.js.map
+], UpdateUserDto.prototype, "password", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Number)
+], UpdateUserDto.prototype, "balance", void 0);
+exports.UpdateUserDto = UpdateUserDto;
+//# sourceMappingURL=update.user.dto.js.map

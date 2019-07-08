@@ -1,3 +1,3 @@
 export default {
-    mongoURI : 'mongodb://database/turingbank'
+    mongoURI : 'mongodb://localhost/turingbank'
 }
