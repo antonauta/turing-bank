@@ -4,6 +4,8 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
+ENV NODE_ENV=PROD
+
 COPY package*.json ./
 
 RUN npm install
