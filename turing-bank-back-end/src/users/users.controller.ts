@@ -23,12 +23,12 @@ export class UsersController {
         return this.userService.create(createItemDto)
     }
     @Put(':id')
-    update(@Param('id') id, @Body() updateItemDto : CreateUserDto){
-        return `Update ${id} with ${updateItemDto}`
+    async update(@Param('id') id, @Body() updateUserDto : CreateUserDto){
+        return this.userService.update(updateUserDto,id)
     }
     @Delete(':id')
-    delete(@Param('id') id){
-        return `Delete ${id}`
+    async delete(@Param('id') id){
+        return this.userService.remove(id)
     }
 
 }

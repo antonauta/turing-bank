@@ -1,9 +1,6 @@
 import * as mongoose from 'mongoose';
-import * as bcrypt from 'bcrypt';
-import * as autoIncrement from 'mongoose-auto-increment'
-import config from '../../config/keys'
-const connection = mongoose.createConnection(config.mongoURI);
-autoIncrement.initialize(connection);
+import * as  bcrypt from 'bcryptjs';
+import * as autoIncrement from 'mongoose-easy-auto-increment';
 const SALT_WORK_FACTOR = 10;
 export const UserSchema = new mongoose.Schema({
   name: String,
@@ -16,9 +13,7 @@ export const UserSchema = new mongoose.Schema({
   password: { type: String },
 });
 
-
-UserSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'account',startAt: 100000,
-incrementBy: 1 });
+UserSchema.plugin(autoIncrement, { field: 'account', collection: 'Counters' });
 
 UserSchema.pre('save',  function(next) {
   if (!this.isNew) {
@@ -27,20 +22,28 @@ UserSchema.pre('save',  function(next) {
   const user = this;
 
   // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) { return next(); }
-
+  if (!user.isModified('password')) {
+    return next();
+  }
+  // const countUsers = await UserModel.count();
+  // console.log(countUsers)
+  // user.account = countUsers;
   // generate a salt
-// tslint:disable-next-line: only-arrow-functions
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-    if (err) { return next(err); }
-
+  // tslint:disable-next-line: only-arrow-functions
+  bcrypt.genSalt(SALT_WORK_FACTOR,  function(err, salt) {
+    if (err) {
+      return next(err);
+    }
+ 
     // hash the password using our new salt
-    bcrypt.hash(user.password, salt, function(err, hash) {
-      if (err) { return next(err); }
+    bcrypt.hash(user.password, salt,  function(err, hash) {
+      if (err) {
+        return next(err);
+      }
 
-      // override the cleartext password with the hashed one
       user.password = hash;
       next();
+      // override the cleartext password with the hashed one
     });
   });
 });

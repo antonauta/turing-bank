@@ -44,11 +44,15 @@ let UsersController = class UsersController {
             return this.userService.create(createItemDto);
         });
     }
-    update(id, updateItemDto) {
-        return `Update ${id} with ${updateItemDto}`;
+    update(id, updateUserDto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.userService.update(updateUserDto, id);
+        });
     }
     delete(id) {
-        return `Delete ${id}`;
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.userService.remove(id);
+        });
     }
 };
 __decorate([
@@ -77,14 +81,14 @@ __decorate([
     __param(0, common_1.Param('id')), __param(1, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, create_user_dto_1.CreateUserDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "update", null);
 __decorate([
     common_1.Delete(':id'),
     __param(0, common_1.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "delete", null);
 UsersController = __decorate([
     common_1.Controller('users'),

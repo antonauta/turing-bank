@@ -5,5 +5,7 @@ export declare class UsersService {
     constructor(userModel: Model<User>);
     findAll(): Promise<User[]>;
     findOne(id: string): Promise<User>;
-    create(user: User): Promise<any>;
+    create(user: User): Promise<User>;
+    update(user: User, id: string): Promise<User>;
+    remove(id: String): Promise<User>;
 }

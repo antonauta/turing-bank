@@ -1,11 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-const autoIncrement = require("mongoose-auto-increment");
-const keys_1 = require("../../config/keys");
-const connection = mongoose.createConnection(keys_1.default.mongoURI);
-autoIncrement.initialize(connection);
+const bcrypt = require("bcryptjs");
+const autoIncrement = require("mongoose-easy-auto-increment");
 const SALT_WORK_FACTOR = 10;
 exports.UserSchema = new mongoose.Schema({
     name: String,
@@ -17,8 +14,7 @@ exports.UserSchema = new mongoose.Schema({
     balance: { type: Number, default: 0 },
     password: { type: String },
 });
-exports.UserSchema.plugin(autoIncrement.plugin, { model: 'User', field: 'account', startAt: 100000,
-    incrementBy: 1 });
+exports.UserSchema.plugin(autoIncrement, { field: 'account', collection: 'Counters' });
 exports.UserSchema.pre('save', function (next) {
     if (!this.isNew) {
         return next();

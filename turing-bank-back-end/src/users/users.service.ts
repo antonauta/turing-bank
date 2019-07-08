@@ -11,10 +11,17 @@ export class UsersService {
   async findOne(id: string): Promise<User> {
     return await this.userModel.findOne({_id:id});
   }
-  async create(user:User){
+  async create(user:User):Promise<User>{
 
     const newUser = new this.userModel(user)
     return await newUser.save()
 
   }
+  async update(user:User,id:string):Promise<User>{
+      return await this.userModel.findOneAndUpdate({_id:id},user)
+  }
+  async remove(id:String):Promise<User>{
+      return await this.userModel.findByIdAndRemove(id)
+  }
+
 }

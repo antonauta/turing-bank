@@ -44,6 +44,16 @@ let UsersService = class UsersService {
             return yield newUser.save();
         });
     }
+    update(user, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userModel.findOneAndUpdate({ _id: id }, user);
+        });
+    }
+    remove(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userModel.findByIdAndRemove(id);
+        });
+    }
 };
 UsersService = __decorate([
     common_1.Injectable(),

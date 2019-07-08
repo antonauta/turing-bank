@@ -14,8 +14,10 @@ const swagger_1 = require("@nestjs/swagger");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = yield core_1.NestFactory.create(app_module_1.AppModule);
+        app.setGlobalPrefix("/api/v1");
         const options = new swagger_1.DocumentBuilder()
             .setTitle('Main API example')
+            .setBasePath('api/v1')
             .setDescription('The main API description')
             .setVersion('1.0')
             .addTag('bank')

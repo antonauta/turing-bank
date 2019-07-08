@@ -4,8 +4,10 @@ import {SwaggerModule,DocumentBuilder} from '@nestjs/swagger'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix("/api/v1");
   const options = new DocumentBuilder()
   .setTitle('Main API example')
+  .setBasePath('api/v1')
   .setDescription('The main API description')
   .setVersion('1.0')
   .addTag('bank')

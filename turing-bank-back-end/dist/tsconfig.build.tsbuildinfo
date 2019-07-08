@@ -1246,28 +1246,28 @@
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/users.service.ts": {
-        "version": "e9c4f600924ac7c34d1c785baf90dd472675a68edbd6f07088af6c94d06baee3",
-        "signature": "7454f25ce26aafe22f24606222e54197aa7dec3e59b9711fc93d8c3772ad75fb"
+        "version": "2299c1670c4aee5f669a76b3c45bc21305c17373da2378b8f731d4dd57682119",
+        "signature": "6ad81aeccff942025821d1fff80d3f684b979b86f58605c5ff5c43c3252d13ff"
       },
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/users.controller.ts": {
-        "version": "a140cfc3b08cb1646d3edfbdd29061324fd7f5d4793794448e01ebc5ba45760c",
-        "signature": "d1b3b006fddb09267e9f7bd309aadbac42e75fc3b27452e9e875a11fff064b12"
+        "version": "00783044eac8496c0e2a2454239862079271dfdfc6f90e9e39ff7c081b61c458",
+        "signature": "b6bf1e2336149de4a88718057a5e0987303fed59359c124a638346dcb5694989"
       },
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/transactions/transactions.controller.ts": {
         "version": "d5b20c2ae75996f90f764e219a33cc430d9dd4859848f686d6c54408a1583336",
         "signature": "3058abf0da89d8e28df10089d2bd9538fee19a48848b5ccadc65904f9c4a5001"
       },
-      "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/config/keys.ts": {
-        "version": "566ba4992e7b6fa70f34d2e3a8a5c21adadeb16bdea406d0a1b5770109a3133d",
-        "signature": "65dba4176b8b6bed97caca241289891acffef895cc7eb6a8ce8eec50a3eca36d"
-      },
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/schemas/user.schema.ts": {
-        "version": "da543130870bc5514c47f0257c117118a9fa0b7be7456872b23fef06228dc8a2",
+        "version": "9ae5f9e9257d3fa5f6126122d203c1988fab12ec9c9671c6072f48369f1918f3",
         "signature": "1b8514223032a3be4786a00040cc352e3d5132d3e518054cb2503a20c16ccfd4"
       },
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/users.module.ts": {
         "version": "01e9d8fd9a7383f934eaa46b4386c0f2a91fd2c24f7832deec90f61a47c07732",
         "signature": "aa1725e38b5a0b4009f6a74f296f173e7926c119a60454dbd2e523861735df69"
+      },
+      "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/config/keys.ts": {
+        "version": "566ba4992e7b6fa70f34d2e3a8a5c21adadeb16bdea406d0a1b5770109a3133d",
+        "signature": "65dba4176b8b6bed97caca241289891acffef895cc7eb6a8ce8eec50a3eca36d"
       },
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/app.module.ts": {
         "version": "6b52d12d1db2872b0b5b6640ce3f4bc0a5936788bc902c29e35245b418e474a3",
@@ -1386,7 +1386,7 @@
         "signature": "2608cfd623840916e664e68c3dc5eb4347ccae822f808d899bf00e73cbab2bfe"
       },
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/main.ts": {
-        "version": "bff76cb7fd76d93958a8fd8b3cfa8109764d0922df727632884c8bcc2ab1ee4f",
+        "version": "87e1c36e2432a780c2247407c474651dd42cf8ae4b99cadb34a1612059c3ad09",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/cookiejar/index.d.ts": {
@@ -3262,12 +3262,7 @@
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/config/keys.ts": [
-        "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
-        "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/schemas/user.schema.ts": [
-        "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/config/keys.ts",
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -3277,6 +3272,10 @@
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/users.service.ts",
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@nestjs/mongoose/index.d.ts",
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/schemas/user.schema.ts",
+        "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
+        "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/config/keys.ts": [
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
         "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -5857,8 +5856,8 @@
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/users.service.ts",
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/users.controller.ts",
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/transactions/transactions.controller.ts",
-      "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/config/keys.ts",
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/users/users.module.ts",
+      "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/config/keys.ts",
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/src/app.module.ts",
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "/home/guilherme/avanade/casestudy/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/adapters/index.d.ts",
