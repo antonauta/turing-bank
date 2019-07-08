@@ -13,12 +13,23 @@ const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 const compression = require("compression");
 const helmet = require("helmet");
+const fs = require("fs");
+const rfs = require("rotating-file-stream");
+const path = require("path");
+const morgan = require("morgan");
 const users_module_1 = require("./users/users.module");
 const transactions_module_1 = require("./transactions/transactions.module");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
-        const app = yield core_1.NestFactory.create(app_module_1.AppModule);
-        app.setGlobalPrefix("/api/v1");
+        const app = yield core_1.NestFactory.create(app_module_1.AppModule, { logger: morgan });
+        app.setGlobalPrefix('/api/v1');
+        const logDirectory = path.join(__dirname, 'logs');
+        if (fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory)) {
+            console.log('ok');
+            const accessLogStream = rfs.default('access.log', { interval: '1d', path: logDirectory, });
+            morgan.token('body', function (req, res) { return JSON.stringify(req.body); });
+            app.use(morgan(':remote-addr - :remote-user [:date[clf]] :method :url :status :response-time ms - :res[content-length] :body - :req[content-length] ":referrer" ":user-agent"', { stream: accessLogStream }));
+        }
         app.use(compression());
         app.use(helmet());
         app.enableCors();
@@ -29,7 +40,9 @@ function bootstrap() {
             .setVersion('1.0')
             .addTag('users')
             .build();
-        const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule] });
+        const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, {
+            include: [users_module_1.UsersModule],
+        });
         swagger_1.SwaggerModule.setup('docs/user', app, documentUser);
         const optionsTransactions = new swagger_1.DocumentBuilder()
             .setTitle('Transactions endpoint API exemplos')

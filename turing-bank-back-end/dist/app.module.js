@@ -19,7 +19,7 @@ let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
-        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? keys_1.default.mongoURI : keysprod_1.default.mongoURI), transactions_module_1.TransactionsModule, extract_module_1.ExtractModule],
+        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? keysprod_1.default.mongoURI : keys_1.default.mongoURI), transactions_module_1.TransactionsModule, extract_module_1.ExtractModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
