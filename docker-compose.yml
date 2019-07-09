@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.3'
 
 services:
   angular:
@@ -14,10 +14,11 @@ services:
     depends_on:
       - database
     volumes:
-      - ./turing-bank-back-end/src:/usr/src/app/src
+      - turing-bank-back-end/src:/usr/src/app/src
   database:
     image: mongo
     restart: always
     volumes:
-      - ./data-db:/data/db
-    
+      - data-db:/data/db
+volumes:
+    db_data:
