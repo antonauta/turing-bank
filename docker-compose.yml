@@ -11,10 +11,6 @@ services:
       - "3000:3000"
     links:
       - database
-    volumes:
-      - ./turing-bank-back-end:/app
   database:
     image: mongo
-    volumes:
-      - ./data-db:/data/db
     

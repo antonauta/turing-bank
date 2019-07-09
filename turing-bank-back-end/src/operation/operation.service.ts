@@ -24,6 +24,7 @@ export class OperationsService {
     const newOperation = new this.operationModel(createOperationDto);
 
     let findUserDestination, findUserOrigin;
+    console.log(createOperationDto)
     switch (createOperationDto.type) {
       case 0:
         findUserDestination = await this.userService.findOne(
