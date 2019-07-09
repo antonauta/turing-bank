@@ -17,10 +17,10 @@ import { User } from './interfaces/user.interface';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly userService: UsersService) {}
+  constructor(private readonly userService: UsersService) { }
   @Get()
   async findAll(@Req() req: Request, @Res() res: Response): Promise<Response> {
-     const query = req.query
+    const query = req.query
     const users = await this.userService.findAll();
     console.log(users)
     return res.json(users);
