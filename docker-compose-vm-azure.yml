@@ -10,7 +10,7 @@ services:
       - frontend
     labels:
       - traefik.port=80
-      - traefik.frontend.rule=Host:localhost
+      - traefik.frontend.rule=Host:23.96.127.4
   nest:
     image: djnakudo/backendturingbankavanade
     restart: always
@@ -20,7 +20,7 @@ services:
       PORT : 80
     labels:
       - traefik.port=80
-      - traefik.frontend.rule=Host:localhost
+      - traefik.frontend.rule=Host:23.96.127.4
     ports:
       - "3000:80"
     depends_on:
@@ -51,7 +51,7 @@ services:
       - --defaultentrypoints=http,https
     labels:
       - traefik.port=8080
-      - traefik.frontend.rule=Host:traefik.localhost
+      - traefik.frontend.rule=Host:traefik.23.96.127.4
 volumes:
     data-db:
 networks:
