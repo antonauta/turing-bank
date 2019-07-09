@@ -10,7 +10,7 @@ services:
       - frontend
     labels:
       - traefik.port=80
-      - "traefik.frontend.rule=PathPrefix:/"
+      - traefik.frontend.rule=PathPrefix:/
   nest:
     image: djnakudo/backendturingbankavanade
     restart: always
@@ -20,7 +20,7 @@ services:
       PORT : 80
     labels:
       - traefik.port=80
-     - "traefik.frontend.rule=PathPrefix:/api"
+      - traefik.frontend.rule=PathPrefix:/api,/docs
     ports:
       - "3000:80"
     depends_on:
