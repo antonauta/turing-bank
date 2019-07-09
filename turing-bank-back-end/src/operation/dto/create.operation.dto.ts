@@ -1,6 +1,6 @@
 import { ApiModelProperty } from '@nestjs/swagger';
 
-export class CreateTransactionDto {
+export class CreateOperationDto {
     @ApiModelProperty()
     readonly id: number;
     @ApiModelProperty()

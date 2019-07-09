@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-export const transactionSchema = new mongoose.Schema({
+export const operationSchema = new mongoose.Schema({
     type: { type: Number },
     value: { type: Number, default: 0},
     date: { type: Date, default: new Date() },
