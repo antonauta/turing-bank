@@ -2,7 +2,7 @@ export interface User{
     _id?: string;
     name?: string;
     account? : number;
-    preferredName: string;
+    preferredName?: string;
     agency? : string;
     email? : string;
     cpf? : string;

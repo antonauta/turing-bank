@@ -4,15 +4,15 @@ export class UpdateUserDto {
   @ApiModelProperty()
   readonly agency?: string;
   @ApiModelProperty()
-  readonly preferredName: string;
+  readonly preferredName?: string;
   @ApiModelProperty()
-  readonly name: string;
+  readonly name?: string;
   @ApiModelProperty()
-  readonly email: string;
+  readonly email?: string;
   @ApiModelProperty()
-  readonly cpf: string;
+  readonly cpf?: string;
   @ApiModelProperty()
-  readonly password: string;
+  readonly password?: string;
   @ApiModelProperty()
-  readonly balance: number;
+  readonly balance?: number;
 }
