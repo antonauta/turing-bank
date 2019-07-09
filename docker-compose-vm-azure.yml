@@ -14,6 +14,8 @@ services:
   nest:
     image: djnakudo/backendturingbankavanade
     restart: always
+    volumes:
+      - ./turing-bank-back-end/src:/usr/src/app/src
     environment:
       PORT : 80
     labels:
@@ -35,7 +37,7 @@ services:
   proxy:
     image: traefik:1.7-alpine
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - backend
       - frontend
@@ -52,7 +54,6 @@ services:
       - traefik.frontend.rule=Host:traefik.localhost
 volumes:
     data-db:
-    server:
 networks:
        backend:
        frontend:
