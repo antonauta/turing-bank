@@ -1,6 +1,6 @@
 FROM node:10.16.0-alpine
 RUN apk add --no-cache tini 
-RUN mkdir  /app
+RUN mkdir /app
 
 WORKDIR /app
 
@@ -9,7 +9,7 @@ ENV NODE_ENV=PROD
 
 COPY package.json package-lock*.json ./
 
-RUN npm install && npm cache clean --force
+RUN npm install 
 
 
 COPY . .
