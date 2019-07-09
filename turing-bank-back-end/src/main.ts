@@ -35,6 +35,6 @@ async function bootstrap() {
   const documentTransactions = SwaggerModule.createDocument(app, optionsOperations, { include: [OperationModule] });
   SwaggerModule.setup('docs/operations', app, documentTransactions);
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
