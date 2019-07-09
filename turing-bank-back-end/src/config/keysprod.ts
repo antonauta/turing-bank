@@ -1,4 +1,4 @@
 export default {
-    mongoURI : 'mongodb://database/turingbank'
+    mongoURI : 'mongodb://bruno:marrone@database/turingbank'
     
 }
