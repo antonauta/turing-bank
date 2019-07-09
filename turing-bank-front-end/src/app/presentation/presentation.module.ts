@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeModule } from './pages/home/home.module';
 import { BaseModule } from './base/base.module';
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -10,7 +11,8 @@ import { BaseModule } from './base/base.module';
   imports: [
     CommonModule,
     HomeModule,
-    BaseModule
+    BaseModule,
+    SharedModule
   ]
 })
 export class PresentationModule { }
