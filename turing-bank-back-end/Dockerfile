@@ -1,17 +1,21 @@
 FROM node:10.16.0-alpine
+RUN apk add --no-cache tini 
+RUN mkdir  /app
 
-RUN mkdir -p /usr/src/app
-
-WORKDIR /usr/src/app
+WORKDIR /app
 
 ENV NODE_ENV=PROD
 
-COPY package*.json ./
 
-RUN npm install
+COPY package.json package-lock*.json ./
 
-COPY . ./
+RUN npm install && npm cache clean --force
+
+
+COPY . .
 
 EXPOSE 3000
+
+ENTRYPOINT ["/sbin/tini", "--"]
 
 CMD ["npm", "start"]
