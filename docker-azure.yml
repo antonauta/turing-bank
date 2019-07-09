@@ -10,11 +10,11 @@ services:
     image: djnakudo/backendturingbankavanade
     restart: always
     ports:
-      - "3000:3000"
+      - "8080:3000"
     depends_on:
       - database
     volumes:
-      - ./turing-bank-back-end/src:/usr/src/app/src
+      - server/src:/usr/src/app/src
   database:
     image: mongo
     restart: always
@@ -22,3 +22,4 @@ services:
       - data-db:/data/db
 volumes:
     data-db:
+    server:
