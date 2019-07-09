@@ -7,21 +7,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const users_module_1 = require("./users/users.module");
+const operation_controller_1 = require("./operation.controller");
 const mongoose_1 = require("@nestjs/mongoose");
-const operation_module_1 = require("./operation/operation.module");
-const keys_1 = require("./config/keys");
-const keysprod_1 = require("./config/keysprod");
-let AppModule = class AppModule {
+const operation_service_1 = require("./operation.service");
+const operation_schema_1 = require("./schema/operation.schema");
+const users_module_1 = require("../users/users.module");
+let OperationModule = class OperationModule {
 };
-AppModule = __decorate([
+OperationModule = __decorate([
     common_1.Module({
-        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? keysprod_1.default.mongoURI : keys_1.default.mongoURI), operation_module_1.OperationModule],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Operation', schema: operation_schema_1.operationSchema }]), users_module_1.UsersModule],
+        controllers: [operation_controller_1.OperationController],
+        providers: [operation_service_1.OperationsService]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], OperationModule);
+exports.OperationModule = OperationModule;
+//# sourceMappingURL=operation.module.js.map

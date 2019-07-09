@@ -30,10 +30,10 @@ async function bootstrap() {
     .setBasePath('api/v1')
     .setDescription('API para cadastro de Operações,criacao e regras de negocios que envolvam as transacoes')
     .setVersion('1.0')
-    .addTag('transactions')
+    .addTag('operations')
     .build();
-  const documentTransactions = SwaggerModule.createDocument(app, optionsOperations, { include: [optionsOperations] });
-  SwaggerModule.setup('docs/transactions', app, documentTransactions);
+  const documentTransactions = SwaggerModule.createDocument(app, optionsOperations, { include: [OperationModule] });
+  SwaggerModule.setup('docs/operations', app, documentTransactions);
 
   await app.listen(3000);
 }

@@ -1,11 +1,11 @@
 export interface User {
-    id?: string;
-    name: string;
+    _id?: string;
+    name?: string;
     account?: number;
-    preferredName: string;
+    preferredName?: string;
     agency?: string;
-    email: string;
-    cpf: string;
+    email?: string;
+    cpf?: string;
     balance?: number;
-    password: string;
+    password?: string;
 }

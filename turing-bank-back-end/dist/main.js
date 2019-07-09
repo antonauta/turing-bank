@@ -14,7 +14,7 @@ const swagger_1 = require("@nestjs/swagger");
 const compression = require("compression");
 const helmet = require("helmet");
 const users_module_1 = require("./users/users.module");
-const transactions_module_1 = require("./transactions/transactions.module");
+const operation_module_1 = require("./operation/operation.module");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = yield core_1.NestFactory.create(app_module_1.AppModule);
@@ -31,15 +31,15 @@ function bootstrap() {
             .build();
         const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule] });
         swagger_1.SwaggerModule.setup('docs/user', app, documentUser);
-        const optionsTransactions = new swagger_1.DocumentBuilder()
-            .setTitle('Transactions endpoint API exemplos')
+        const optionsOperations = new swagger_1.DocumentBuilder()
+            .setTitle('Operations endpoint API exemplos')
             .setBasePath('api/v1')
-            .setDescription('API para cadastro de Transactions,,criacao e regras de negocios que envolvam as transacoes')
+            .setDescription('API para cadastro de Operações,criacao e regras de negocios que envolvam as transacoes')
             .setVersion('1.0')
-            .addTag('transactions')
+            .addTag('operations')
             .build();
-        const documentTransactions = swagger_1.SwaggerModule.createDocument(app, optionsTransactions, { include: [transactions_module_1.TransactionsModule] });
-        swagger_1.SwaggerModule.setup('docs/transactions', app, documentTransactions);
+        const documentTransactions = swagger_1.SwaggerModule.createDocument(app, optionsOperations, { include: [operation_module_1.OperationModule] });
+        swagger_1.SwaggerModule.setup('docs/operations', app, documentTransactions);
         yield app.listen(3000);
     });
 }

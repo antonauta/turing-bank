@@ -4,7 +4,7 @@ export class CreateOperationDto {
     @ApiModelProperty()
     readonly id: number;
     @ApiModelProperty()
-    readonly type: string;
+    readonly type: number;
     @ApiModelProperty()
     readonly value: number;
     @ApiModelProperty()
