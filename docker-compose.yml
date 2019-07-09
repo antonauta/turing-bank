@@ -12,7 +12,7 @@ services:
     links:
       - database
     volumes:
-      - ./turing-bank-back-end:/app
+      - ./turing-bank-back-end/src:/usr/src/app/src
   database:
     image: mongo
     volumes:
