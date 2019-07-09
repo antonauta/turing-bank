@@ -8,6 +8,8 @@ import { InfraModule } from './infra/infra.module';
 import { DataModule } from './data/data.module';
 import { PresentationModule } from './presentation/presentation.module';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,16 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     SharedModule,
     CoreModule,
     InfraModule,
     DataModule,
     PresentationModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

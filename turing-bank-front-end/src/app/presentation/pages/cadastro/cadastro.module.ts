@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CadastroComponent } from './cadastro.component';
 import { CadastroRoutingModule } from './cadastro-routing.module';
 import { MaterialModule } from '../../shared/material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,6 +12,8 @@ import { MaterialModule } from '../../shared/material/material.module';
   imports: [
     CommonModule,
     CadastroRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
   ]
 })

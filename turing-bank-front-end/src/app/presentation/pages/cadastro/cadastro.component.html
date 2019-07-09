@@ -1,1 +1,62 @@
-<p>cadastro works!</p>
+<section>
+    <div class="container">
+
+        <div class="cadastro-conteudo">
+           <h1 class="cadastro-text">Abra sua conta</h1>
+           <p class="cadastro-text">Rápido, fácil e totalmente gratuito!</p>
+        
+        
+        
+            <form [formGroup]="cadastroForm" (ngSubmit)="submit()" class="cadastro-form">
+                <mat-card class="form-card">
+                    
+                    <mat-form-field class="form-group">
+                        <input matInput 
+                                placeholder="Nome Completo"
+                                autocomplete="off"
+                                name="name" id="name" [formControl]="name"
+                                >
+                    </mat-form-field>
+
+                    <mat-form-field class="form-group">
+                        <input matInput 
+                                placeholder="CPF"
+                                autocomplete="off"
+                                name="cpf" id="cpf" [formControl]="cpf"
+                                >
+                    </mat-form-field>
+
+                    <mat-form-field class="form-group">
+                        <input matInput
+                                placeholder="Apelido"
+                                autocomplete="off"
+                                name="preferredName" id="preferredName" [formControl]="preferredName"
+                                >
+                    </mat-form-field>
+
+                    <mat-form-field class="form-group">
+                        <input matInput 
+                                placeholder="E-mail"
+                                autocomplete="off"
+                                name="email" id="email" [formControl]="email"
+                                >
+                    </mat-form-field>
+
+                    <mat-form-field class="form-group">
+                        <input matInput 
+                                placeholder="Senha"
+                                autocomplete="off"
+                                name="password" id="password" [formControl]="password"
+                                    >
+                    </mat-form-field>
+
+                    <div class="form-bt-left">
+                        <button mat-raised-button color="primary">Salvar</button>
+                    </div>
+
+                    
+                </mat-card>
+            </form>
+        </div>
+    </div>
+</section>
