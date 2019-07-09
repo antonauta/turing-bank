@@ -10,7 +10,7 @@ services:
       - frontend
     labels:
       - traefik.port=80
-      - traefik.frontend.rule=Host:app.turingbank.eastus.cloudapp.azure.com
+      - "traefik.frontend.rule=PathPrefix:/"
   nest:
     image: djnakudo/backendturingbankavanade
     restart: always
@@ -20,7 +20,7 @@ services:
       PORT : 80
     labels:
       - traefik.port=80
-      - traefik.frontend.rule=Host:api.turingbank.eastus.cloudapp.azure.com
+     - "traefik.frontend.rule=PathPrefix:/api"
     ports:
       - "3000:80"
     depends_on:
