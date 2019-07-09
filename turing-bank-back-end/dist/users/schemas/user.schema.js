@@ -10,6 +10,7 @@ exports.UserSchema = new mongoose.Schema({
     account: { type: Number },
     preferredName: String,
     email: String,
+    token: String,
     cpf: { type: String, unique: true },
     balance: { type: Number, default: 0 },
     password: { type: String },

@@ -9,7 +9,7 @@ import { AuthModule } from './infra/auth/auth.module';
 import config from './config/keys';
 import configProd from './config/keysprod'
 @Module({
-  imports: [UsersModule,MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? configProd.mongoURI : config.mongoURI), TransactionsModule, ExtractModule, AuthModule],
+  imports: [UsersModule,MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? configProd.mongoURI : config.mongoURI), TransactionsModule],
   controllers: [AppController],
   providers: [AppService],
 })

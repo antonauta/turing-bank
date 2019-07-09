@@ -38,6 +38,21 @@ let UsersService = class UsersService {
             return yield this.userModel.findOne({ _id: id });
         });
     }
+    findOneByCPF(cpf) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userModel.findOne({ cpf });
+        });
+    }
+    findOneByEmail(email) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userModel.findOne({ email });
+        });
+    }
+    findOneByToken(token) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.userModel.findOne({ token });
+        });
+    }
     create(user) {
         return __awaiter(this, void 0, void 0, function* () {
             const newUser = new this.userModel(user);

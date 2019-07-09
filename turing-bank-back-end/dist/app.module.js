@@ -12,14 +12,13 @@ const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const transactions_module_1 = require("./transactions/transactions.module");
-const extract_module_1 = require("./extract/extract.module");
 const keys_1 = require("./config/keys");
 const keysprod_1 = require("./config/keysprod");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
-        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? keysprod_1.default.mongoURI : keys_1.default.mongoURI), transactions_module_1.TransactionsModule, extract_module_1.ExtractModule],
+        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? keysprod_1.default.mongoURI : keys_1.default.mongoURI), transactions_module_1.TransactionsModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
