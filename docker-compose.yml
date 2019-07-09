@@ -1,20 +1,24 @@
-version: "3"
+version: '3.3'
 
 services:
   angular:
     build: turing-bank-front-end
+    restart: always
     ports:
       - "4200:80"
   nest:
     build: turing-bank-back-end
+    restart: always
     ports:
       - "3000:3000"
-    links:
+    depends_on:
       - database
     volumes:
-      - ./turing-bank-back-end/src:/usr/src/app/src
+      - turing-bank-back-end/src:/usr/src/app/src
   database:
     image: mongo
+    restart: always
     volumes:
-      - ./data-db:/data/db
-    
+      - data-db:/data/db
+volumes:
+    db_data:
