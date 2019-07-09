@@ -11,19 +11,35 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
+const compression = require("compression");
+const helmet = require("helmet");
+const users_module_1 = require("./users/users.module");
+const operation_module_1 = require("./operation/operation.module");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = yield core_1.NestFactory.create(app_module_1.AppModule);
         app.setGlobalPrefix("/api/v1");
-        const options = new swagger_1.DocumentBuilder()
-            .setTitle('Main API example')
+        app.use(compression());
+        app.use(helmet());
+        app.enableCors();
+        const optionsUser = new swagger_1.DocumentBuilder()
+            .setTitle('User endpoint API exemplos')
             .setBasePath('api/v1')
-            .setDescription('The main API description')
+            .setDescription('API para cadastro de usuarios,autenticao,criacao e regras de negocios que envolvam o usuario')
             .setVersion('1.0')
-            .addTag('bank')
+            .addTag('users')
             .build();
-        const document = swagger_1.SwaggerModule.createDocument(app, options);
-        swagger_1.SwaggerModule.setup('docs', app, document);
+        const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule] });
+        swagger_1.SwaggerModule.setup('docs/user', app, documentUser);
+        const optionsOperations = new swagger_1.DocumentBuilder()
+            .setTitle('Operations endpoint API exemplos')
+            .setBasePath('api/v1')
+            .setDescription('API para cadastro de Operações,criacao e regras de negocios que envolvam as transacoes')
+            .setVersion('1.0')
+            .addTag('operations')
+            .build();
+        const documentTransactions = swagger_1.SwaggerModule.createDocument(app, optionsOperations, { include: [operation_module_1.OperationModule] });
+        swagger_1.SwaggerModule.setup('docs/operations', app, documentTransactions);
         yield app.listen(3000);
     });
 }

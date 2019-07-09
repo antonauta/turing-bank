@@ -8,7 +8,7 @@ describe('Users Controller', () => {
   let service: UsersService;
 
   const user: User = {
-    id: 'string',
+    _id: 'string',
     name: 'string',
     account : 123456789,
     preferredName: 'string',
@@ -46,7 +46,7 @@ describe('Users Controller', () => {
       const promise: Promise<User> = Promise.resolve(() => {}).then(() => result);
 
       jest.spyOn(service, 'findOne').mockImplementation( async () => promise);
-      expect(controller.findOne(user.id)).toBe(result);
+      expect(controller.findOne(user._id)).toBe(result);
     });
   });
 
@@ -57,7 +57,7 @@ describe('Users Controller', () => {
       const promise: Promise<User> = Promise.resolve(() => {}).then(() => result);
 
       jest.spyOn(service, 'findOne').mockImplementation( async () => promise);
-      expect(controller.findOne(user.id)).toBe(result);
+      expect(controller.findOne(user._id)).toBe(result);
     });
   });
 

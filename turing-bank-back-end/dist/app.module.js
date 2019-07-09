@@ -9,16 +9,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-const transactions_controller_1 = require("./transactions/transactions.controller");
 const users_module_1 = require("./users/users.module");
 const mongoose_1 = require("@nestjs/mongoose");
+const operation_module_1 = require("./operation/operation.module");
 const keys_1 = require("./config/keys");
+const keysprod_1 = require("./config/keysprod");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
-        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(keys_1.default.mongoURI)],
-        controllers: [app_controller_1.AppController, transactions_controller_1.TransactionsController],
+        imports: [users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? keysprod_1.default.mongoURI : keys_1.default.mongoURI), operation_module_1.OperationModule],
+        controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })
 ], AppModule);

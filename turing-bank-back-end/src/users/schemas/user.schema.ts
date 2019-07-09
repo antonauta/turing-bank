@@ -25,11 +25,6 @@ UserSchema.pre('save',  function(next) {
   if (!user.isModified('password')) {
     return next();
   }
-  // const countUsers = await UserModel.count();
-  // console.log(countUsers)
-  // user.account = countUsers;
-  // generate a salt
-  // tslint:disable-next-line: only-arrow-functions
   bcrypt.genSalt(SALT_WORK_FACTOR,  function(err, salt) {
     if (err) {
       return next(err);

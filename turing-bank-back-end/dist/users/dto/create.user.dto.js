@@ -18,10 +18,6 @@ __decorate([
 ], CreateUserDto.prototype, "agency", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
-    __metadata("design:type", Number)
-], CreateUserDto.prototype, "account", void 0);
-__decorate([
-    swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "preferredName", void 0);
 __decorate([
@@ -36,10 +32,6 @@ __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "cpf", void 0);
-__decorate([
-    swagger_1.ApiModelProperty(),
-    __metadata("design:type", Number)
-], CreateUserDto.prototype, "balance", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)
