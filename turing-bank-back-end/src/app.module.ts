@@ -6,9 +6,11 @@ import {MongooseModule} from '@nestjs/mongoose'
 import { OperationModule } from './operation/operation.module';
 import config from './config/keys';
 import configProd from './config/keysprod'
+import { AuthModule } from './infra/auth/auth.module';
 @Module({
-  imports: [UsersModule,MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? configProd.mongoURI : config.mongoURI),OperationModule],
-  controllers: [AppController],
+  imports: [UsersModule,MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? configProd.mongoURI : config.mongoURI),OperationModule,AuthModule],
+
+controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
