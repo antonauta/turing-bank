@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DadosBancariosComponent } from './dados-bancarios.component';
 import { DadosBancariosRoutingModule } from './dados-bancarios-routing.module';
-import { MaterialModule } from '../../shared/material/material.module';
+import { SharedModule } from '../../shared/shared.module';
 
 
 
@@ -10,7 +10,7 @@ import { MaterialModule } from '../../shared/material/material.module';
   declarations: [DadosBancariosComponent],
   imports: [
     CommonModule,
-    MaterialModule,
+    SharedModule,
     DadosBancariosRoutingModule
   ]
 })

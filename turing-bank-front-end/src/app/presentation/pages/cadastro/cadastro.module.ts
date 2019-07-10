@@ -2,10 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CadastroComponent } from './cadastro.component';
 import { CadastroRoutingModule } from './cadastro-routing.module';
-import { MaterialModule } from '../../shared/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [CadastroComponent],
@@ -14,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CadastroRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
+    SharedModule,
   ]
 })
 export class CadastroModule { }

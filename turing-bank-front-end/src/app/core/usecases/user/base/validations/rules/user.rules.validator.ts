@@ -33,13 +33,14 @@ export class UserRulesValidator implements UserRulesValidatorInterface {
       .Length(m => m.password, 6, 16, 'Senha deve ter entre 6 a 16 caracters', 'Senha')
       .If(m => m.password != '', validator => validator
       .ForStringProperty(m => m.password, passwordValidator => passwordValidator
-              .Matches("(?=.*?[0-9])(?=.*?[a-z])(?=.*?[A-Z])", "Password strength is not valid", "Employee.Password.Strength")
-              .Required((m, pwd) => pwd.length > 6, "Senha deve ter entre 6 a 16 caracters", "Employee.Password.Length")
+              .Matches("(?=.*?[0-9])(?=.*?[a-z])(?=.*?[A-Z])", ` A sua senha deve ter pelo menos 6
+               caracteres e conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito. `, "Senha")
+              .Required((m, pwd) => pwd.length > 6, "Senha deve ter entre 6 a 16 caracters", "Senha")
           .ToResult())
       .ToResult())  
 
       // preferredName
-      .NotEmpty(m => m.preferredName, 'Campo obrigatório.', 'preferredName')
+      .NotEmpty(m => m.preferredName, 'Campo obrigatório.', 'Apelido')
       .Length(m => m.preferredName, 3, 100, 'Número de caracteres inválido.', 'Apelido')
 
       // email
