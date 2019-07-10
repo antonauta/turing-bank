@@ -10,7 +10,12 @@ import isValidCpf from '@brazilian-utils/is-valid-cpf';
 export class UserRulesValidator implements UserRulesValidatorInterface {
 
   signinRules(validator: IValidator<UserModel>): ValidationResult {
-    return validator.ToResult()
+    return validator
+            // email
+            .NotEmpty(m => m.email, 'Campo obrigatório!', 'E-mail')
+            .Email(m => m.email, 'E-mail inválido!', ' E-mail')
+            .NotEmpty(m => m.password, 'Campo obrigatório.', 'Senha')
+            .ToResult()
   }
 
 
@@ -35,7 +40,7 @@ export class UserRulesValidator implements UserRulesValidatorInterface {
 
       // preferredName
       .NotEmpty(m => m.preferredName, 'Campo obrigatório.', 'preferredName')
-      .Length(m => m.password, 3, 100, 'Número de caracteres inválido.', 'Apelido')
+      .Length(m => m.preferredName, 3, 100, 'Número de caracteres inválido.', 'Apelido')
 
       // email
       .NotEmpty(m => m.email, 'Campo obrigatório!', 'E-mail')

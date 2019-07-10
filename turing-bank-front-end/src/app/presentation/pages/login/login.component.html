@@ -1,1 +1,27 @@
-<p>login works!</p>
+
+<form [formGroup]="loginForm" (ngSubmit)="submit()" class="login-form">
+        <mat-card class="form-card">
+            
+            <mat-form-field class="form-group">
+                <input matInput 
+                        placeholder="E-mail"
+                        autocomplete="off"
+                        name="email" id="email" [formControl]="email"
+                        >
+            </mat-form-field>
+
+            <mat-form-field class="form-group">
+                <input matInput 
+                        placeholder="Senha"
+                        autocomplete="off"
+                        name="password" id="password" [formControl]="password"
+                            >
+            </mat-form-field>
+
+            <div class="form-bt-left">
+                <button mat-raised-button color="primary">Acessar</button>
+            </div>
+
+            
+        </mat-card>
+    </form>

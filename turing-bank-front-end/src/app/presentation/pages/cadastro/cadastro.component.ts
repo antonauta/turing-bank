@@ -62,8 +62,11 @@ export class CadastroComponent implements OnInit {
 
   submit() {
     console.log(this.cadastroForm.value);
-    const v = this.userValidatorInterface.signupValitador(this.cadastroForm.value)
-    console.log(v);
+    const v = this.userValidatorInterface.signupValitador(this.cadastroForm.value);
+    if (!v.IsValid) {
+      return
+    }
+    console.log();
   }
 
 }
