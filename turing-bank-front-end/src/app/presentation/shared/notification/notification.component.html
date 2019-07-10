@@ -1,0 +1,10 @@
+<p>bottom-sheet works!</p>
+
+<mat-nav-list style="margin-left: 36px">
+        <ul>
+            <li *ngFor="let error of errors">
+               <p mat-line> <b>{{error.Identifier}}:</b> {{error.Message}} </p>
+            </li>
+        </ul>   
+        <button (click)="dismiss($event)">OK</button>
+</mat-nav-list>
