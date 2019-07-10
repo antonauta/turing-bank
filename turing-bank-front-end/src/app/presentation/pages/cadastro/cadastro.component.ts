@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { UserValidatorInterface } from 'src/app/core/interfaces/validations/user.validator.interface';
 
 
 @Component({
@@ -8,6 +9,8 @@ import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms'
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit {
+
+
 
   emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -49,13 +52,18 @@ export class CadastroComponent implements OnInit {
   });
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private userValidatorInterface: UserValidatorInterface
+    ) { }
 
   ngOnInit() {
   }
 
   submit() {
     console.log(this.cadastroForm.value);
+    const v = this.userValidatorInterface.signupValitador(this.cadastroForm.value)
+    console.log(v);
   }
 
 }

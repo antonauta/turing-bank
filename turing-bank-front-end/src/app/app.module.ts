@@ -10,6 +10,8 @@ import { PresentationModule } from './presentation/presentation.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { UserValidator } from './core/usecases/user/base/validations/user.validator';
+import { UserValidatorInterface } from './core/interfaces/validations/user.validator.interface';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,11 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     
   ],
-  providers: [],
+  providers: [
+    {
+      provide: UserValidatorInterface, useClass: UserValidator
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
