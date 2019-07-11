@@ -23,10 +23,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var _a;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("mongoose");
+const bcrypt = require("bcrypt");
 const mongoose_2 = require("@nestjs/mongoose");
+const SALT_WORK_FACTOR = 10;
 let UsersService = class UsersService {
     constructor(userModel) {
         this.userModel = userModel;
+    }
+    sanitizeUser(user) {
+        const sanitized = user;
+        delete sanitized['password'];
+        return sanitized;
     }
     findAll() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -38,10 +45,51 @@ let UsersService = class UsersService {
             return yield this.userModel.findOne({ _id: id });
         });
     }
-    create(user) {
+    findByAccount(account) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newUser = new this.userModel(user);
-            return yield newUser.save();
+            return yield this.userModel.findOne({ account });
+        });
+    }
+    checkUser(cpf, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const salt = yield bcrypt.genSalt(SALT_WORK_FACTOR);
+            const encryptedpwd = yield bcrypt.hash(password, salt);
+            return yield this.userModel.findOne({ cpf, password: encryptedpwd });
+        });
+    }
+    findByPayload(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { cpf } = payload;
+            return yield this.userModel.findOne({ cpf });
+        });
+    }
+    findByLogin(userDTO) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { cpf, password } = userDTO;
+            const user = yield this.userModel
+                .findOne({ cpf })
+                .select('cpf password agency account preferredName name');
+            if (!user) {
+                throw new common_1.HttpException('Invalid credentials', common_1.HttpStatus.UNAUTHORIZED);
+            }
+            if (yield bcrypt.compare(password, user.password)) {
+                return this.sanitizeUser(user);
+            }
+            else {
+                throw new common_1.HttpException('Invalid credentials', common_1.HttpStatus.UNAUTHORIZED);
+            }
+        });
+    }
+    create(userDTO) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { cpf } = userDTO;
+            const user = yield this.userModel.findOne({ cpf });
+            if (user) {
+                throw new common_1.HttpException('User already exists', common_1.HttpStatus.BAD_REQUEST);
+            }
+            const createdUser = new this.userModel(userDTO);
+            yield createdUser.save();
+            return this.sanitizeUser(createdUser);
         });
     }
     update(user, id) {

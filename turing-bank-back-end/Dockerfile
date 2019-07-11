@@ -8,7 +8,7 @@ ENV NODE_ENV=PROD
 
 
 COPY package.json package-lock*.json ./
-
+RUN apk --no-cache add --virtual builds-deps build-base python
 RUN npm config set registry http://registry.npmjs.org
 RUN npm install 
 

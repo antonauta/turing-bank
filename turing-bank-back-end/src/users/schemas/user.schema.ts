@@ -1,12 +1,12 @@
 import * as mongoose from 'mongoose';
-import * as  bcrypt from 'bcryptjs';
+import * as  bcrypt from 'bcrypt';
 import * as util from 'util';
 import * as autoIncrement from 'mongoose-easy-auto-increment';
 const SALT_WORK_FACTOR = 10;
 export const UserSchema = new mongoose.Schema({
   name: String,
   agency: { type: String, default: '01' },
-  account: { type: Number },
+  account: { type: String },
   preferredName: String,
   email: String,
   token:String,
@@ -19,30 +19,21 @@ export const UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(autoIncrement, { field: 'account', collection: 'Counters' });
 
-UserSchema.pre('save', async function(next) {
-  if (!this.isNew) {
-    return next();
-  }
+UserSchema.pre('save', async function(next : mongoose.HookNextFunction) {
+
   const user = this;
 
   // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) {
     return next();
   }
-  bcrypt.genSalt(SALT_WORK_FACTOR,  function(err, salt) {
-    if (err) {
-      return next(err);
-    }
+  try {
+    const hashed = await bcrypt.hash(this['password'], SALT_WORK_FACTOR);
+    this['password'] = hashed;
+    return next();
+  } catch (error) {
+    return next(error)
+  }
  
-    // hash the password using our new salt
-    bcrypt.hash(user.password, salt,  function(err, hash) {
-      if (err) {
-        return next(err);
-      }
-
-      user.password = hash;
-      next();
-      // override the cleartext password with the hashed one
-    });
-  });
+ 
 });
