@@ -33,11 +33,13 @@ export class OperationsService {
       const lastDateISOFOrmat = new Date(lastDate).toISOString()
       dateFilter["$gte"] = lastDateISOFOrmat
     }
-    console.log(idClient)
-    const currentExtract =  await this.operationModel.find({
+    const mainQuery = {
       $or: [{ origin: idClient }, { destination: idClient }],
-      //  "date": dateFilter
-    }).populate([{path:"destination",select:"-password"},{path:"origin",select:"-password"}]);
+
+    }
+    if(Object.keys(dateFilter).length) mainQuery["date"] = dateFilter
+
+    const currentExtract =  await this.operationModel.find(mainQuery).populate([{path:"destination",select:"-password"},{path:"origin",select:"-password"}]);
     const userBalance = await this.userService.findOne(idClient)
     return {
       operations: currentExtract,
