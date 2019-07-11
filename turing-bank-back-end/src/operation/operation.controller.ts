@@ -8,6 +8,7 @@ import {
     Req,
     Res,
     Param,
+    Query,
 } from '@nestjs/common';
 import { CreateOperationDto } from './dto/create.operation.dto';
 import { OperationsService } from './operation.service';
@@ -24,8 +25,8 @@ export class OperationController {
     // }
 
     @Get(':id')
-    async findOne(@Param('id') id): Promise<Operation> {
-        return this.operationService.findByClient(id);
+    async find(@Param('id') id, @Query() queryDate): Promise<Operation> {
+        return this.operationService.findByClient(id, queryDate.initDate, queryDate.lastDate);
     }
 
     @Post()
