@@ -17,6 +17,8 @@ COPY . .
 RUN npm run ng build -- --prod --output-path=dist
 
 
+
+
 ### STAGE 2: Setup ###
 
 FROM nginx:1.14.1-alpine as server
@@ -33,10 +35,9 @@ COPY --from=builder /ng-app/dist /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]
 
 
-FROM server as dev
-
-COPY nginx/defaultdev.conf /etc/nginx/conf.d/
+FROM builder as dev
 
 
-CMD ["nginx", "-g", "daemon off;"]
+RUN npm i -g @angular/cli
+CMD ["ng","serve","--host=0.0.0.0", "--poll=2000"]
 
