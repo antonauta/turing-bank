@@ -15,11 +15,21 @@ export class OperationsService {
   // async findAll(): Promise<Operation[]> {
   //     return await this.operationModel.find();
   // }
-  async findByClient(idClient: string): Promise<Operation> {
+
+  async findByClient( idClient: string, initDate : Date, lastDate : Date = new Date(Date.now()) ): Promise<Operation> {
+
+    const initDateISOFormat = new Date(initDate).toISOString()
+    const lastDateISOFOrmat = new Date(lastDate).toISOString()
+
     return await this.operationModel.find({
       $or: [{ origin: idClient }, { destin: idClient }],
+      "date": {
+        "$gte": initDateISOFormat,
+        "$lt": lastDateISOFOrmat
+      }
     });
   }
+
   async create(createOperationDto: CreateOperationDto): Promise<Operation> {
     const newOperation = new this.operationModel(createOperationDto);
 
