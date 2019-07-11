@@ -30,53 +30,57 @@ let OperationsService = class OperationsService {
         this.operationModel = operationModel;
         this.userService = userService;
     }
-    findByClient(idClient) {
+    findByClient(idClient, initDate, lastDate = new Date(Date.now())) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.operationModel.findOne({
-                $or: [{ origin: idClient }, { destin: idClient }],
-            });
+            let dateFilter = {};
+            if (initDate) {
+                const initDateISOFormat = new Date(initDate).toISOString();
+                dateFilter = {
+                    "$gte": initDateISOFormat
+                };
+            }
+            if (lastDate) {
+                const lastDateISOFOrmat = new Date(lastDate).toISOString();
+                dateFilter["$gte"] = lastDateISOFOrmat;
+            }
+            console.log(idClient);
+            const currentExtract = yield this.operationModel.find({
+                $or: [{ origin: idClient }, { destination: idClient }],
+            }).populate([{ path: "destination", select: "-password" }, { path: "origin", select: "-password" }]);
+            const userBalance = yield this.userService.findOne(idClient);
+            return {
+                operations: currentExtract,
+                balance: userBalance.balance
+            };
         });
     }
-    create(createOperationDto) {
+    create(userID, createOperationDto) {
         return __awaiter(this, void 0, void 0, function* () {
-            const newOperation = new this.operationModel(createOperationDto);
+            let newOperation = new this.operationModel(createOperationDto);
             let findUserDestination, findUserOrigin;
             switch (createOperationDto.type) {
                 case 0:
-                    findUserDestination = yield this.userService.findOne(createOperationDto.destination);
+                    findUserDestination = yield this.userService.findOne(userID);
                     yield this.userService.update({
-                        _id: findUserDestination._id,
                         balance: findUserDestination.balance + createOperationDto.value,
-                    }, createOperationDto.destination);
+                    }, userID);
+                    newOperation = new this.operationModel(Object.assign({}, createOperationDto, { destination: userID }));
                     break;
                 case 1:
-                    const checkOriginBalance = yield this.userService.findOne(createOperationDto.origin);
+                    const checkOriginBalance = yield this.userService.findOne(userID);
                     if (!checkOriginBalance ||
                         checkOriginBalance.balance < createOperationDto.value) {
                         return new Promise((resolve, reject) => reject({ error: 'Insuficient balance' }));
                     }
                     findUserDestination = yield this.userService.findOne(createOperationDto.destination);
                     yield this.userService.update({
-                        _id: findUserDestination._id,
                         balance: findUserDestination.balance + createOperationDto.value,
                     }, createOperationDto.destination);
-                    findUserOrigin = yield this.userService.findOne(createOperationDto.origin);
+                    findUserOrigin = yield this.userService.findOne(userID);
                     yield this.userService.update({
-                        _id: findUserOrigin._id,
                         balance: findUserOrigin.balance - createOperationDto.value,
-                    }, createOperationDto.origin);
-                    break;
-                case 2:
-                    let checkOriginBalanceWithDraw = yield this.userService.findOne(createOperationDto.origin);
-                    if (!checkOriginBalanceWithDraw ||
-                        checkOriginBalanceWithDraw.balance < createOperationDto.value) {
-                        return new Promise((resolve, reject) => reject({ error: 'Insuficient balance' }));
-                    }
-                    findUserOrigin = yield this.userService.findOne(createOperationDto.origin);
-                    yield this.userService.update({
-                        _id: findUserOrigin._id,
-                        balance: findUserOrigin.balance - createOperationDto.value,
-                    }, createOperationDto.origin);
+                    }, userID);
+                    newOperation = new this.operationModel(Object.assign({}, createOperationDto, { origin: userID, destination: createOperationDto.destination }));
                     break;
                 default:
                     return new Promise((resolve, reject) => reject({ error: 'Invalid Operation' }));

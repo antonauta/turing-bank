@@ -15,23 +15,11 @@ class CreateOperationDto {
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", Number)
-], CreateOperationDto.prototype, "id", void 0);
-__decorate([
-    swagger_1.ApiModelProperty(),
-    __metadata("design:type", Number)
 ], CreateOperationDto.prototype, "type", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", Number)
 ], CreateOperationDto.prototype, "value", void 0);
-__decorate([
-    swagger_1.ApiModelProperty(),
-    __metadata("design:type", Date)
-], CreateOperationDto.prototype, "createAt", void 0);
-__decorate([
-    swagger_1.ApiModelProperty(),
-    __metadata("design:type", String)
-], CreateOperationDto.prototype, "origin", void 0);
 __decorate([
     swagger_1.ApiModelProperty(),
     __metadata("design:type", String)

@@ -4,5 +4,5 @@ export interface Operation{
     value: number;
     createAt: Date;
     origin: string;
-    destin: string;
+    destination: string;
 }

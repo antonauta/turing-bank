@@ -17,31 +17,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const jwt_1 = require("@nestjs/jwt");
+const users_service_1 = require("./../../users/users.service");
 const common_1 = require("@nestjs/common");
-const users_service_1 = require("../../users/users.service");
+const jsonwebtoken_1 = require("jsonwebtoken");
 let AuthService = class AuthService {
-    constructor(usersService, jwtService) {
-        this.usersService = usersService;
-        this.jwtService = jwtService;
+    constructor(userService) {
+        this.userService = userService;
     }
-    signIn(cpf, password) {
+    signPayload(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            const checkUser = yield this.usersService.checkUser(cpf, password);
-            const user = { cpf: 'user@email.com' };
-            return this.jwtService.sign(user);
+            return jsonwebtoken_1.sign(payload, process.env.SECRET_KEY || 'abubakacar', { expiresIn: '12h' });
         });
     }
     validateUser(payload) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.usersService.findOneByCPF(payload.cpf);
+            return yield this.userService.findByPayload(payload);
         });
     }
 };
 AuthService = __decorate([
     common_1.Injectable(),
-    __metadata("design:paramtypes", [users_service_1.UsersService,
-        jwt_1.JwtService])
+    __metadata("design:paramtypes", [users_service_1.UsersService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map
