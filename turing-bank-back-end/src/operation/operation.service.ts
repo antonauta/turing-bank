@@ -16,7 +16,7 @@ export class OperationsService {
   //     return await this.operationModel.find();
   // }
   async findByClient(idClient: string): Promise<Operation> {
-    return await this.operationModel.findOne({
+    return await this.operationModel.find({
       $or: [{ origin: idClient }, { destin: idClient }],
     });
   }
