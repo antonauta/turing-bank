@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import * as  bcrypt from 'bcryptjs';
+import * as util from 'util';
 import * as autoIncrement from 'mongoose-easy-auto-increment';
 const SALT_WORK_FACTOR = 10;
 export const UserSchema = new mongoose.Schema({
@@ -9,14 +10,16 @@ export const UserSchema = new mongoose.Schema({
   preferredName: String,
   email: String,
   token:String,
+  refreshToken:String,
   cpf: { type: String, unique: true },
+
   balance: { type: Number, default: 0 },
   password: { type: String },
 });
 
 UserSchema.plugin(autoIncrement, { field: 'account', collection: 'Counters' });
 
-UserSchema.pre('save',  function(next) {
+UserSchema.pre('save', async function(next) {
   if (!this.isNew) {
     return next();
   }
