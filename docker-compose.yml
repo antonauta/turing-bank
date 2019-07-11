@@ -5,20 +5,28 @@ services:
     build: turing-bank-front-end
     restart: always
     ports:
-      - "4200:80"
+      - "8080:80"
+    networks:
+      - testing
   nest:
     build: turing-bank-back-end
     restart: always
     ports:
-      - "3000:3000"
+      - "8081:3000"
     depends_on:
       - database
     volumes:
       - ./turing-bank-back-end/src:/usr/src/app/src
+    networks:
+      - testing
   database:
     image: mongo
     restart: always
     volumes:
       - data-db:/data/db
+    networks:
+      - testing
 volumes:
     data-db:
+networks:
+       testing:
