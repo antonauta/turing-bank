@@ -9,7 +9,7 @@ import { SharedModule } from './infra/shared/shared.module';
 import config from './config/keys';
 import configProd from './config/keysprod'
 @Module({
-  imports: [UsersModule,MongooseModule.forRoot( config.mongoURI),OperationModule,AuthModule, SharedModule],
+  imports: [UsersModule,MongooseModule.forRoot(process.env.NODE_ENV === 'PROD' ? configProd.mongoURI : config.mongoURI),OperationModule,AuthModule, SharedModule],
 
 controllers: [AppController],
   providers: [AppService],
