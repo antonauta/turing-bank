@@ -4,6 +4,8 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOperationDto } from './dto/create.operation.dto';
 import { UsersService } from '../users/users.service';
+import { Moment } from 'moment';
+import moment = require('moment');
 
 @Injectable()
 export class OperationsService {
@@ -105,6 +107,7 @@ export class OperationsService {
           reject({ error: 'Invalid Operation' }),
         );
     }
+    console.log(newOperation)
     return await newOperation.save();
   }
 }
