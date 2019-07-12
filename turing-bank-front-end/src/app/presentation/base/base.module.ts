@@ -11,11 +11,13 @@ import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     BaseComponent, 
-    HeaderComponent, FooterComponent
+    HeaderComponent, 
+    FooterComponent
   ],
   exports: [
     BaseComponent, 
-    HeaderComponent
+    HeaderComponent, 
+    FooterComponent
   ],
   imports: [
     CommonModule,
