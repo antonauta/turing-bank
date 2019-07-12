@@ -6,8 +6,8 @@ import { Payload } from '../shared/payload';
 import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 
 
-@ApiUseTags('user')
-@Controller('main')
+@ApiUseTags('auth')
+@Controller('auth')
 export class AuthController {
 
     constructor(private userService : UsersService,private authService : AuthService){}
