@@ -30,23 +30,30 @@ let OperationsService = class OperationsService {
         this.operationModel = operationModel;
         this.userService = userService;
     }
-    findByClient(idClient, initDate, lastDate = new Date(Date.now())) {
+    findByClient(idClient, initDate, lastDate) {
         return __awaiter(this, void 0, void 0, function* () {
             let dateFilter = {};
+            let currentDate = new Date();
+            let lastingDate = new Date();
+            lastingDate.setDate(lastingDate.getDate() - 7);
+            dateFilter["$gte"] = lastingDate;
+            dateFilter["$lte"] = currentDate;
             if (initDate) {
                 const initDateISOFormat = new Date(initDate).toISOString();
                 dateFilter = {
-                    "$gte": initDateISOFormat
+                    "$lte": initDateISOFormat
                 };
             }
             if (lastDate) {
                 const lastDateISOFOrmat = new Date(lastDate).toISOString();
                 dateFilter["$gte"] = lastDateISOFOrmat;
             }
-            console.log(idClient);
-            const currentExtract = yield this.operationModel.find({
+            const mainQuery = {
                 $or: [{ origin: idClient }, { destination: idClient }],
-            }).populate([{ path: "destination", select: "-password" }, { path: "origin", select: "-password" }]);
+            };
+            mainQuery["date"] = dateFilter;
+            console.log(mainQuery);
+            const currentExtract = yield this.operationModel.find(mainQuery).populate([{ path: "destination", select: "-password" }, { path: "origin", select: "-password" }]);
             const userBalance = yield this.userService.findOne(idClient);
             return {
                 operations: currentExtract,
@@ -85,6 +92,7 @@ let OperationsService = class OperationsService {
                 default:
                     return new Promise((resolve, reject) => reject({ error: 'Invalid Operation' }));
             }
+            console.log(newOperation);
             return yield newOperation.save();
         });
     }
