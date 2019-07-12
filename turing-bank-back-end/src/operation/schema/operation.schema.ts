@@ -8,4 +8,3 @@ export const operationSchema = new mongoose.Schema({
     origin: { type: mongoose.Schema.ObjectId, ref: 'User' },
     destination: { type: mongoose.Schema.ObjectId, ref: 'User' },
 });
-
