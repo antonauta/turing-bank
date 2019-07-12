@@ -3,13 +3,16 @@ import { UsersService } from './../../users/users.service';
 import { Controller, Post, Body } from '@nestjs/common';
 import { LoginDTO,RegisterDTO } from './dto/auth.dto';
 import { Payload } from '../shared/payload';
+import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 
-@Controller('auth')
+
+@ApiUseTags('user')
+@Controller('main')
 export class AuthController {
 
     constructor(private userService : UsersService,private authService : AuthService){}
 
-
+    @ApiResponse({ status: 401, description: 'Senha invalida.'})
     @Post('login')
     async login(@Body() userDTO: LoginDTO) {
       const user = await this.userService.findByLogin(userDTO);
@@ -25,7 +28,8 @@ export class AuthController {
       const token = await this.authService.signPayload(payload);
       return { user, token };
     }
-  
+    
+    
     @Post('register')
     async register(@Body() userDTO: RegisterDTO) {
       const user = await this.userService.create(userDTO);

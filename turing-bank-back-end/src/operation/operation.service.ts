@@ -28,7 +28,7 @@ export class OperationsService {
     if(initDate){
       const initDateISOFormat = new Date(initDate).toISOString()
       dateFilter = {
-        "$gte": initDateISOFormat
+        "lt": initDateISOFormat
       }
     }
     if(lastDate){
