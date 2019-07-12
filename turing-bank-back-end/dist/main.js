@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const auth_module_1 = require("./infra/auth/auth.module");
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
@@ -23,24 +24,15 @@ function bootstrap() {
         app.use(helmet());
         app.enableCors();
         const optionsUser = new swagger_1.DocumentBuilder()
-            .setTitle('User endpoint API exemplos')
+            .setTitle('Endpoint da API com exemplos')
             .setBasePath('api/v1')
-            .setDescription('API para cadastro de usuarios,autenticao,criacao e regras de negocios que envolvam o usuario')
+            .setDescription('API para cadastro de usuarios,autenticao,criacao e regras de negocios que envolvam o usuario e operacoes')
             .setVersion('1.0')
-            .addBearerAuth('header')
-            .addTag('users')
+            .addBearerAuth()
+            .addTag('main')
             .build();
-        const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule] });
-        swagger_1.SwaggerModule.setup('docs/user', app, documentUser);
-        const optionsOperations = new swagger_1.DocumentBuilder()
-            .setTitle('Operations endpoint API exemplos')
-            .setBasePath('api/v1')
-            .setDescription('API para cadastro de Operações,criacao e regras de negocios que envolvam as transacoes')
-            .setVersion('1.0')
-            .addTag('operations')
-            .build();
-        const documentTransactions = swagger_1.SwaggerModule.createDocument(app, optionsOperations, { include: [operation_module_1.OperationModule] });
-        swagger_1.SwaggerModule.setup('docs/operations', app, documentTransactions);
+        const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule, operation_module_1.OperationModule, auth_module_1.AuthModule] });
+        swagger_1.SwaggerModule.setup('docs/swagger', app, documentUser);
         yield app.listen(process.env.PORT || 3000);
     });
 }

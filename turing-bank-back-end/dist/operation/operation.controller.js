@@ -61,7 +61,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OperationController.prototype, "create", null);
 OperationController = __decorate([
-    swagger_1.ApiUseTags('operation'),
+    swagger_1.ApiUseTags('main'),
     swagger_1.ApiBearerAuth(),
     common_1.Controller('operation'),
     __metadata("design:paramtypes", [operation_service_1.OperationsService])

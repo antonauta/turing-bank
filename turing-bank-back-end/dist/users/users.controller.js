@@ -74,7 +74,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "update", null);
 UsersController = __decorate([
-    swagger_1.ApiUseTags('users'),
+    swagger_1.ApiUseTags('main'),
     swagger_1.ApiBearerAuth(),
     common_1.Controller('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

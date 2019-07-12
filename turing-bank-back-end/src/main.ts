@@ -24,7 +24,7 @@ async function bootstrap() {
     .setBasePath('api/v1')
     .setDescription('API para cadastro de usuarios,autenticao,criacao e regras de negocios que envolvam o usuario e operacoes')
     .setVersion('1.0')
-    .addBearerAuth('header')
+    .addBearerAuth()
     .addTag('main')
     .build();
   const documentUser = SwaggerModule.createDocument(app, optionsUser, { include: [UsersModule,OperationModule,AuthModule] });
