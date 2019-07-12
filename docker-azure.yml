@@ -2,7 +2,9 @@ version: '3.3'
 
 services:
   angular:
-    image: djnakudo/frontendturingbankavanade:lts
+    build: 
+      context: turing-bank-front-end
+      target: server
     restart: always
     ports:
       - "4200:80"
@@ -10,15 +12,17 @@ services:
       - frontend
     labels:
       - traefik.port=80
-      - traefik.frontend.rule=Host:localhost
+      - traefik.frontend.rule=PathPrefix:/
   nest:
-    image: djnakudo/backendturingbankavanade
+    build: turing-bank-back-end
     restart: always
+    volumes:
+      - ./turing-bank-back-end/src:/usr/src/app/src
     environment:
       PORT : 80
     labels:
       - traefik.port=80
-      - traefik.frontend.rule=Host:localhost
+      - traefik.frontend.rule=PathPrefix:/api,/docs
     ports:
       - "3000:80"
     depends_on:
@@ -35,7 +39,7 @@ services:
   proxy:
     image: traefik:1.7-alpine
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - backend
       - frontend
@@ -49,10 +53,9 @@ services:
       - --defaultentrypoints=http,https
     labels:
       - traefik.port=8080
-      - traefik.frontend.rule=Host:traefik.localhost
+      - traefik.frontend.rule=Host:traefik.turingbank.eastus.cloudapp.azure.com
 volumes:
     data-db:
-    server:
 networks:
        backend:
        frontend:
