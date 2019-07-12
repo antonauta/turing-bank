@@ -1,0 +1,26 @@
+.navbar {
+    border-bottom: 1px solid #d1d1d1;
+    font-family: 'Lato', sans-serif;
+    color: rgba(0, 0, 0, .5);
+}
+
+.nav-item {
+    padding-left: 15px;
+}
+
+.logo-header {
+    height: 70px;
+}
+
+.span-conta {
+    margin-bottom: 5px;
+}
+
+.links-nav {
+    /* display: flex; */
+    justify-content: space-between;
+}
+
+.mr-auto, .mx-auto {
+    margin-right: 20px !important;
+}

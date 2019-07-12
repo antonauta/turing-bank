@@ -1,0 +1,35 @@
+@import '../../shared/colors/colors.component';
+
+.jumbotron {
+    background-image: url('../../../assets/banner-3.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 75vh;
+
+    color: $cor-branco;
+    border-radius: unset;
+}
+
+.texto {
+    width: 40%;
+}
+
+.btn {
+    background-color: $cor-primaria;
+    color: $cor-branco;
+}
+
+.secao-seguro {
+    height: 80vh;
+    background-image: url('../../../assets/happy-person.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+}
+
+@media screen and (max-width: 600px) {
+    .texto {
+        width: unset;
+    }
+}

@@ -20,39 +20,49 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const swagger_1 = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
+const user_decorator_1 = require("../infra/shared/user.decorator");
 const create_operation_dto_1 = require("./dto/create.operation.dto");
 const operation_service_1 = require("./operation.service");
+const passport_1 = require("@nestjs/passport");
 let OperationController = class OperationController {
     constructor(operationService) {
         this.operationService = operationService;
     }
-    findOne(id) {
+    find(user, queryDate) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.operationService.findByClient(id);
+            const { _id } = user;
+            return yield this.operationService.findByClient(_id, queryDate.initDate, queryDate.lastDate);
         });
     }
-    create(createOperationDto) {
+    create(user, createOperationDto) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this.operationService.create(createOperationDto);
+            return yield this.operationService.create(user._id, createOperationDto);
         });
     }
 };
 __decorate([
-    common_1.Get(':id'),
-    __param(0, common_1.Param('id')),
+    common_1.Get('by_user'),
+    common_1.UseGuards(passport_1.AuthGuard('jwt')),
+    swagger_1.ApiImplicitParam({ name: 'initDate' }),
+    swagger_1.ApiImplicitParam({ name: 'lastDate' }),
+    __param(0, user_decorator_1.User()), __param(1, common_1.Query()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
-], OperationController.prototype, "findOne", null);
+], OperationController.prototype, "find", null);
 __decorate([
     common_1.Post(),
-    __param(0, common_1.Body()),
+    common_1.UseGuards(passport_1.AuthGuard('jwt')),
+    __param(0, user_decorator_1.User()), __param(1, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_operation_dto_1.CreateOperationDto]),
+    __metadata("design:paramtypes", [Object, create_operation_dto_1.CreateOperationDto]),
     __metadata("design:returntype", Promise)
 ], OperationController.prototype, "create", null);
 OperationController = __decorate([
+    swagger_1.ApiUseTags('operation'),
+    swagger_1.ApiBearerAuth(),
     common_1.Controller('operation'),
     __metadata("design:paramtypes", [operation_service_1.OperationsService])
 ], OperationController);

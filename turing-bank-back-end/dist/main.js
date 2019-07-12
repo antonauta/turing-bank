@@ -27,6 +27,7 @@ function bootstrap() {
             .setBasePath('api/v1')
             .setDescription('API para cadastro de usuarios,autenticao,criacao e regras de negocios que envolvam o usuario')
             .setVersion('1.0')
+            .addBearerAuth('header')
             .addTag('users')
             .build();
         const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule] });
@@ -40,7 +41,7 @@ function bootstrap() {
             .build();
         const documentTransactions = swagger_1.SwaggerModule.createDocument(app, optionsOperations, { include: [operation_module_1.OperationModule] });
         swagger_1.SwaggerModule.setup('docs/operations', app, documentTransactions);
-        yield app.listen(3000);
+        yield app.listen(process.env.PORT || 3000);
     });
 }
 bootstrap();

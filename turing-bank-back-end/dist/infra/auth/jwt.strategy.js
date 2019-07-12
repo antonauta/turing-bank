@@ -17,25 +17,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const common_1 = require("@nestjs/common");
+const passport_1 = require("@nestjs/passport");
 const passport_jwt_1 = require("passport-jwt");
 const auth_service_1 = require("./auth.service");
-const passport_1 = require("@nestjs/passport");
-const common_1 = require("@nestjs/common");
 let JwtStrategy = class JwtStrategy extends passport_1.PassportStrategy(passport_jwt_1.Strategy) {
     constructor(authService) {
         super({
             jwtFromRequest: passport_jwt_1.ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: 'secretKey',
+            secretOrKey: process.env.SECRET_KEY || 'abubakacar',
         });
         this.authService = authService;
     }
-    validate(token) {
+    validate(payload, done) {
         return __awaiter(this, void 0, void 0, function* () {
-            const user = yield this.authService.validateUser(token);
+            const user = yield this.authService.validateUser(payload);
             if (!user) {
-                throw new common_1.UnauthorizedException();
+                return done(new common_1.HttpException('Unauthorized access', common_1.HttpStatus.UNAUTHORIZED), false);
             }
-            return user;
+            return done(null, user, payload.iat);
         });
     }
 };

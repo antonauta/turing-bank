@@ -18,59 +18,58 @@ export class OperationsService {
   //     return await this.operationModel.find();
   // }
 
-  async findByClient( idClient: string, iDate: Date = new Date(), lDate: Date = new Date() ): Promise<Operation> {
+  async findByClient( idClient: string, initDate : Date, lastDate : Date = new Date(Date.now()) ): Promise<any> {
+
     
-    const currentDate = moment().format('dd/MM/YYYY');
-    let initialDate = moment(iDate).format('dd/MM/YYYY');
-    let lastDate = moment(lDate).format('dd/MM/YYYY')
+    
+    let dateFilter = {
 
-    console.log("Data inicial " + initialDate)
-    console.log("Data corrente " + currentDate)
-
-    if (initialDate === currentDate) {
-      initialDate = moment(iDate).subtract(7, 'days').toString()
-      console.log("Data depois do moment " + initialDate)
-      // initDate = new Date();
-      // initDate.setDate(initDate.getDate() - 7)
     }
-
-    const initDateISOFormat = moment(initialDate).toISOString();
-    const lastDateISOFOrmat = moment(lastDate).toISOString();
-    // const initDateISOFormat = initDate.toISOString()
-    // const lastDateISOFOrmat = lastDate.toISOString()
-    console.log("Data inicial ISO: " + initDateISOFormat)
-    console.log("Data final ISO: " + lastDateISOFOrmat)
-
-    return await this.operationModel.find({
-      $or: [{ origin: idClient }, { destin: idClient }],
-      "date": {
-        "$gte": initDateISOFormat,
-        "$lt": lastDateISOFOrmat
+    if(initDate){
+      const initDateISOFormat = new Date(initDate).toISOString()
+      dateFilter = {
+        "$gte": initDateISOFormat
       }
-    });
+    }
+    if(lastDate){
+      const lastDateISOFOrmat = new Date(lastDate).toISOString()
+      dateFilter["$gte"] = lastDateISOFOrmat
+    }
+    const mainQuery = {
+      $or: [{ origin: idClient }, { destination: idClient }],
+
+    }
+    if(Object.keys(dateFilter).length) mainQuery["date"] = dateFilter
+
+    const currentExtract =  await this.operationModel.find(mainQuery).populate([{path:"destination",select:"-password"},{path:"origin",select:"-password"}]);
+    const userBalance = await this.userService.findOne(idClient)
+    return {
+      operations: currentExtract,
+      balance : userBalance.balance
+    }
   }
 
-  async create(createOperationDto: CreateOperationDto): Promise<Operation> {
-    const newOperation = new this.operationModel(createOperationDto);
+  async create(userID:string,createOperationDto: CreateOperationDto): Promise<Operation> {
+    let newOperation = new this.operationModel(createOperationDto);
 
     let findUserDestination, findUserOrigin;
     switch (createOperationDto.type) {
       case 0:
         findUserDestination = await this.userService.findOne(
-          createOperationDto.destination,
+          userID
         );
         await this.userService.update(
           {
-            _id: findUserDestination._id,
+           
             balance: findUserDestination.balance + createOperationDto.value,
           },
-          createOperationDto.destination,
+          userID
         );
-
+          newOperation = new this.operationModel({...createOperationDto,destination:userID});
         break;
       case 1:
         const checkOriginBalance = await this.userService.findOne(
-          createOperationDto.origin,
+         userID
         );
 
         if (
@@ -86,45 +85,22 @@ export class OperationsService {
         );
         await this.userService.update(
           {
-            _id: findUserDestination._id,
+         
             balance: findUserDestination.balance + createOperationDto.value,
           },
           createOperationDto.destination,
         );
         findUserOrigin = await this.userService.findOne(
-          createOperationDto.origin,
+         userID
         );
         await this.userService.update(
           {
-            _id: findUserOrigin._id,
+          
             balance: findUserOrigin.balance - createOperationDto.value,
           },
-          createOperationDto.origin,
+          userID
         );
-        break;
-      case 2:
-        let checkOriginBalanceWithDraw = await this.userService.findOne(
-          createOperationDto.origin,
-        );
-
-        if (
-          !checkOriginBalanceWithDraw ||
-          checkOriginBalanceWithDraw.balance < createOperationDto.value
-        ) {
-          return new Promise((resolve, reject) =>
-            reject({ error: 'Insuficient balance' }),
-          );
-        }
-        findUserOrigin = await this.userService.findOne(
-          createOperationDto.origin,
-        );
-        await this.userService.update(
-          {
-            _id: findUserOrigin._id,
-            balance: findUserOrigin.balance - createOperationDto.value,
-          },
-          createOperationDto.origin,
-        );
+        newOperation = new this.operationModel({...createOperationDto,origin:userID,destination:createOperationDto.destination});
         break;
       default:
         return new Promise((resolve, reject) =>

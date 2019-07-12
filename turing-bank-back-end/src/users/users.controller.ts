@@ -1,3 +1,4 @@
+import { AuthGuard } from '@nestjs/passport';
 import {
   Controller,
   Get,
@@ -8,13 +9,19 @@ import {
   Req,
   Res,
   Param,
+  UseGuards,
 } from '@nestjs/common';
+import { User as UserDocument } from '../users/interfaces/user.interface';
+import { User } from '../infra/shared/user.decorator';
 import { Request, Response } from 'express';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
 import { UsersService } from './users.service';
-import { User } from './interfaces/user.interface';
+import { ApiImplicitParam, ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 
+
+@ApiUseTags('users')
+@ApiBearerAuth()
 @Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
@@ -25,20 +32,17 @@ export class UsersController {
     console.log(users)
     return res.json(users);
   }
-  @Get(':id')
-  async findOne(@Param('id') id): Promise<User> {
-    return this.userService.findOne(id);
+  @ApiImplicitParam({name:'account'})	
+  @Get('/account/:account')
+  @UseGuards(AuthGuard('jwt'))
+  async findUserByAccount(@Param('account') account){
+    return await this.userService.findByAccount(account)
   }
-  @Post()
-  async create(@Body() createItemDto: CreateUserDto): Promise<User> {
-    return this.userService.create(createItemDto);
+ 
+  @Put('user')
+  @UseGuards(AuthGuard('jwt'))
+  async update(@User() user: UserDocument, @Body() updateUserDto: UpdateUserDto) {
+    return await this.userService.update(updateUserDto, user._id);
   }
-  @Put(':id')
-  async update(@Param('id') id, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(updateUserDto, id);
-  }
-  @Delete(':id')
-  async delete(@Param('id') id) {
-    return this.userService.remove(id);
-  }
+ 
 }
