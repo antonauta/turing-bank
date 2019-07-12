@@ -15,36 +15,45 @@ section {
     .container {
         display: flex;
         justify-content: center;
+        max-width: 600px;
+        width: 85%;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
     }
 
     .cadastro-conteudo {
         display: inline-block;
-    }
 
-
-    h1 {
-        margin-top: $baseline;
-        margin-bottom: $baseline / 2;
-        font-size: 3em;
-        line-height: 1.05em;
-        border-bottom: 3px solid #3CDDEC;
         
+        h1,h2 {
+            margin-top: $baseline;
+            margin-bottom: $baseline / 2;
+            border-bottom: 3px solid #3CDDEC;
+        }
+
+        p {
+            font-size: 0.8rem;
+            margin-bottom: $baseline * 1.5;
+        }
+    
+
     }
+
+
 
     .cadastro-text {
         text-transform: uppercase;
         color: #fff;
     }
 
-    p {
-        margin-bottom: $baseline * 1.5;
-    }
-
+ 
 
     .cadastro-form {
-        min-width: 150px;
-        max-width: 500px;
+        max-width: 350px;
         width: 100%;
+        
 
         .form-group {
             width: 100%;

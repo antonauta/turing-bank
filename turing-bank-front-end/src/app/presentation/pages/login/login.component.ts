@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { UserValidatorInterface } from 'src/app/core/interfaces/validations/user.validator.interface';
+import { NotificationServiceInterface } from 'src/app/core/interfaces/services/notification.service.interfaces';
+import { ValidationResult } from 'ts.validator.fluent/dist';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +32,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userValidatorInterface: UserValidatorInterface
+    private userValidatorInterface: UserValidatorInterface,
+    private notificationServiceInterface: NotificationServiceInterface
     ) { }
 
   ngOnInit() {
@@ -38,9 +41,11 @@ export class LoginComponent implements OnInit {
 
   submit() {
     console.log(this.loginForm.value);
-    const fields = this.userValidatorInterface.signinValitador(this.loginForm.value)
+    const fields: ValidationResult = this.userValidatorInterface
+    .signinValitador(this.loginForm.value)
     console.log(fields);
     if(!fields.IsValid) {
+      this.notificationServiceInterface.notify(fields.Errors)
       return
     }
   }

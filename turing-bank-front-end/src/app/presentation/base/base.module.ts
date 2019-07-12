@@ -4,13 +4,14 @@ import { BaseComponent } from './base.component';
 import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../shared/material/material.module';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
   declarations: [
     BaseComponent, 
-    HeaderComponent
+    HeaderComponent, FooterComponent
   ],
   exports: [
     BaseComponent, 
