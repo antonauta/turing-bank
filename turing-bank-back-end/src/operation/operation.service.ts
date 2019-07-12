@@ -4,6 +4,8 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOperationDto } from './dto/create.operation.dto';
 import { UsersService } from '../users/users.service';
+import { Moment } from 'moment';
+import moment = require('moment');
 
 @Injectable()
 export class OperationsService {
@@ -28,7 +30,11 @@ export class OperationsService {
     if (initDate) {
       const initDateISOFormat = new Date(initDate).toISOString()
       dateFilter = {
+<<<<<<< HEAD
         "$lte": initDateISOFormat
+=======
+        "lt": initDateISOFormat
+>>>>>>> 4543744ce4ad5ba03f63d166dcb5c9de41aa6967
       }
     }
     if (lastDate) {
@@ -108,6 +114,7 @@ export class OperationsService {
           reject({ error: 'Invalid Operation' }),
         );
     }
+    console.log(newOperation)
     return await newOperation.save();
   }
 }

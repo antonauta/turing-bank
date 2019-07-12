@@ -20,7 +20,7 @@ import { UsersService } from './users.service';
 import { ApiImplicitParam, ApiBearerAuth, ApiUseTags } from '@nestjs/swagger';
 
 
-@ApiUseTags('users')
+@ApiUseTags('main')
 @ApiBearerAuth()
 @Controller('users')
 export class UsersController {

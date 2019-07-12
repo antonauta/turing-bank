@@ -19,13 +19,11 @@ import { OperationsService } from './operation.service';
 import { Operation } from './interfaces/operation.interface';
 import { AuthGuard } from '@nestjs/passport';
 
-@ApiUseTags('operation')
+@ApiUseTags('main')
 @ApiBearerAuth()
 @Controller('operation')
 export class OperationController { 
     constructor(private readonly operationService: OperationsService) {}
-
-
    
     @Get('by_user')
     @UseGuards(AuthGuard('jwt'))
