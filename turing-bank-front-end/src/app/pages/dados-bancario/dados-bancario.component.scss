@@ -1,0 +1,92 @@
+$color-base-header: #343233;
+
+.conta, .base {
+    background-color: #F6F6F6;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+h3 {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-size: 1.10rem;
+}
+
+.conta2 {
+    display: flex;
+    justify-content: center;
+}
+
+#chart_div{
+    margin-top: 20px;
+    width: 80%;    
+}
+
+@media screen and (max-width: 847px) {
+    #chart_div{
+        width: 90%;    
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .conta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sub {
+        margin-right: 40px;
+    }
+
+    #chart_div{
+        width: 90%;    
+    }
+}
+
+.conta > * {
+    box-shadow: 0 0px 10px 1px rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    height: 200px;
+    width: 320px;
+    border-radius: 5px;
+    margin: 15px;
+}
+
+.conta {
+    display: flex;
+    justify-content: space-around;  
+}
+
+.sub-2 {
+    p{
+        margin-top: 15px;
+    }
+    .btn {
+        width: 100%;
+    }
+}
+
+.div-info {
+    height: 150px;
+}
+
+#saldoId {
+    font-weight: 700;
+    font-size: 1.30rem;
+}
+
+.sub-3, .div-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn {
+    margin-top: 10px;
+}

@@ -14,6 +14,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { DadosBancarioComponent } from './pages/dados-bancario/dados-bancario.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { MatButtonModule } from '@angular/material/button';
     ColorsComponent,
     HeaderComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    DadosBancarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    GoogleChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
