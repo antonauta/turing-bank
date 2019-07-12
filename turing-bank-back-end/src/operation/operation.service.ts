@@ -4,6 +4,8 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOperationDto } from './dto/create.operation.dto';
 import { UsersService } from '../users/users.service';
+import { Moment } from 'moment';
+import moment = require('moment');
 
 @Injectable()
 export class OperationsService {
@@ -16,10 +18,28 @@ export class OperationsService {
   //     return await this.operationModel.find();
   // }
 
-  async findByClient( idClient: string, initDate : Date, lastDate : Date = new Date(Date.now()) ): Promise<Operation> {
+  async findByClient( idClient: string, iDate: Date = new Date(), lDate: Date = new Date() ): Promise<Operation> {
+    
+    const currentDate = moment().format('dd/MM/YYYY');
+    let initialDate = moment(iDate).format('dd/MM/YYYY');
+    let lastDate = moment(lDate).format('dd/MM/YYYY')
 
-    const initDateISOFormat = new Date(initDate).toISOString()
-    const lastDateISOFOrmat = new Date(lastDate).toISOString()
+    console.log("Data inicial " + initialDate)
+    console.log("Data corrente " + currentDate)
+
+    if (initialDate === currentDate) {
+      initialDate = moment(iDate).subtract(7, 'days').toString()
+      console.log("Data depois do moment " + initialDate)
+      // initDate = new Date();
+      // initDate.setDate(initDate.getDate() - 7)
+    }
+
+    const initDateISOFormat = moment(initialDate).toISOString();
+    const lastDateISOFOrmat = moment(lastDate).toISOString();
+    // const initDateISOFormat = initDate.toISOString()
+    // const lastDateISOFOrmat = lastDate.toISOString()
+    console.log("Data inicial ISO: " + initDateISOFormat)
+    console.log("Data final ISO: " + lastDateISOFOrmat)
 
     return await this.operationModel.find({
       $or: [{ origin: idClient }, { destin: idClient }],
@@ -111,6 +131,7 @@ export class OperationsService {
           reject({ error: 'Invalid Operation' }),
         );
     }
+    console.log(newOperation)
     return await newOperation.save();
   }
 }
