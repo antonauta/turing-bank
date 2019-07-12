@@ -1,0 +1,54 @@
+$baseline: 24px;
+
+main {
+    background-image: url('../../../../assets/bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.cadastro-container {
+    min-width: 150px;
+    max-width: 350px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.cadastro-conteudo {
+    overflow: hidden;
+    color: #fffd;
+
+    h1,h2 {
+        margin-top: $baseline;
+        border-bottom: 3px solid #3CDDEC;
+    }
+
+    p {
+        font-size: 0.8rem;
+        margin-bottom: $baseline;
+    }
+}
+
+.cadastro-form {
+
+    .form-group {
+        width: 100%;
+    }
+
+    .form-bt-left {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+
+mat-form-field {
+    margin: 0;
+}
