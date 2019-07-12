@@ -1,0 +1,18 @@
+<div class="login">
+    <div class="login-card">
+        <h4>Faça seu login</h4>
+        <form class="form-login">
+            <mat-form-field>
+                <input matInput placeholder="CPF" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <button class="login-btn" mat-raised-button>Continuar</button>
+        </form>
+    </div>
+</div>
