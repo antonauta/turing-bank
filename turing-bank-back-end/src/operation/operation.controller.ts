@@ -24,8 +24,6 @@ import { AuthGuard } from '@nestjs/passport';
 @Controller('operation')
 export class OperationController { 
     constructor(private readonly operationService: OperationsService) {}
-
-
    
     @Get('by_user')
     @UseGuards(AuthGuard('jwt'))
