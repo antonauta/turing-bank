@@ -3,17 +3,17 @@ import * as  bcrypt from 'bcrypt';
 import * as autoIncrement from 'mongoose-easy-auto-increment';
 const SALT_WORK_FACTOR = 10;
 export const UserSchema = new mongoose.Schema({
-  name: String,
+  name: {type:String,required:true},
   agency: { type: String, default: '01' },
   account: { type: String },
-  preferredName: String,
-  email: String,
+  preferredName: {type:String,required:true},
+  email: {type:String,required:true},
   token:String,
   refreshToken:String,
-  cpf: { type: String, unique: true },
+  cpf: { type: String, unique: true,required:true },
 
   balance: { type: Number, default: 0 },
-  password: { type: String },
+  password: { type: String,required:true },
 });
 
 UserSchema.plugin(autoIncrement, { field: 'account', collection: 'Counters' });
