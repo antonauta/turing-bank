@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { NotificationServiceInterface } from '../../core/interfaces/services/notification.service.interface';
+import { NotificationServiceInterface } from '../../core/interfaces/services/notification/notification.service.interface';
 import { NotificationComponent } from '../../shared/notification/notification.component';
-import { MatBottomSheet } from '@angular/material/bottom-sheet'
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 
 @Injectable({
