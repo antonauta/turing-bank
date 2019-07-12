@@ -1,3 +1,11 @@
+/*
+    Passos para usar o componente de cores:
+    1- importe-o no seu arquivo scss usando o @import
+    2- agora as variáveis podem ser usadas em qualquer propriedade
+        -> background-color: $cor-primaria;
+
+*/
+
 $cor-primaria: #5EB150;
 $cor-branco: #FFFFFF;
 $cor-preto: #000000;

@@ -1,0 +1,39 @@
+@import '../../shared/colors/colors.component';
+
+.login {
+    background-color: $cor-primaria;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    height: 420px;
+    width: 380px;
+    background-color: $cor-branco;
+    padding: 40px 40px;
+
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* mat-form-field {
+    display: block;
+} */
+
+.form-login {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.login-btn {
+    background-color: $cor-primaria;
+    color: $cor-branco;
+}
