@@ -14,6 +14,8 @@ import { UserValidator } from './core/usecases/user/base/validations/user.valida
 import { UserValidatorInterface } from './core/interfaces/validations/user.validator.interface';
 import { NotificationService } from './presentation/shared/notification/notification.service';
 import { NotificationServiceInterface } from './core/interfaces/services/notification.service.interfaces';
+import { StoreModule } from '@ngrx/store';
+import { displayReducer } from './store/display/display.reducer';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { NotificationServiceInterface } from './core/interfaces/services/notific
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot({ display: displayReducer })
     
   ],
   providers: [

@@ -7,9 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { HiddenComponentsDirective } from '../directives/hidden-components.directive';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule,
     MatFormFieldModule,

@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { NotificationComponent } from './notification/notification.component';
-
+import { HiddenComponentsDirective  } from './directives/hidden-components.directive';
 
 @NgModule({
-  declarations: [NotificationComponent],
+  declarations: [
+    NotificationComponent,
+    HiddenComponentsDirective
+  ],
   imports: [
     CommonModule,
     MaterialModule
@@ -14,7 +17,8 @@ import { NotificationComponent } from './notification/notification.component';
     NotificationComponent,
   ],
   exports: [
-    MaterialModule
+    MaterialModule,
+    HiddenComponentsDirective
   ],
 })
 export class SharedModule { }

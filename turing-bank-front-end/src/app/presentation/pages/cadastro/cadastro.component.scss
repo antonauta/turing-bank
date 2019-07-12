@@ -1,7 +1,9 @@
-$baseline: 24px;
+@import '../../../../theme/variables.scss';
+
+
 
 main {
-    background-image: url('../../../../assets/bg.png');
+    background-image: url('../../../../assets/banner.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center center;
@@ -27,7 +29,7 @@ main {
 
     h1,h2 {
         margin-top: $baseline;
-        border-bottom: 3px solid #3CDDEC;
+        border-bottom: 3px solid $cor-primaria;
     }
 
     p {

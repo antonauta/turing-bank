@@ -5,6 +5,8 @@ import { BaseModule } from './base/base.module';
 import { CadastroModule } from './pages/cadastro/cadastro.module'
 import { DadosBancariosModule } from './pages/dados-bancarios/dados-bancarios.module';
 import { LoginModule } from './pages/login/login.module';
+import { StoreModule } from '@ngrx/store';
+import { displayReducer } from '../store/display/display.reducer';
 
 
 
@@ -18,6 +20,7 @@ import { LoginModule } from './pages/login/login.module';
     DadosBancariosModule,
     BaseModule,
     LoginModule, 
+   // StoreModule.forRoot({ display: displayReducer })
   ]
 })
 export class PresentationModule { }
