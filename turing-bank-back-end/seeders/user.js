@@ -1,8 +1,9 @@
-import * as mongoose from 'mongoose';
-import * as  bcrypt from 'bcrypt';
-import * as autoIncrement from 'mongoose-easy-auto-increment';
+const mongoose = require('mongoose');
+const bcrypt  = require('bcrypt');
+const autoIncrement = require('mongoose-easy-auto-increment');
+
 const SALT_WORK_FACTOR = 10;
-export const UserSchema = new mongoose.Schema({
+ const UserSchema = new mongoose.Schema({
   name: String,
   agency: { type: String, default: '01' },
   account: { type: String },
@@ -18,7 +19,7 @@ export const UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(autoIncrement, { field: 'account', collection: 'Counters' });
 
-UserSchema.pre('save', async function(next : mongoose.HookNextFunction) {
+UserSchema.pre('save', async function(next) {
 
   const user = this;
 
@@ -36,3 +37,4 @@ UserSchema.pre('save', async function(next : mongoose.HookNextFunction) {
  
  
 });
+module.exports = mongoose.model('User',UserSchema)
