@@ -8,8 +8,7 @@ import { Injectable } from "@angular/core";
  * Notificar usuário
  */
 export abstract class NotificationServiceInterface {
-
-    /**
+     /**
      * Lista de notificação
      * @param messages
      */

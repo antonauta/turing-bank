@@ -3,7 +3,7 @@ import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms'
 import { UserValidatorInterface } from 'src/app/core/interfaces/validations/user.validator.interface';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { NotificationComponent } from '../../shared/notification/notification.component';
-import { NotificationServiceInterface } from '../../core/interfaces/services/notification.service.interface';
+import { NotificationServiceInterface } from '../../core/interfaces/services/notification/notification.service.interface';
 import { ValidationResult } from 'ts.validator.fluent/dist';
 
 @Component({
