@@ -6,6 +6,7 @@ import { ExtratoComponent } from './pages/extrato/extrato.component';
 import { TransferenciaComponent } from './pages/transferencia/transferencia.component';
 import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent
   },
-  {path: 'dados-bancarios', component: DadosBancarioComponent}, 
+  {path: 'dados-bancarios', component: DadosBancarioComponent},
   {path: 'extrato', component: ExtratoComponent},
   {path: 'transferencia', component: TransferenciaComponent},
   {path: 'pagamentos', component: PagamentosComponent},
@@ -30,8 +31,8 @@ const routes: Routes = [
     component: CadastroComponent
   },
   {
-    path: 'signup',
-    component: CadastroComponent
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

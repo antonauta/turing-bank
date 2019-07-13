@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule, MatStepperModule, MatInputModule } from '@angular/material';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -13,7 +13,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     MatIconModule,
     MatListModule,
     MatStepperModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ]
 })
 export class LoginModule { }

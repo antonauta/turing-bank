@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../core/interfaces/services/auth/auth.service';
+import { UserModel } from '../../models/user.model';
+import { UserLoggedModel } from '../../models/userLogged.model';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-dados-bancario',
@@ -8,11 +12,21 @@ import { Router } from '@angular/router';
 })
 export class DadosBancarioComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  userAccount: any;
+  userAgency: any;
+  userBalance: any;
+
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     google.charts.load('current', {packages: ['corechart', 'line']});
     google.charts.setOnLoadCallback(drawBasic);
+    this.authService.currentUser.subscribe(user => {
+      this.userAccount = user.account;
+      this.userAgency = user.agency;
+      this.userBalance = user.balance;
+      console.log(user);
+    });
   }
 
   goToExtrato(){
@@ -48,7 +62,7 @@ function drawBasic() {
   ]);
 
   var options = {
-    
+
     title: 'Movimentações dos últimos 30 dias',
     height: 260,
     colors:['#5EB150'],

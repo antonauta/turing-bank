@@ -31,6 +31,9 @@ import { UserValidator  } from './shared/services/validations/user.validator'
 import { NotificationService } from './shared/notification/notification.service';
 import { StoreModule } from '@ngrx/store';
 import { displayReducer } from './store/display/display.reducer';
+import { HttpClientModule  } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interfaces/services/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -63,8 +66,9 @@ import { displayReducer } from './store/display/display.reducer';
     MaterialModule,
     MatCardModule,
     ReactiveFormsModule,
+    HttpClientModule,
     StoreModule.forRoot({ 'display': displayReducer })
-  ],  
+  ],
   exports: [
     MaterialModule,
     ReactiveFormsModule,
@@ -78,7 +82,10 @@ import { displayReducer } from './store/display/display.reducer';
     },
     {
       provide: NotificationServiceInterface, useClass: NotificationService
-    }    
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })

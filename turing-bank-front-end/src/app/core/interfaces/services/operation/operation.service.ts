@@ -1,16 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../../environments/environment';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OperationService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) { }
+
 
     // 0 = depósito 1 = trasferéncia
     operation(typeOfOperation: number, money: number, accountDestination) {
+      // const headers_object = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
       return this.httpClient.post(`${environment.API_URL}/operation`, {
         type: typeOfOperation,
         value: money,
