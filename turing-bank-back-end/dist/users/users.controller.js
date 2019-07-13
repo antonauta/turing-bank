@@ -30,12 +30,9 @@ let UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
     }
-    findAll(req, res) {
+    findAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            const query = req.query;
-            const users = yield this.userService.findAll();
-            console.log(users);
-            return res.json(users);
+            return yield this.userService.findAll();
         });
     }
     findUserByAccount(account) {
@@ -51,9 +48,8 @@ let UsersController = class UsersController {
 };
 __decorate([
     common_1.Get(),
-    __param(0, common_1.Req()), __param(1, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findAll", null);
 __decorate([

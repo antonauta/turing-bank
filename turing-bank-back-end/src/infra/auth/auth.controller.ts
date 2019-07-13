@@ -1,7 +1,9 @@
 import { AuthService } from './auth.service';
 import { UsersService } from './../../users/users.service';
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Req } from '@nestjs/common';
 import { LoginDTO,RegisterDTO } from './dto/auth.dto';
+import {FastifyAdapter} from '@nestjs/platform-fastify'
+import { FastifyRequest} from 'fastify'
 import { Payload } from '../shared/payload';
 import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 
@@ -10,11 +12,12 @@ import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
 @Controller('auth')
 export class AuthController {
 
-    constructor(private userService : UsersService,private authService : AuthService){}
-
+    constructor( private userService : UsersService,private authService : AuthService){}
+    
     @ApiResponse({ status: 401, description: 'Senha invalida.'})
     @Post('login')
-    async login(@Body() userDTO: LoginDTO) {
+    async login(@Req() req : FastifyRequest,@Body() userDTO: LoginDTO) {
+      const {ip} = req
       const user = await this.userService.findByLogin(userDTO);
       const payload: Payload = {
         _id:user._id,
@@ -25,14 +28,15 @@ export class AuthController {
         account:user.account,
         agency:user.agency
       };
-      const token = await this.authService.signPayload(payload);
+      const token = await this.authService.signPayload(payload,ip);
       return { user, token };
     }
     
     
     @Post('register')
-    async register(@Body() userDTO: RegisterDTO) {
+    async register(@Req() req : FastifyRequest,@Body() userDTO: RegisterDTO) {
       const user = await this.userService.create(userDTO);
+      const {ip} = req;
       const payload: Payload = {
         _id:user._id,
         cpf: user.cpf,
@@ -42,7 +46,7 @@ export class AuthController {
         account:user.account,
         agency:user.agency
       };
-      const token = await this.authService.signPayload(payload);
+      const token = await this.authService.signPayload(payload,ip);
       return { user, token };
     }
 
