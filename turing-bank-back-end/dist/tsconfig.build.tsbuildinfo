@@ -1318,7 +1318,7 @@
         "signature": "eb26485df5087b0c02b8a2bc7fbd5760377d6784962ffc5b536f56d5a1ba4a9e"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/schemas/user.schema.ts": {
-        "version": "a7bb43b861b4a2730eb44beb3e9b3ee953bd5203a557c98dc55e557f1c3b34fa",
+        "version": "e4f314ab66e0b2ccb9da6f1cb5cb25b0c808bbf67ce833e6d27193b2b037ab91",
         "signature": "9368bf8d6c6ae153c57a9244bb5531f30a99c7961d2e19cbf1522795a0118c97"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
@@ -1442,19 +1442,19 @@
         "signature": "c3ae39fc6f636884d132f41c1cd9d2bc4777145d53c8b7390c9be9226c6ae9d8"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/interfaces/operation.interface.ts": {
-        "version": "7d26f4db6037bb9c2fe57325347586b2a752787380997c02fa3669215ff29557",
-        "signature": "0107e584fb50b08e87e9e40a12cbf0335fcc861b1ccf353ac533e3e69442a8c2"
+        "version": "36dfc8365b79a23bba24f1eabec70108a1bc7fc29ec24ab936e8623c10488f74",
+        "signature": "d532d5598a4cf7c67b46882d0db3249be89c9f9e65a96bf453601d90193c6b59"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.service.ts": {
-        "version": "13409a7260488f679617ca5a4bc9e8f7607625053149fd132238c09557fe51da",
-        "signature": "51517c0ecfe31e9cbb29613f22786510f9217fb60607406c47edf15d03bfe277"
+        "version": "98cc3e290c4572f313eaf6f1110c56001d5356c4a2e37f20e4b9ab2bc37cc629",
+        "signature": "bdc1ac5d53407ff238a73a42dce101738b2e78660b9b78927049d0a3d37c4d6a"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.controller.ts": {
-        "version": "a46d6ea02e1a4d94882a4437f120321d1215cf611c21c00bc598fd1ab4344468",
-        "signature": "a5586ed956434b02f3695510e9ff0db185a9d9fe247b477ef019fba15cea3b1e"
+        "version": "b26c2aa6ffedd8211dba0dcb846718eadff1442df7d4e428b407c0d01f1a43e2",
+        "signature": "d9e1352ea13f0549a84280a0389c64fa112ed67cd6b16c6e010c100cc934e8a3"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/schema/operation.schema.ts": {
-        "version": "ecf7de1d427bd033ec17011feb2b8e7a0020483ab16e3cc120371f9bc6653897",
+        "version": "afa897bbb0f9f1ce982025fdc903f442ad9fb072012a86dd8fb2b6f262ba3ca9",
         "signature": "ba4713630d5eb1c4fcef11176614c17ad7d8f9679b1c35c754507e1aab33ed69"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.module.ts": {
@@ -1478,7 +1478,7 @@
         "signature": "73190c1481735aa732dc5d66854f4e0d37100d0da36e43b344d3c1fdeb17e65b"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/infra/auth/auth.controller.ts": {
-        "version": "24f9701a03aa98a4d4eacdfcb793679d2067af099b8d2b2a6252d974f8382233",
+        "version": "9fa0cafc47d42ecfb44ff6185cf463dc91a983060704190be0ebcef947bc40e5",
         "signature": "d6cd409e4b7f8a533d383b834ccd06e2731672239e36b4086f86031920489808"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/infra/auth/auth.module.ts": {
@@ -1486,12 +1486,12 @@
         "signature": "2e5d258cf85349b02b015c3f1b8873c152d182c3819a7ccc3aff16fc3037a5fc"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/config/keys.ts": {
-        "version": "191fb03f24e5540d6256d82e608b8987bf7c908f9bb39694b1e942b9edb9f7ec",
-        "signature": "49390e493d354beeb1eee08bb95f47b55e3423764ada50ddc39091fd1929fca1"
+        "version": "75e41714659fd6b8ff6685713ed55a8affacf540cb7d8a23f5f097ca79ddba40",
+        "signature": "16cd839f873a9b32af82a9c904608f4c373436f2e253a6b0a40e98123891f779"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/config/keysprod.ts": {
-        "version": "604ad1393a55642818cc362f6d81102d612eab7d2e75447e0f8a33e8a0d01197",
-        "signature": "49390e493d354beeb1eee08bb95f47b55e3423764ada50ddc39091fd1929fca1"
+        "version": "630f1e82bc9d264990c0678f315363095f1eebde50355a7628548d6b9aa84a20",
+        "signature": "16cd839f873a9b32af82a9c904608f4c373436f2e253a6b0a40e98123891f779"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/app.module.ts": {
         "version": "13b3bdc32e00f0400d260ea58c846af1ddc23000a8f9849c2a58792a686e0330",
@@ -6308,7 +6308,6 @@
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/interfaces/operation.interface.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.service.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.controller.ts",
-      "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/schema/operation.schema.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.module.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/infra/shared/shared.module.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/jsonwebtoken/index.d.ts",
@@ -6319,13 +6318,14 @@
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/config/keys.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/config/keysprod.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/app.module.ts",
+      "c:/avanade/project/turing-bank/turing-bank-back-end/src/main.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/infra/guards/main.guard.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/cookiejar/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/jest/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/json5/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/superagent/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/supertest/index.d.ts",
-      "c:/avanade/project/turing-bank/turing-bank-back-end/src/main.ts"
+      "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/schema/operation.schema.ts"
     ]
   },
   "version": "3.4.3"

@@ -27,11 +27,13 @@ export class OperationController {
    
     @Get('by_user')
     @UseGuards(AuthGuard('jwt'))
-    @ApiImplicitParam({name:'initDate'})
-    @ApiImplicitParam({name:'lastDate'})
-    async find(@User() user: UserDocument, @Query() queryDate) {
+    // @ApiImplicitParam({name:'initDate'})
+    // @ApiImplicitParam({name:'lastDate'})
+    async find(@User() user: UserDocument, @Query() query) {
         const {_id} = user;
-        return await this.operationService.findByClient(_id, queryDate.initDate, queryDate.lastDate);
+        const {page} = query;
+        console.log(page)
+        return await this.operationService.findByClient(_id, query.initDate, query.lastDate,page);
     }
 
     @Post()
