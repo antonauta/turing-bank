@@ -13,6 +13,7 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 const helmet = require("fastify-helmet");
+const cors = require("fastify-cors");
 const platform_fastify_1 = require("@nestjs/platform-fastify");
 const users_module_1 = require("./users/users.module");
 const operation_module_1 = require("./operation/operation.module");
@@ -22,7 +23,7 @@ function bootstrap() {
         app.setGlobalPrefix("/api/v1");
         app.register(require('fastify-compress'), { inflateIfDeflated: true });
         app.register(helmet, { hidePoweredBy: { setTo: 'COBOL 4.2.0' } });
-        app.enableCors();
+        app.register(cors);
         const optionsUser = new swagger_1.DocumentBuilder()
             .setTitle('Endpoint da API com exemplos')
             .setBasePath('api/v1')

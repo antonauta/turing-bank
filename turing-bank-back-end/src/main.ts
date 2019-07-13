@@ -5,7 +5,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import * as compression from 'compression'
 import * as fastifycompress from 'fastify-compress'
 import * as helmet from 'fastify-helmet'
-
+import * as cors from 'fastify-cors'
 import {
   FastifyAdapter,
   
@@ -22,7 +22,7 @@ async function bootstrap() {
   app.setGlobalPrefix("/api/v1");
 
   //compression
-    app.register( require('fastify-compress'),
+    app.register( fastifycompress,
     { inflateIfDeflated: true })
   //MIDDLEWARES
  
@@ -31,7 +31,11 @@ async function bootstrap() {
     // Example of passing an option to x-powered-by middleware
     { hidePoweredBy: { setTo: 'COBOL 4.2.0' } }
   )
-  app.enableCors();
+
+  app.register(
+    cors
+  )
+  // app.enableCors();
 
   
   
