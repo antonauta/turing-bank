@@ -3,7 +3,9 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import * as compression from 'compression'
-import * as helmet from 'helmet'
+import * as fastifycompress from 'fastify-compress'
+import * as helmet from 'fastify-helmet'
+
 import {
   FastifyAdapter,
   
@@ -16,11 +18,19 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+  
   app.setGlobalPrefix("/api/v1");
 
+  //compression
+    app.register( require('fastify-compress'),
+    { inflateIfDeflated: true })
   //MIDDLEWARES
-  app.use(compression());
-  app.use(helmet())
+ 
+  app.register(
+    helmet,
+    // Example of passing an option to x-powered-by middleware
+    { hidePoweredBy: { setTo: 'COBOL 4.2.0' } }
+  )
   app.enableCors();
 
   
