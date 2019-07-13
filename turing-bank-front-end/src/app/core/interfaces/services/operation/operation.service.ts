@@ -15,6 +15,7 @@ export class OperationService {
     // 0 = depósito 1 = trasferéncia
     operation(typeOfOperation: number, money: number, accountDestination) {
       // const headers_object = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+      console.log(typeOfOperation, money, accountDestination);
       return this.httpClient.post(`${environment.API_URL}/operation`, {
         type: typeOfOperation,
         value: money,

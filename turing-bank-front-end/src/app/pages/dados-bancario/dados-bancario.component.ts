@@ -14,7 +14,7 @@ export class DadosBancarioComponent implements OnInit {
 
   userAccount: any;
   userAgency: any;
-  userBalance: any;
+  userBalance: number;
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -22,9 +22,12 @@ export class DadosBancarioComponent implements OnInit {
     google.charts.load('current', {packages: ['corechart', 'line']});
     google.charts.setOnLoadCallback(drawBasic);
     this.authService.currentUser.subscribe(user => {
+      this.authService.getUserAccountDetails(user.account).subscribe(v => {
+        console.log(v.balance);
+        this.userBalance = v.balance;
+      });
       this.userAccount = user.account;
       this.userAgency = user.agency;
-      this.userBalance = user.balance;
       console.log(user);
     });
   }

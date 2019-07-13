@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from 'src/app/models/user.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { UserLoggedModel } from 'src/app/models/userLogged.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,6 @@ export class AuthService {
   }
 
   getUserAccountDetails(accountNumber: string) {
-    return this.httpClient.get(`${environment.API_URL}/users/account/${accountNumber}`);
+    return this.httpClient.get<UserLoggedModel>(`${environment.API_URL}/users/account/${accountNumber}`);
   }
 }

@@ -6,11 +6,13 @@
         <form>
 
             <div class="form-group">
-                <label for="name">Código de barras</label>
-                <input type="text" class="form-control" id="name" required>
-            </div>      
+                <label for="name">Conta destino</label>
+                <input type="text" class="form-control" id="name" required name="destino" [(ngModel)]="destino">
+                <label for="name">Valor:</label>
+                <input type="text" class="form-control" id="name" required name="value" [(ngModel)]="value">
+            </div>
 
-            <button type="submit" class="btn btn-success btn-continue">Continuar</button>
+            <button type="submit" class="btn btn-success btn-continue" (click)="depositar()">Continuar</button>
         </form>
     </div>
 </div>

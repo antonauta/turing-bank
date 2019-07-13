@@ -4,4 +4,5 @@ export interface UserLoggedModel {
   email: string;
   password: string;
   cpf: string;
+  balance: number;
 }
