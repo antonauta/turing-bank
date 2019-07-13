@@ -13,17 +13,19 @@ services:
   nest:
     build: turing-bank-back-end
     restart: always
+    environment:
+      - BASEURL=http://localhost:3000/api/v1
     ports:
       - "3000:3000"
-    # depends_on:
-    #   - database
+    depends_on:
+      - database
     # volumes:
     #   - ./turing-bank-back-end/src:/usr/src/app/src
     # networks:
     #   - testing
-  # database:
-  #   image: mongo
-  #   restart: always
+  database:
+    image: mongo
+    restart: always
     # volumes:
     #   - data-db:/data/db
     # networks:

@@ -1,4 +1,5 @@
-export interface Operation{
+import {Document } from 'mongoose';
+export interface Operation extends Document{
     id?: string;
     type: number;
     value: number;
