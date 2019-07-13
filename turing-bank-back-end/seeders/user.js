@@ -17,7 +17,7 @@ const SALT_WORK_FACTOR = 10;
   password: { type: String },
 });
 
-UserSchema.plugin(autoIncrement, { field: 'account', collection: 'Counters' });
+
 
 UserSchema.pre('save', async function(next) {
 

@@ -68,7 +68,7 @@ let UsersService = class UsersService {
             const { cpf, password } = userDTO;
             const user = yield this.userModel
                 .findOne({ cpf })
-                .select('cpf password agency account preferredName name');
+                .select('cpf password agency account preferredName name balance');
             if (!user) {
                 throw new common_1.HttpException('Invalid credentials', common_1.HttpStatus.UNAUTHORIZED);
             }

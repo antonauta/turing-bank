@@ -27,7 +27,7 @@ let AuthService = class AuthService {
     signPayload(payload, ip = "127.0.0.1") {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(ip);
-            return jsonwebtoken_1.sign(payload, (process.env.SECRET_KEY || 'abubakacar') + ip, { expiresIn: '12h' });
+            return jsonwebtoken_1.sign(payload, (process.env.SECRET_KEY || 'abubakacar'), { expiresIn: '12h' });
         });
     }
     validateUser(payload) {
