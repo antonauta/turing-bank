@@ -14,6 +14,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { DadosBancarioComponent } from './pages/dados-bancario/dados-bancario.component';
+import { GoogleChartsModule } from 'angular-google-charts';
+import { ExtratoComponent } from './pages/extrato/extrato.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
+import { TransferenciaComponent } from './pages/transferencia/transferencia.component';
+import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
+import {MatButtonToggleModule} from '@angular/material'
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { MatCardModule } from '@angular/material/card';
 import { NotificationComponent } from './shared/notification/notification.component';
@@ -33,6 +41,10 @@ import { HttpClientModule  } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     LoginComponent,
+    DadosBancarioComponent,
+    ExtratoComponent,
+    TransferenciaComponent,
+    PagamentosComponent,
     CadastroComponent,
     NotificationComponent,
   ],
@@ -45,12 +57,16 @@ import { HttpClientModule  } from '@angular/common/http';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    MatCardModule,
+    GoogleChartsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonToggleModule,
     MaterialModule,
+    MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({ 'display': displayReducer })
-  ],
+  ],  
   exports: [
     MaterialModule,
     ReactiveFormsModule,
@@ -64,7 +80,7 @@ import { HttpClientModule  } from '@angular/common/http';
     },
     {
       provide: NotificationServiceInterface, useClass: NotificationService
-    }
+    }    
   ],
   bootstrap: [AppComponent]
 })

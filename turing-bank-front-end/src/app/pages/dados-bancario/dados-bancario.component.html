@@ -1,0 +1,29 @@
+<div class="base">
+    <div class="conta">
+            <div class="sub-1">
+                <h3>Dados da conta:</h3>
+                <div class="div-info">
+                    <p><b>Agência:</b> 0001-0 </p>
+                    <p><b>Conta:</b> 678906-1 </p>
+                </div>
+            </div>
+    
+            <div class="sub-2">
+                <h3>Saldo:</h3>
+                <div class="div-info">
+                    <p id="saldoId">R$ 1450,00</p>
+                </div>
+            </div>      
+    
+            <div class="sub-3">
+                <button type="button" class="btn btn-success" (click)="goToExtrato()">Extrato</button>
+                <button type="button" class="btn btn-success" (click)="goToTransferencia()">Transferência</button>
+                <button type="button" class="btn btn-success" (click)="goToPagamentos()">Pagamentos</button>
+            </div>    
+    </div>
+    
+    <div class="conta2">
+        <div id="chart_div"></div>
+    </div>
+    
+</div>

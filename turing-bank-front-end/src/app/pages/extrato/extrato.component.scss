@@ -1,0 +1,112 @@
+.base {
+    background-color: #F6F6F6;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.conta,.div-datepicker {
+    display: flex;
+    justify-content: space-around;  
+}
+
+.div-components-header{
+    display: flex;
+    justify-content: start; 
+}
+
+.div-buttons {
+    display: flex;
+
+    button{
+        width: 85px;
+        margin-left: 40px;
+        margin-top: 15px;
+    }
+}
+
+.div-datepicker{
+    margin-top: 5px;
+
+    button {
+        height: 40px;
+        margin-top: 6px;
+        width: 85px;
+    }
+
+    > *{
+    margin: 0 25px 0 0px;
+    }
+}
+
+.div-buttons{
+    flex-direction: column;
+    margin: 0 20px 20px 0;
+}
+
+.div-table {
+    margin: 5px 40px 0px 40px;
+    width: 100%;
+}
+
+.div-date {
+    margin: 10px 0 0 20px;
+}
+
+.div-searches {
+    padding: 20px 0px 20px 0;
+    display: flex;
+    justify-content: flex-start;  
+    flex-direction: row;
+    margin-left: 40px;
+
+    button {
+        margin-right: 40px;
+    }
+}
+
+@media screen and (max-width: 835px) {
+    .div-components-header {
+        flex-direction: column;
+        margin-left: 20px;
+    }
+    .div-datepicker {
+        justify-content: start;         
+    }
+    .div-searches {
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width: 695px) {
+
+    .conta {
+        flex-direction: column;
+        align-items: center;
+        margin: 0 20px 0px 20px;
+    }
+
+    .div-table {
+        margin: 5px 15px 0px 15px;
+        width: 100%;
+    }
+
+    .div-buttons{        
+        margin: 0px;
+        height: 160px;
+    }   
+}
+
+@media screen and (max-width: 627px) {
+    .div-datepicker{
+        flex-direction: column;   
+        
+        button {
+            width: 85px;
+            margin-bottom: 15px;
+        }
+
+        .mat-form-field{
+            width: 204px;
+        }
+    }
+}

@@ -40,8 +40,8 @@ async function bootstrap() {
   
   
   //SWAGGER SETUP
-    
-  const optionsUser = new DocumentBuilder()
+  if(process.env.AZUREMODE!=='yes'){
+    const optionsUser = new DocumentBuilder()
     .setTitle('Endpoint da API com exemplos')
     .setBasePath('api/v1')
     .setDescription('API para cadastro de usuarios,autenticao,criacao e regras de negocios que envolvam o usuario e operacoes')
@@ -51,6 +51,8 @@ async function bootstrap() {
     .build();
   const documentUser = SwaggerModule.createDocument(app, optionsUser, { include: [UsersModule,OperationModule,AuthModule] });
   SwaggerModule.setup('docs/swagger', app, documentUser);
+  }
+  
 
   // const optionsOperations = new DocumentBuilder()
   //   .setTitle('Operations endpoint API exemplos')
