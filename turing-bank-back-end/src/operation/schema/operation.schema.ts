@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-
+import * as mongoosePaginate from 'mongoose-paginate-v2';
 export const operationSchema = new mongoose.Schema({
     type: { type: Number },
     value: { type: Number, default: 0},
@@ -8,3 +8,5 @@ export const operationSchema = new mongoose.Schema({
     origin: { type: mongoose.Schema.ObjectId, ref: 'User' },
     destination: { type: mongoose.Schema.ObjectId, ref: 'User' },
 });
+
+operationSchema.plugin(mongoosePaginate)
