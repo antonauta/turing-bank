@@ -14,11 +14,12 @@ const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 const compression = require("compression");
 const helmet = require("helmet");
+const platform_fastify_1 = require("@nestjs/platform-fastify");
 const users_module_1 = require("./users/users.module");
 const operation_module_1 = require("./operation/operation.module");
 function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
-        const app = yield core_1.NestFactory.create(app_module_1.AppModule);
+        const app = yield core_1.NestFactory.create(app_module_1.AppModule, new platform_fastify_1.FastifyAdapter());
         app.setGlobalPrefix("/api/v1");
         app.use(compression());
         app.use(helmet());
@@ -33,7 +34,7 @@ function bootstrap() {
             .build();
         const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule, operation_module_1.OperationModule, auth_module_1.AuthModule] });
         swagger_1.SwaggerModule.setup('docs/swagger', app, documentUser);
-        yield app.listen(process.env.PORT || 3000);
+        yield app.listen(process.env.PORT || 3000, '0.0.0.0');
     });
 }
 bootstrap();

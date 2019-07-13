@@ -24,9 +24,10 @@ let AuthService = class AuthService {
     constructor(userService) {
         this.userService = userService;
     }
-    signPayload(payload) {
+    signPayload(payload, ip = "127.0.0.1") {
         return __awaiter(this, void 0, void 0, function* () {
-            return jsonwebtoken_1.sign(payload, process.env.SECRET_KEY || 'abubakacar', { expiresIn: '12h' });
+            console.log(ip);
+            return jsonwebtoken_1.sign(payload, (process.env.SECRET_KEY || 'abubakacar') + ip, { expiresIn: '12h' });
         });
     }
     validateUser(payload) {
