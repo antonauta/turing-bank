@@ -35,7 +35,7 @@ services:
     image: mongo
     restart: always
     volumes:
-      - data-db:/data/db
+      - /home/azureuser/data-db:/data/db
     networks:
       - backend
   proxy:
@@ -56,8 +56,7 @@ services:
     labels:
       - traefik.port=8080
       - traefik.frontend.rule=Host:traefik.turingbank.eastus.cloudapp.azure.com
-volumes:
-    data-db:
+
 networks:
        backend:
        frontend:
