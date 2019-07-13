@@ -1,7 +1,8 @@
 import * as mongoose from 'mongoose';
 import * as  bcrypt from 'bcrypt';
 import * as autoIncrement from 'mongoose-easy-auto-increment';
-import { User } from 'dist/infra/shared/user.decorator';
+import { User } from '../../infra/shared/user.decorator';
+
 import * as randomatic from 'randomatic'
 const SALT_WORK_FACTOR = 10;
 export const UserSchema = new mongoose.Schema({
