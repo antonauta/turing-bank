@@ -24,6 +24,7 @@ export class AuthController {
         cpf: user.cpf,
         name:user.name,
         email:user.email,
+        balance:user.balance,
         preferredName:user.preferredName,
         account:user.account,
         agency:user.agency
@@ -40,6 +41,7 @@ export class AuthController {
       const payload: Payload = {
         _id:user._id,
         cpf: user.cpf,
+        balance:user.balance,
         name:user.name,
         email:user.email,
         preferredName:user.preferredName,
