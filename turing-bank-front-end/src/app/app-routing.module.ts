@@ -26,7 +26,7 @@ const routes: Routes = [
   {path: 'transferencia', component: TransferenciaComponent},
   {path: 'pagamentos', component: PagamentosComponent},
   {
-    path: 'login',
+    path: 'cadastro',
     component: CadastroComponent
   },
   {
