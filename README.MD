@@ -28,7 +28,7 @@ mongo -v           | 4.10.0
 ```mermaid
 Default front-end: localhost:4200
 Default API: localhost:3000
-Default API Documentation: localhost:3000/v1/swagger
+Default API Documentation: localhost:3000/docs/swagger
 ```
 
 ## Integrants
