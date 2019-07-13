@@ -1,0 +1,86 @@
+<div class="base">
+
+    <div class="div-components-header">
+        <div class="div-searches">
+            <button type="button" class="btn btn-success">5 dias</button>
+            <button type="button" class="btn btn-success">30 dias</button>
+            <button type="button" class="btn btn-success">60 Dias</button>
+        </div>
+
+        <div class="div-date">
+            <span>Esolha um período:</span>
+
+            <div class="div-datepicker">
+
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker1" placeholder="Data Inicial">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="Data Final">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+
+                <button type="button" class="btn btn-success">Filtrar</button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="conta">
+
+        <div class="div-table table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Data</th>
+                        <th scope="col">Lançamentos</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Saldo</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Saldo</th>
+                        <th> </th>
+                        <th> </th>
+                        <th>6400</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>24/02/2019</td>
+                        <td>Saque</td>
+                        <td>-900</td>
+                        <td>5500</td>
+                    </tr>
+                    <tr>
+                        <td>12/03/2019</td>
+                        <td>Deposito</td>
+                        <td>+1200</td>
+                        <td>6700</td>
+                    </tr>
+                    <tr>
+                        <td>08/04/2019</td>
+                        <td>Tranferência</td>
+                        <td>-300</td>
+                        <td>6400</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        
+
+    </div>
+    <div class="div-buttons">
+            <button type="button" class="btn btn-success">Exportar</button>
+        </div>
+
+</div>

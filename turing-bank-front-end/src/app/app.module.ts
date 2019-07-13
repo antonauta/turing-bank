@@ -16,6 +16,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { DadosBancarioComponent } from './pages/dados-bancario/dados-bancario.component';
 import { GoogleChartsModule } from 'angular-google-charts';
+import { ExtratoComponent } from './pages/extrato/extrato.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
+import { TransferenciaComponent } from './pages/transferencia/transferencia.component';
+import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
+import {MatButtonToggleModule} from '@angular/material'
 
 @NgModule({
   declarations: [
@@ -26,6 +32,9 @@ import { GoogleChartsModule } from 'angular-google-charts';
     FooterComponent,
     LoginComponent,
     DadosBancarioComponent,
+    ExtratoComponent,
+    TransferenciaComponent,
+    PagamentosComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +45,14 @@ import { GoogleChartsModule } from 'angular-google-charts';
     MatIconModule,
     MatInputModule,
     MatButtonModule,
-    GoogleChartsModule
+    GoogleChartsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonToggleModule
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

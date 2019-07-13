@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dados-bancario',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DadosBancarioComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     google.charts.load('current', {packages: ['corechart', 'line']});
@@ -15,15 +16,15 @@ export class DadosBancarioComponent implements OnInit {
   }
 
   goToExtrato(){
-    //this.navigation.goToExtrato();
+    this.router.navigateByUrl('/extrato');
   }
 
   goToTransferencia(){
-    //this.navigation.goToTransferencia();
+    this.router.navigateByUrl('/transferencia');
   }
 
   goToPagamentos(){
-    //this.navigation.goToPagamentos();
+    this.router.navigateByUrl('/pagamentos');
   }
 }
 
