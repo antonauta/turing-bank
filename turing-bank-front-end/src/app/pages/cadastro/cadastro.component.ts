@@ -104,6 +104,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
       localStorage.setItem('token', userDate.token);
       console.log(userDate.token);
       this.authService.setUser(userDate.user);
+      console.log(userDate.user);
       this.router.navigateByUrl('/dados-bancarios');
     });
   }

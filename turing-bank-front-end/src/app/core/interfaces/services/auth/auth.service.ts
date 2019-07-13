@@ -15,10 +15,11 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(cpf, password) {
+  login(userCpf: string, userPassword: string) {
+    console.log(userCpf, userPassword);
     return this.httpClient.post(`${environment.API_URL}/auth/login`, {
-      cpf,
-      password
+      cpf: userCpf,
+      password: userPassword
     });
   }
 

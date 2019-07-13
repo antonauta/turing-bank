@@ -32,6 +32,8 @@ import { NotificationService } from './shared/notification/notification.service'
 import { StoreModule } from '@ngrx/store';
 import { displayReducer } from './store/display/display.reducer';
 import { HttpClientModule  } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './core/interfaces/services/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,7 @@ import { HttpClientModule  } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     StoreModule.forRoot({ 'display': displayReducer })
-  ],  
+  ],
   exports: [
     MaterialModule,
     ReactiveFormsModule,
@@ -80,7 +82,10 @@ import { HttpClientModule  } from '@angular/common/http';
     },
     {
       provide: NotificationServiceInterface, useClass: NotificationService
-    }    
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
