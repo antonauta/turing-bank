@@ -4,10 +4,18 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
 import * as compression from 'compression'
 import * as helmet from 'helmet'
+import {
+  FastifyAdapter,
+  
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 import { UsersModule } from './users/users.module';
 import { OperationModule } from './operation/operation.module'
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter(),
+  );
   app.setGlobalPrefix("/api/v1");
 
   //MIDDLEWARES
@@ -45,6 +53,6 @@ async function bootstrap() {
 
 
 
-  await app.listen(process.env.PORT || 3000);
+  await app.listen(process.env.PORT || 3000,'0.0.0.0');
 }
 bootstrap();

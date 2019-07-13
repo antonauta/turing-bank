@@ -47,6 +47,24 @@ let OperationController = class OperationController {
 __decorate([
     common_1.Get('by_user'),
     common_1.UseGuards(passport_1.AuthGuard('jwt')),
+    swagger_1.ApiImplicitParam({
+        name: "initDate",
+        description: "Data inicial",
+        required: false,
+        type: Date
+    }),
+    swagger_1.ApiImplicitParam({
+        name: "lastDate",
+        description: "Data final",
+        required: false,
+        type: Date
+    }),
+    swagger_1.ApiImplicitQuery({
+        name: "page",
+        description: "Pagina escolhida",
+        required: false,
+        type: Number
+    }),
     __param(0, user_decorator_1.User()), __param(1, common_1.Query()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),

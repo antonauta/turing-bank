@@ -8,8 +8,9 @@ import { Payload } from '../shared/payload'
 export class AuthService {
   constructor(private userService: UsersService) {}
 
-  async signPayload(payload: Payload) {
-    return sign(payload, process.env.SECRET_KEY || 'abubakacar', { expiresIn: '12h' });
+  async signPayload(payload: Payload,ip:string="127.0.0.1") {
+    console.log(ip)
+    return sign(payload, (process.env.SECRET_KEY || 'abubakacar')+ip, { expiresIn: '12h' });
   }
 
   async validateUser(payload: Payload) {
