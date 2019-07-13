@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const autoIncrement = require("mongoose-easy-auto-increment");
+const randomatic = require("randomatic");
 const SALT_WORK_FACTOR = 10;
 exports.UserSchema = new mongoose.Schema({
     name: { type: String, required: true },
@@ -24,10 +24,20 @@ exports.UserSchema = new mongoose.Schema({
     balance: { type: Number, default: 0 },
     password: { type: String, required: true },
 });
-exports.UserSchema.plugin(autoIncrement, { field: 'account', collection: 'Counters' });
+function LeftPadWithZeros(number, length) {
+    var str = '' + number;
+    while (str.length < length) {
+        str = '0' + str;
+    }
+    return str;
+}
 exports.UserSchema.pre('save', function (next) {
     return __awaiter(this, void 0, void 0, function* () {
         const user = this;
+        if (user.isNew) {
+            user.account = LeftPadWithZeros(randomatic('0', Math.floor(Math.random() * 6)), 6) + `${Math.floor(Math.random() * 9)}`;
+            user.agency = LeftPadWithZeros(`${Math.floor(Math.random() * 10)}`, 2);
+        }
         if (!user.isModified('password')) {
             return next();
         }

@@ -1317,8 +1317,12 @@
         "version": "c6ac356d9e657f503c9885b20ad7641ac4ecf1e3b6ab2b3079db5e6b99d9162f",
         "signature": "eb26485df5087b0c02b8a2bc7fbd5760377d6784962ffc5b536f56d5a1ba4a9e"
       },
+      "c:/avanade/project/turing-bank/turing-bank-back-end/dist/infra/shared/user.decorator.d.ts": {
+        "version": "8a837a0309e722a8e7b50176f14b4967a8e37f0b8e397092a35744453cef09e0",
+        "signature": "8a837a0309e722a8e7b50176f14b4967a8e37f0b8e397092a35744453cef09e0"
+      },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/schemas/user.schema.ts": {
-        "version": "e4f314ab66e0b2ccb9da6f1cb5cb25b0c808bbf67ce833e6d27193b2b037ab91",
+        "version": "b154defbdde93308bf1c8d5ebd9b74fcd97f3c6f807398f0797ecac612185441",
         "signature": "9368bf8d6c6ae153c57a9244bb5531f30a99c7961d2e19cbf1522795a0118c97"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
@@ -3463,8 +3467,13 @@
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "c:/avanade/project/turing-bank/turing-bank-back-end/dist/infra/shared/user.decorator.d.ts": [
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/schemas/user.schema.ts": [
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/bcrypt/index.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/dist/infra/shared/user.decorator.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -5695,6 +5704,10 @@
         "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/interfaces/user.interface.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/dto/update.user.dto.ts"
       ],
+      "c:/avanade/project/turing-bank/turing-bank-back-end/dist/infra/shared/user.decorator.d.ts": [
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/adapters/http-adapter.d.ts": [
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/common/index.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/common/interfaces/index.d.ts",
@@ -6274,7 +6287,6 @@
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/infra/auth/dto/auth.dto.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/users.service.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/users.controller.ts",
-      "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/schemas/user.schema.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/adapters/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/constants.d.ts",
@@ -6308,6 +6320,7 @@
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/interfaces/operation.interface.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.service.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.controller.ts",
+      "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/schema/operation.schema.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.module.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/infra/shared/shared.module.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/jsonwebtoken/index.d.ts",
@@ -6324,8 +6337,7 @@
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/jest/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/json5/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/superagent/index.d.ts",
-      "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/supertest/index.d.ts",
-      "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/schema/operation.schema.ts"
+      "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/supertest/index.d.ts"
     ]
   },
   "version": "3.4.3"
