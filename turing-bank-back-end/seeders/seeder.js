@@ -30,20 +30,24 @@ var data = [
                 
                 '_id':'5d28d2223878dc2db8b24355',
 
-                'name': 'Zeca Pagodinho',
-                'preferredName':'Zeca',
-                'balance':500,
+                'name': 'Antonio flavio',
+                'preferredName':'Lord of the rings',
+                'balance':400,
+                'agency':'01',
+                'account':'000023',
                 "cpf":'41245213830',
-                'password':'111buba',
-				'email':'zecapagodinho@gmail.com'
+                'password':'123456',
+				'email':'antonio@gmail.com'
 			},
 			{
                '_id':'5d28d2223878dc2db8b24356',
-                'name': 'Carlos Santana',
-                'preferredName':'Santana',
-                'balance':150,
-                "cpf":"4123334444",
-                'password':'123arroz',
+                'name': 'Caio Santos',
+                'preferredName':'Darth Vader',
+                'balance':250,
+                'agency':'01',
+                 'account':'000022',
+                "cpf":"98056620044",
+                'password':'123456',
 				'email':'santana@gmail.com'
 			},
 		]
@@ -61,7 +65,13 @@ var data = [
                 'value': 150,
                 'type':0,
                 destination:'5d28d2223878dc2db8b24356'
-			},
+      },
+      {
+        'value':100,
+        'type':1,
+        destination:'5d28d2223878dc2db8b24356',
+        origin:'5d28d2223878dc2db8b24355'
+      }
         ]
     }
 ];

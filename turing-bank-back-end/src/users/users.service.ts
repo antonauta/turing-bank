@@ -24,7 +24,7 @@ export class UsersService {
     return await this.userModel.findOne({_id:id});
   }
   async findByAccount(account:string) : Promise<User>{
-    return await this.userModel.findOne({account})
+    return await this.userModel.findOne({account:{$eq:account}})
   }
   async checkUser(cpf:string,password:string) : Promise<User>{
     const salt = await bcrypt.genSalt(SALT_WORK_FACTOR)

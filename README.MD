@@ -12,7 +12,7 @@ It is recommended to install [docker](https://www.docker.com/), which helps init
 docker-compose up --build
 ```
 
-# Framework Version
+## Framework Version
 
 ```mermaid
 docker -v          | 18.09.2
@@ -31,7 +31,7 @@ Default API: localhost:3000
 Default API Documentation: localhost:3000/docs/swagger
 ```
 
-## Integrants
+## Members
 
 |      NAME         |
 |-------------------|

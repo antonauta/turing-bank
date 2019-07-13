@@ -12,6 +12,7 @@ const auth_module_1 = require("./infra/auth/auth.module");
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
+const fastifycompress = require("fastify-compress");
 const helmet = require("fastify-helmet");
 const cors = require("fastify-cors");
 const platform_fastify_1 = require("@nestjs/platform-fastify");
@@ -21,19 +22,21 @@ function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = yield core_1.NestFactory.create(app_module_1.AppModule, new platform_fastify_1.FastifyAdapter());
         app.setGlobalPrefix("/api/v1");
-        app.register(require('fastify-compress'), { inflateIfDeflated: true });
+        app.register(fastifycompress, { inflateIfDeflated: true });
         app.register(helmet, { hidePoweredBy: { setTo: 'COBOL 4.2.0' } });
         app.register(cors);
-        const optionsUser = new swagger_1.DocumentBuilder()
-            .setTitle('Endpoint da API com exemplos')
-            .setBasePath('api/v1')
-            .setDescription('API para cadastro de usuarios,autenticao,criacao e regras de negocios que envolvam o usuario e operacoes')
-            .setVersion('1.0')
-            .addBearerAuth()
-            .addTag('main')
-            .build();
-        const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule, operation_module_1.OperationModule, auth_module_1.AuthModule] });
-        swagger_1.SwaggerModule.setup('docs/swagger', app, documentUser);
+        if (process.env.AZUREMODE !== 'yes') {
+            const optionsUser = new swagger_1.DocumentBuilder()
+                .setTitle('Endpoint da API com exemplos')
+                .setBasePath('api/v1')
+                .setDescription('API para cadastro de usuarios,autenticao,criacao e regras de negocios que envolvam o usuario e operacoes')
+                .setVersion('1.0')
+                .addBearerAuth()
+                .addTag('main')
+                .build();
+            const documentUser = swagger_1.SwaggerModule.createDocument(app, optionsUser, { include: [users_module_1.UsersModule, operation_module_1.OperationModule, auth_module_1.AuthModule] });
+            swagger_1.SwaggerModule.setup('docs/swagger', app, documentUser);
+        }
         yield app.listen(process.env.PORT || 3000, '0.0.0.0');
     });
 }
