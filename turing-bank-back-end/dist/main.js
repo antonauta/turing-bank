@@ -12,8 +12,7 @@ const auth_module_1 = require("./infra/auth/auth.module");
 const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
-const compression = require("compression");
-const helmet = require("helmet");
+const helmet = require("fastify-helmet");
 const platform_fastify_1 = require("@nestjs/platform-fastify");
 const users_module_1 = require("./users/users.module");
 const operation_module_1 = require("./operation/operation.module");
@@ -21,8 +20,8 @@ function bootstrap() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = yield core_1.NestFactory.create(app_module_1.AppModule, new platform_fastify_1.FastifyAdapter());
         app.setGlobalPrefix("/api/v1");
-        app.use(compression());
-        app.use(helmet());
+        app.register(require('fastify-compress'), { inflateIfDeflated: true });
+        app.register(helmet, { hidePoweredBy: { setTo: 'COBOL 4.2.0' } });
         app.enableCors();
         const optionsUser = new swagger_1.DocumentBuilder()
             .setTitle('Endpoint da API com exemplos')
