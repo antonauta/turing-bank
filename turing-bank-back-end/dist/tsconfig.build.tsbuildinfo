@@ -1529,8 +1529,12 @@
         "version": "464ce539742dbcda8c81467dbe0d0279f7f5e37f0e6ca45bda393a3fc1b977b2",
         "signature": "464ce539742dbcda8c81467dbe0d0279f7f5e37f0e6ca45bda393a3fc1b977b2"
       },
+      "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify-cors/index.d.ts": {
+        "version": "4d5a776f1996c1bf698ddb186fbcbf679cd10591a19c037028d92b4db4caf8f8",
+        "signature": "4d5a776f1996c1bf698ddb186fbcbf679cd10591a19c037028d92b4db4caf8f8"
+      },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/main.ts": {
-        "version": "59e62c4f4c36aa170bd79f6c9ea31cb341a8674d4df5250775634bc1266f5bc9",
+        "version": "49976e2bb661ed39837409c01e683db09217b4f4b89767b8f0f51ad096d5634c",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6"
       },
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/infra/guards/main.guard.ts": {
@@ -3871,6 +3875,12 @@
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify-cors/index.d.ts": [
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/http.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify/fastify.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/main.ts": [
         "c:/avanade/project/turing-bank/turing-bank-back-end/src/infra/auth/auth.module.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/core/index.d.ts",
@@ -3878,6 +3888,7 @@
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/swagger/index.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify-compress/index.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify-helmet/index.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify-cors/index.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@nestjs/platform-fastify/index.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/src/users/users.module.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/src/operation/operation.module.ts",
@@ -6094,6 +6105,12 @@
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/swagger-schema-official/index.d.ts": [
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
         "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify-cors/index.d.ts": [
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/http.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify/fastify.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/util.d.ts",
+        "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/node/ts3.2/util.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -6486,6 +6503,7 @@
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/superagent/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/supertest/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/@types/swagger-schema-official/index.d.ts",
+      "c:/avanade/project/turing-bank/turing-bank-back-end/node_modules/fastify-cors/index.d.ts",
       "c:/avanade/project/turing-bank/turing-bank-back-end/src/main.ts"
     ]
   },
