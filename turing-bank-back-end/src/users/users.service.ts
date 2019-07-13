@@ -42,7 +42,7 @@ export class UsersService {
     const { cpf, password } = userDTO;
     const user = await this.userModel
       .findOne({ cpf })
-      .select('cpf password agency account preferredName name');
+      .select('cpf password agency account preferredName name balance');
     if (!user) {
       throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
     }
