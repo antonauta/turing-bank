@@ -15,7 +15,7 @@ import { UserModel } from 'src/app/models/user.model';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit, OnDestroy {
- 
+
 
   emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -55,10 +55,9 @@ export class CadastroComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private userValidatorInterface: UserValidatorInterface,
     private notificationServiceInterface: NotificationServiceInterface,
-    private store: Store<{ display: boolean }>
-  ) { 
-    
-    }
+    private store: Store<{ display: boolean }>,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     // hidden header and footer component
@@ -94,9 +93,9 @@ export class CadastroComponent implements OnInit, OnDestroy {
       this.notificationServiceInterface.notify(fields.Errors);
       return;
     }
-
-    
-
+    this.authService.register(user).subscribe((userDate : any) => {
+      // Colocar lógica do que fazer após logar com sucesso:
+      console.log(userDate);
+    });
   }
-
 }

@@ -23,6 +23,7 @@ import { UserValidator  } from './shared/services/validations/user.validator'
 import { NotificationService } from './shared/notification/notification.service';
 import { StoreModule } from '@ngrx/store';
 import { displayReducer } from './store/display/display.reducer';
+import { HttpClientModule  } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { displayReducer } from './store/display/display.reducer';
     MatCardModule,
     MaterialModule,
     ReactiveFormsModule,
+    HttpClientModule,
     StoreModule.forRoot({ 'display': displayReducer })
   ],
   exports: [
