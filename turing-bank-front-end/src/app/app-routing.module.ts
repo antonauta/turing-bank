@@ -9,12 +9,16 @@ const routes: Routes = [
     redirectTo: 'home',
   },
   {
+    path: '',
+    component: HomeComponent,
+  },
+  {
     path: 'home',
     pathMatch: 'full',
     component: HomeComponent
   },
   {
-    path: 'login',
+    path: 'cadastro',
     component: CadastroComponent
   },
   {
