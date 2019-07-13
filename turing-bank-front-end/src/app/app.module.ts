@@ -59,15 +59,12 @@ import { displayReducer } from './store/display/display.reducer';
     GoogleChartsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonToggleModule
-  ],
-  providers: [
-    MatDatepickerModule,
-    MatCardModule,
+    MatButtonToggleModule,
     MaterialModule,
+    MatCardModule,
     ReactiveFormsModule,
     StoreModule.forRoot({ 'display': displayReducer })
-  ],
+  ],  
   exports: [
     MaterialModule,
     ReactiveFormsModule,
@@ -81,7 +78,7 @@ import { displayReducer } from './store/display/display.reducer';
     },
     {
       provide: NotificationServiceInterface, useClass: NotificationService
-    }
+    }    
   ],
   bootstrap: [AppComponent]
 })
