@@ -10,7 +10,7 @@ export class AuthService {
 
   async signPayload(payload: Payload,ip:string="127.0.0.1") {
     console.log(ip)
-    return sign(payload, (process.env.SECRET_KEY || 'abubakacar')+ip, { expiresIn: '12h' });
+    return sign(payload, (process.env.SECRET_KEY || 'abubakacar'), { expiresIn: '12h' });
   }
 
   async validateUser(payload: Payload) {
