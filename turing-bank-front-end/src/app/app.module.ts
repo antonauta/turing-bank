@@ -23,6 +23,7 @@ import { UserValidator  } from './shared/services/validations/user.validator'
 import { NotificationService } from './shared/notification/notification.service';
 import { StoreModule } from '@ngrx/store';
 import { displayReducer } from './store/display/display.reducer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,7 @@ import { displayReducer } from './store/display/display.reducer';
     FooterComponent,
     LoginComponent,
     CadastroComponent,
-    NotificationComponent
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +51,7 @@ import { displayReducer } from './store/display/display.reducer';
   ],
   exports: [
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   entryComponents: [
     NotificationComponent

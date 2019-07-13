@@ -1,2 +1,3 @@
-<app-header></app-header>
+<app-header [hidden]="displayStatus$ | async"></app-header>
 <router-outlet></router-outlet>
+<app-footer [hidden]="displayStatus$ | async"></app-footer>

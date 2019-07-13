@@ -55,12 +55,12 @@ export class CadastroComponent implements OnInit, OnDestroy {
     private notificationServiceInterface: NotificationServiceInterface,
     private store: Store<{ display: boolean }>
   ) { 
-    this.store.dispatch(displayHidden());
+    
     }
 
   ngOnInit() {
     // hidden header and footer component
- 
+    this.store.dispatch(displayHidden());
     this.cadastroForm = this.fb.group({
       name: this.name,
       password: this.password,
