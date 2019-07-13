@@ -1,9 +1,27 @@
 # Welcome to the turing project!
 
-Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about StackEdit, you can read me. If you want to play with Markdown, you can edit me. Once you have finished with me, you can create new files by opening the **file explorer** on the left corner of the navigation bar.
+# About
 
+**The Turing Bank** was founded by 6 members of a multi-national who wanted to solve problems found in the Brazilian financial environment. The name Turing was put precisely to honor Alan Turing the father of computer science.
 
-# Files
+## Quick start
+
+It is recommended to install [docker](https://www.docker.com/), which helps initializing and previewing the project locally.
+
+```mermaid
+**docker-compose up --build**
+```
+
+# Framework Version
+
+```mermaid
+**docker -v ** 18.09.2
+**docker-compose -v ** 1.23.2
+**ng version ** 8.0.6
+**node -v ** 10.16.0
+**nestJS -v ** 6.0.0
+**mongo -v ** 4.10.0
+```
 
 StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
 
