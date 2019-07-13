@@ -6,6 +6,6 @@ export declare class OperationsService {
     private readonly operationModel;
     private userService;
     constructor(operationModel: Model<Operation>, userService: UsersService);
-    findByClient(idClient: string, initDate: Date, lastDate: Date): Promise<any>;
+    findByClient(idClient: string, initDate: Date, lastDate: Date, page?: number): Promise<any>;
     create(userID: string, createOperationDto: CreateOperationDto): Promise<Operation>;
 }

@@ -30,7 +30,7 @@ let OperationsService = class OperationsService {
         this.operationModel = operationModel;
         this.userService = userService;
     }
-    findByClient(idClient, initDate, lastDate) {
+    findByClient(idClient, initDate, lastDate, page = 1) {
         return __awaiter(this, void 0, void 0, function* () {
             let dateFilter = {};
             let currentDate = new Date();
@@ -53,10 +53,21 @@ let OperationsService = class OperationsService {
             };
             mainQuery["date"] = dateFilter;
             console.log(mainQuery);
-            const currentExtract = yield this.operationModel.find(mainQuery).populate([{ path: "destination", select: "-password" }, { path: "origin", select: "-password" }]);
+            const currentExtract = yield this.operationModel.paginate(mainQuery, {
+                page,
+                populate: ['origin', 'destination'],
+                lean: true,
+                limit: 20
+            });
             const userBalance = yield this.userService.findOne(idClient);
             return {
-                operations: currentExtract,
+                operations: currentExtract.docs,
+                pagination: {
+                    currentPage: currentExtract.page,
+                    totalPages: currentExtract.totalPages,
+                    nextPage: currentExtract.nextPage,
+                    totalDocs: currentExtract.totalDocs
+                },
                 balance: userBalance.balance
             };
         });
