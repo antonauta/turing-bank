@@ -47,7 +47,7 @@ import { displayReducer } from './store/display/display.reducer';
     MatCardModule,
     MaterialModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ display: displayReducer })
+    StoreModule.forRoot({ 'display': displayReducer })
   ],
   exports: [
     MaterialModule,

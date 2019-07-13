@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 
 import { NotificationServiceInterface } from 'src/app/core/interfaces/services/notification/notification.service.interface';
 import { displayHidden, displayShow } from 'src/app/store/display/display.actions';
+import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-cadastro',
@@ -60,7 +62,9 @@ export class CadastroComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // hidden header and footer component
-    this.store.dispatch(displayHidden());
+    this.store.dispatch({
+      type: displayHidden
+    });
     this.cadastroForm = this.fb.group({
       name: this.name,
       password: this.password,
@@ -73,18 +77,26 @@ export class CadastroComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
    // show header and footer component
-    this.store.dispatch(displayShow());
+    this.store.dispatch({
+      type: displayShow
+    });
   }
 
   // cadastrar cliente
   submit() {
-    console.log(this.cadastroForm.value);
+
+    const user: UserModel = this.cadastroForm.value
+    console.log(user,' cadastro');
+
     const fields: ValidationResult = this.userValidatorInterface
       .signupValitador(this.cadastroForm.value);
     if (!fields.IsValid) {
-      this.notificationServiceInterface.notify(fields.Errors)
-      return
+      this.notificationServiceInterface.notify(fields.Errors);
+      return;
     }
+
+    
+
   }
 
 }
