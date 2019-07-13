@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOperationDto } from './dto/create.operation.dto';
 import { UsersService } from '../users/users.service';
-
+import * as mongoosePaginate from 'mongoose-paginate-v2';
 
 @Injectable()
 export class OperationsService {
@@ -17,7 +17,7 @@ export class OperationsService {
   //     return await this.operationModel.find();
   // }
 
-  async findByClient(idClient: string, initDate: Date, lastDate: Date): Promise<any> {
+  async findByClient(idClient: string, initDate: Date, lastDate: Date,page:number=1): Promise<any> {
     let dateFilter = {}
     let currentDate = new Date();
     let lastingDate = new Date();
@@ -43,10 +43,23 @@ export class OperationsService {
     }
     mainQuery["date"] = dateFilter
     console.log(mainQuery);
-    const currentExtract = await this.operationModel.find(mainQuery).populate([{ path: "destination", select: "-password" }, { path: "origin", select: "-password" }]);
+   //  const currentExtract = await this.operationModel.find(mainQuery).populate([{ path: "destination", select: "-password" }, { path: "origin", select: "-password" }]);
+    const currentExtract = await this.operationModel.paginate(mainQuery,{
+      page,
+      populate:['origin','destination'],
+      lean:true,
+      limit:20
+
+    })
     const userBalance = await this.userService.findOne(idClient)
     return {
-      operations: currentExtract,
+       operations: currentExtract.docs,
+      pagination:{
+        currentPage:currentExtract.page,
+        totalPages:currentExtract.totalPages,
+        nextPage :currentExtract.nextPage,
+        totalDocs:currentExtract.totalDocs
+      },
       balance: userBalance.balance
     }
   }

@@ -30,10 +30,12 @@ let OperationController = class OperationController {
     constructor(operationService) {
         this.operationService = operationService;
     }
-    find(user, queryDate) {
+    find(user, query) {
         return __awaiter(this, void 0, void 0, function* () {
             const { _id } = user;
-            return yield this.operationService.findByClient(_id, queryDate.initDate, queryDate.lastDate);
+            const { page } = query;
+            console.log(page);
+            return yield this.operationService.findByClient(_id, query.initDate, query.lastDate, page);
         });
     }
     create(user, createOperationDto) {
@@ -45,8 +47,6 @@ let OperationController = class OperationController {
 __decorate([
     common_1.Get('by_user'),
     common_1.UseGuards(passport_1.AuthGuard('jwt')),
-    swagger_1.ApiImplicitParam({ name: 'initDate' }),
-    swagger_1.ApiImplicitParam({ name: 'lastDate' }),
     __param(0, user_decorator_1.User()), __param(1, common_1.Query()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),

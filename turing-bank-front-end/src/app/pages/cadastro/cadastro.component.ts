@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Validators, FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { UserValidatorInterface } from 'src/app/core/interfaces/validations/user.validator.interface';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { NotificationComponent } from '../../shared/notification/notification.component';
-import { NotificationServiceInterface } from '../../core/interfaces/services/notification/notification.service.interface';
 import { ValidationResult } from 'ts.validator.fluent/dist';
+import { Store } from '@ngrx/store';
+
+import { NotificationServiceInterface } from 'src/app/core/interfaces/services/notification/notification.service.interface';
+import { displayHidden, displayShow } from 'src/app/store/display/display.actions';
+import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss']
 })
-export class CadastroComponent implements OnInit {
+export class CadastroComponent implements OnInit, OnDestroy {
+ 
 
   emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 
   name = new FormControl('', [
     Validators.required,
@@ -49,10 +54,17 @@ export class CadastroComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userValidatorInterface: UserValidatorInterface,
-    private notificationServiceInterface: NotificationServiceInterface
-  ) { }
+    private notificationServiceInterface: NotificationServiceInterface,
+    private store: Store<{ display: boolean }>
+  ) { 
+    
+    }
 
   ngOnInit() {
+    // hidden header and footer component
+    this.store.dispatch({
+      type: displayHidden
+    });
     this.cadastroForm = this.fb.group({
       name: this.name,
       password: this.password,
@@ -60,17 +72,31 @@ export class CadastroComponent implements OnInit {
       email: this.email,
       cpf: this.cpf,
     });
+
+  }
+
+  ngOnDestroy(): void {
+   // show header and footer component
+    this.store.dispatch({
+      type: displayShow
+    });
   }
 
   // cadastrar cliente
   submit() {
-    console.log(this.cadastroForm.value);
+
+    const user: UserModel = this.cadastroForm.value
+    console.log(user,' cadastro');
+
     const fields: ValidationResult = this.userValidatorInterface
       .signupValitador(this.cadastroForm.value);
     if (!fields.IsValid) {
-      this.notificationServiceInterface.notify(fields.Errors)
-      return
+      this.notificationServiceInterface.notify(fields.Errors);
+      return;
     }
+
+    
+
   }
 
 }
