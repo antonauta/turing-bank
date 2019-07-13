@@ -3,7 +3,7 @@ import { displayHidden, displayShow } from './display.actions';
 
 export const initialState = false;
 
-export const displayReducer = function(state = initialState, action) {
+export function displayReducer(state = initialState, action) {
   switch (action.type) {
     case displayHidden:
       return true
