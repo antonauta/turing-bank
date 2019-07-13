@@ -1,4 +1,4 @@
-import { ApiBearerAuth, ApiUseTags, ApiImplicitParam } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiUseTags, ApiImplicitParam, ApiImplicitQuery } from '@nestjs/swagger';
 import {
     Controller,
     Get,
@@ -29,6 +29,24 @@ export class OperationController {
     @UseGuards(AuthGuard('jwt'))
     // @ApiImplicitParam({name:'initDate'})
     // @ApiImplicitParam({name:'lastDate'})
+    @ApiImplicitParam({
+		name: "initDate",
+		description: "Data inicial",
+		required: false,
+		type: Date
+    })
+    @ApiImplicitParam({
+		name: "lastDate",
+		description: "Data final",
+		required: false,
+		type: Date
+    })
+    @ApiImplicitQuery({
+		name: "page",
+		description: "Pagina escolhida",
+		required: false,
+		type: Number
+	})
     async find(@User() user: UserDocument, @Query() query) {
         const {_id} = user;
         const {page} = query;
