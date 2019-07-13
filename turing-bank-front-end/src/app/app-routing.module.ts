@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'login',
     component: CadastroComponent
   },
+  {
+    path: 'signup',
+    component: CadastroComponent
+  }
 ];
 
 @NgModule({
