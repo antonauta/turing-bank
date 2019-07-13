@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from './shared/material/material.module'
+import { MaterialModule } from './shared/material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,13 +21,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material';
 import { TransferenciaComponent } from './pages/transferencia/transferencia.component';
 import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
-import {MatButtonToggleModule} from '@angular/material'
+import {MatButtonToggleModule} from '@angular/material';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { MatCardModule } from '@angular/material/card';
 import { NotificationComponent } from './shared/notification/notification.component';
 import { UserValidatorInterface } from './core/interfaces/validations/user.validator.interface';
 import { NotificationServiceInterface } from './core/interfaces/services/notification/notification.service.interface';
-import { UserValidator  } from './shared/services/validations/user.validator'
+import { UserValidator  } from './shared/services/validations/user.validator';
 import { NotificationService } from './shared/notification/notification.service';
 import { StoreModule } from '@ngrx/store';
 import { displayReducer } from './store/display/display.reducer';
