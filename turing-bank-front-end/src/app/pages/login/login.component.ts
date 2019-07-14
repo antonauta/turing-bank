@@ -5,6 +5,7 @@ import { UserValidatorInterface } from 'src/app/core/interfaces/validations/user
 import { UserModel } from 'src/app/models/user.model';
 import { ValidationResult } from 'ts.validator.fluent/dist';
 import { NotificationServiceInterface } from 'src/app/core/interfaces/services/notification/notification.service.interface';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,22 @@ import { NotificationServiceInterface } from 'src/app/core/interfaces/services/n
 export class LoginComponent implements OnInit {
 
   hide = true;
-  cpf = '';
-  password = '';
+  password = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6),
+    Validators.maxLength(16),
+  ]);
+
+  cpf = new FormControl('', [
+    Validators.required,
+    Validators.minLength(11),
+    Validators.maxLength(11),
+  ]);
+
+  loginForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
     private userValidatorInterface: UserValidatorInterface,
@@ -26,15 +39,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+    this.loginForm = this.fb.group({
+      password: this.password,
+      cpf: this.cpf,
+    });
+
   }
 
   enviar() {
 
-    const user: UserModel = {
-      cpf: this.cpf,
-      password: this.password
-    }
-
+    const user: UserModel = this.loginForm.value;
+    
     // validar campos
     const fields: ValidationResult = this.userValidatorInterface
       .signinValitador(user);
@@ -46,7 +61,7 @@ export class LoginComponent implements OnInit {
 
 
 
-    this.authService.login(this.cpf, this.password)
+    this.authService.login(user.cpf, user.password)
       .subscribe(
         (userDate: any) => {
           alert('Usuário logado com sucesso');

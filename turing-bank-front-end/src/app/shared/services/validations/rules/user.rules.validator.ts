@@ -13,8 +13,8 @@ export class UserRulesValidator implements UserRulesValidatorInterface {
     return validator
       // cpf
       .NotEmpty(m => m.cpf, 'Campo obrigatório!', 'CPF')
-      .IsNumeric(m => m.cpf, 'CPF inválido', 'CPF')
-      .Contains(m => String(isValidCpf(m.cpf)), 'true', 'CPF inválido', 'CPF')
+      .IsNumeric(m => m.cpf, 'CPF ou senha inválida', 'CPF')
+      .Contains(m => String(isValidCpf(m.cpf)), 'true', 'CPF ou senha inválida', 'CPF')
       .NotEmpty(m => m.password, 'Campo obrigatório.', 'Senha')
       .ToResult()
   }
