@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private localStoreInterface: LocalStoreInterface,
+    private authService: AuthService,
     private router: Router
     ) { }
 
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.localStoreInterface.cleanAll();
+    this.authService.logout();
     this.router.navigateByUrl('home');
     this.currentUser = false;
   }
