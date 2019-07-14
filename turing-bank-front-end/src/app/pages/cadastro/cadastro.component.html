@@ -1,73 +1,49 @@
 <main>
-  <div class="cadastro-container">
+    <div class="cadastro-container">
 
-      <div class="cadastro-conteudo">
-         <h2 class="cadastro-titulo">Abra sua conta</h2>
-         <p class="cadastro-text">Rápido, fácil e totalmente gratuito!</p>
+        <div class="cadastro-conteudo">
+            <h2 class="cadastro-titulo">Abra sua conta</h2>
+            <p class="cadastro-text">Rápido, fácil e totalmente gratuito!</p>
+
+            <form [formGroup]="cadastroForm" (ngSubmit)="submit()" class="cadastro-form">
+                <mat-card class="form-card">
+
+                    <mat-form-field class="form-group">
+                        <input matInput type="text" placeholder="Nome Completo" autocomplete="off" name="name" id="name"
+                            [formControl]="name">
+                    </mat-form-field>
+
+                    <mat-form-field class="form-group">
+                        <input matInput type="text" placeholder="CPF" autocomplete="off" name="cpf" id="cpf"
+                            [formControl]="cpf">
+                    </mat-form-field>
+
+                    <mat-form-field class="form-group">
+                        <input matInput type="text" placeholder="Apelido" autocomplete="off" name="preferredName"
+                            id="preferredName" [formControl]="preferredName">
+                    </mat-form-field>
+
+                    <mat-form-field class="form-group">
+                        <input matInput type="email" placeholder="E-mail" autocomplete="off" name="email" id="email"
+                            [formControl]="email">
+                    </mat-form-field>
+
+                    <mat-form-field class="form-group">
+                        <input matInput type="password" placeholder="Senha" autocomplete="off" name="password"
+                            id="password" [formControl]="password">
+                    </mat-form-field>
+
+                    <div class="form-bt-left">
+                        <button mat-raised-button class="form-btn">Salvar</button>
+                        <div style="margin-left: 5px;">
+                            <a mat-raised-button class="form-btn" [routerLink]="'/home'">Voltar</a>
+                        </div>
 
 
+                    </div>
 
-          <form [formGroup]="cadastroForm" (ngSubmit)="submit()" class="cadastro-form">
-              <mat-card class="form-card">
-
-                  <mat-form-field class="form-group">
-                      <input matInput
-                              type="text"
-                              placeholder="Nome Completo"
-                              autocomplete="off"
-                              name="name" id="name" [formControl]="name"
-                              >
-                  </mat-form-field>
-
-                  <mat-form-field class="form-group">
-                      <input matInput
-                              type="text"
-                              placeholder="CPF"
-                              autocomplete="off"
-                              name="cpf" id="cpf" [formControl]="cpf"
-                              >
-                  </mat-form-field>
-
-                  <mat-form-field class="form-group">
-                      <input matInput
-                              type="text"
-                              placeholder="Apelido"
-                              autocomplete="off"
-                              name="preferredName" id="preferredName" [formControl]="preferredName"
-                              >
-                  </mat-form-field>
-
-                  <mat-form-field class="form-group">
-                      <input matInput
-                              type="email"
-                              placeholder="E-mail"
-                              autocomplete="off"
-                              name="email" id="email" [formControl]="email"
-                              >
-                  </mat-form-field>
-
-                  <mat-form-field class="form-group">
-                      <input matInput
-                              type="password"
-                              placeholder="Senha"
-                              autocomplete="off"
-                              name="password" id="password" [formControl]="password"
-                                  >
-                  </mat-form-field>
-
-                  <div class="form-bt-left">
-                      <button mat-raised-button color="primary">Salvar</button>
-                      <div style="margin-left: 5px;"> 
-                        <a mat-raised-button 
-                        color="primary" 
-                        [routerLink]="'/home'">Voltar</a>
-                      </div>
-                      
-                    
-                  </div>
-
-              </mat-card>
-          </form>
-      </div>
-  </div>
+                </mat-card>
+            </form>
+        </div>
+    </div>
 </main>
