@@ -36,6 +36,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interfaces/services/auth/auth.interceptor';
 import { AccountValidatorInterface } from './core/interfaces/validations/account.validator.interface';
 import { AccountValidator } from './shared/services/validations/accont.validator';
+import { LocalStoreService } from './shared/services/local.store.service';
+import { LocalStoreInterface } from './core/interfaces/global/local.store.interface';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,9 @@ import { AccountValidator } from './shared/services/validations/accont.validator
     },
     {
       provide: AccountValidatorInterface, useClass: AccountValidator
+    },
+    {
+      provide: LocalStoreInterface, useClass: LocalStoreService
     },
     {
       provide: NotificationServiceInterface, useClass: NotificationService
