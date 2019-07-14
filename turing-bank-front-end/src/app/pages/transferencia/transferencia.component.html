@@ -58,12 +58,18 @@
                 </mat-form-field>
 
                 <mat-form-field class="form-group">
-                    <input matInput
+                        <mat-label>Contas</mat-label>
+                        <mat-select  name="idContaSelecionada" [formControl]="idContaSelecionada" id="idContaSelecionada">
+                          <mat-option *ngFor="let conta of contas | async" [value]="conta._id">
+                            {{ conta.account }}
+                          </mat-option>
+                        </mat-select>
+                    <!-- <input matInput
                             type="number"
                             placeholder="Conta"
                             autocomplete="off"
                             name="conta" id="conta" [formControl]="conta"
-                            >
+                            > -->
                 </mat-form-field>
 
                 <mat-form-field class="form-group">
@@ -74,8 +80,14 @@
                             name="valor" id="valor" [formControl]="valor"
                             >
                 </mat-form-field>
-
-             
+                <mat-form-field class="form-group">
+                    <input matInput
+                            type="text"
+                            placeholder="Descrição"
+                            autocomplete="on"
+                            name="descricao" id="descricao" [formControl]="descricao"
+                            >
+                </mat-form-field>             
 
                 <div class="form-bt-left">
                     <button mat-raised-button color="primary">Enviar</button>
@@ -83,8 +95,7 @@
                       <a mat-raised-button 
                       color="primary" 
                       [routerLink]="'/dados-bancarios'">Voltar</a>
-                    </div>
-                    
+                    </div>                    
                   
                 </div>
 
