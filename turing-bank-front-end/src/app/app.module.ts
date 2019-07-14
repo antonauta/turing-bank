@@ -36,6 +36,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interfaces/services/auth/auth.interceptor';
 import { AccountValidatorInterface } from './core/interfaces/validations/account.validator.interface';
 import { AccountValidator } from './shared/services/validations/accont.validator';
+import { MatSelectModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -69,11 +70,13 @@ import { AccountValidator } from './shared/services/validations/accont.validator
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MatSelectModule,
     StoreModule.forRoot({ 'display': displayReducer })
   ],
   exports: [
     MaterialModule,
     ReactiveFormsModule,
+    MatSelectModule
   ],
   entryComponents: [
     NotificationComponent

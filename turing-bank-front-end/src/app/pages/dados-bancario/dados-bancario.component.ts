@@ -72,7 +72,7 @@ function drawBasic() {
     backgroundColor: '#F6F6F6',
     hAxis: {
       title: 'Data',
-      format: 'd/M/yy',
+      format: 'dd/MM/yy',
     },
     vAxis: {
       title: 'Saldo'
