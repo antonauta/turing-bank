@@ -13,21 +13,28 @@
                 <a class="nav-link link-hover" routerLink="">Início</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link link-hover" href="#">Conheça o Turing Bank</a>
+                <a class="nav-link link-hover" routerLink="#">Conheça o Turing Bank</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link link-hover" href="#">Nosso Cartão</a>
+                <a class="nav-link link-hover" routerLink="#">Nosso Cartão</a>
             </li>
         </ul>
-        <ul class="navbar-nav mr-auto">
+        <ul *ngIf="!currentUser" class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link link-hover" target="_blank" routerLink="login">Login</a>
+                <a class="nav-link link-hover"  routerLink="/login">Login</a>
             </li>
             <li class="nav-item btn-conta">
-                <a class="nav-link destaque" target="_blank" routerLink="cadastro">Abra sua conta</a>
+                <a class="nav-link destaque" routerLink="/cadastro">Abra sua conta</a>
             </li>
-            <li>Olá {{currentUser}}</li>
         </ul>
+        <ul *ngIf="currentUser" class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link link-hover" routerLink="">Olá {{currentUser}}</a>
+                </li>
+                <li class="nav-item">
+                    <a (click)="logout()" class="nav-link link-hover">Sair</a>
+                </li>
+            </ul>
     </div>
 </nav>
 

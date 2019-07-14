@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service';
 import { Observable } from 'rxjs';
 import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,16 +11,22 @@ import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.
 })
 export class HeaderComponent implements OnInit {
 
-  currentUser: string;
+  currentUser: any;
   
 
   constructor(
-    private authService: AuthService,
-    private localStoreInterface: LocalStoreInterface
+    private localStoreInterface: LocalStoreInterface,
+    private router: Router
     ) { }
 
   ngOnInit() {
     this.currentUser = this.localStoreInterface.get('currentUser');
+  }
+
+  logout() {
+    this.localStoreInterface.cleanAll();
+    this.router.navigateByUrl('home');
+    this.currentUser = false;
   }
 
 }

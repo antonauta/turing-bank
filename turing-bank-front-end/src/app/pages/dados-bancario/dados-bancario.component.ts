@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/interfaces/services/auth/auth.service';
 import { UserModel } from '../../models/user.model';
-import { UserLoggedModel } from '../../models/userLogged.model';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
-import { UserRequestModel } from 'src/app/models/user.request.model';
+
 
 @Component({
   selector: 'app-dados-bancario',
