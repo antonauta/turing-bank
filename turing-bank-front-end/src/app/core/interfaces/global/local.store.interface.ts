@@ -16,7 +16,7 @@ export abstract class LocalStoreInterface {
      * Obter dado local
      * @param key 
      */
-    abstract get(key: string);
+    abstract get(key: string): any;
 
     /**
      * Remove dado local

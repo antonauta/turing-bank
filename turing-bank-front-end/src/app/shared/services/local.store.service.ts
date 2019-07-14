@@ -13,7 +13,7 @@ export class LocalStoreService implements LocalStoreInterface  {
   }  
 
   get(key: string) {
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
   }
 
   remove(key: string) {

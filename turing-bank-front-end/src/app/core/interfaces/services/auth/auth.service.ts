@@ -11,8 +11,10 @@ import { UserLoggedModel } from 'src/app/models/userLogged.model';
 
 export class AuthService {
 
-  private pUser = new BehaviorSubject(null);
-  currentUser = this.pUser.asObservable();
+  
+
+  // private pUser = new BehaviorSubject(null);
+  // currentUser = this.pUser.asObservable();
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,9 +29,9 @@ export class AuthService {
     return this.httpClient.post(`${environment.API_URL}/auth/register`, user);
   }
 
-  setUser(user) {
-    this.pUser.next(user);
-  }
+  // setUser(user) {
+  //   this.pUser.next(user);
+  // }
 
   getAllAccounts(): Observable<UserLoggedModel[]> {
     return this.httpClient.get<UserLoggedModel[]>(`${environment.API_URL}/users`)

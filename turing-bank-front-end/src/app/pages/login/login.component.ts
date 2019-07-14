@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
           this.localStoreInterface.create('user_data', JSON.stringify(user));
           this.localStoreInterface.create('currentUser', user.preferredName);
   
-          this.authService.setUser(userDate.user);
+          // this.authService.setUser(userDate.user);
           this.router.navigateByUrl('/dados-bancarios');
         },
         (error) => {

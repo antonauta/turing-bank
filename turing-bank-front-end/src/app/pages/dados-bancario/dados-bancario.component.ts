@@ -4,6 +4,8 @@ import { AuthService } from '../../core/interfaces/services/auth/auth.service';
 import { UserModel } from '../../models/user.model';
 import { UserLoggedModel } from '../../models/userLogged.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
+import { UserRequestModel } from 'src/app/models/user.request.model';
 
 @Component({
   selector: 'app-dados-bancario',
@@ -15,21 +17,25 @@ export class DadosBancarioComponent implements OnInit {
   userAccount: any;
   userAgency: any;
   userBalance: number;
+  _account: string;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private localStoreInterface: LocalStoreInterface
+  ) { }
 
   ngOnInit() {
     google.charts.load('current', {packages: ['corechart', 'line']});
     google.charts.setOnLoadCallback(drawBasic);
-    this.authService.currentUser.subscribe(user => {
+    const user: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
+
       this.authService.getUserAccountDetails(user.account).subscribe(v => {
         console.log(v.balance);
         this.userBalance = v.balance;
       });
       this.userAccount = user.account;
       this.userAgency = user.agency;
-      console.log(user);
-    });
   }
 
   goToExtrato(){

@@ -102,15 +102,18 @@ export class CadastroComponent implements OnInit, OnDestroy {
     // Registra usuário
     this.authService.register(user).subscribe((userDate: any) => {
       alert('Usuário cadastrado com sucesso!');
+      const user: UserModel = userDate.user;
+
       this.localStoreInterface.create('token', userDate.token);
-      this.localStoreInterface.create('user_data', userDate.user);
+      this.localStoreInterface.create('user_data', JSON.stringify(user));
+      this.localStoreInterface.create('currentUser', user.preferredName);
 
       
 
       // Guarda o token no localstorage
       // localStorage.setItem('token', userDate.token);
       
-      this.authService.setUser(userDate.user);
+      // this.authService.setUser(userDate.user);
 
       this.router.navigateByUrl('/dados-bancarios');
     });
