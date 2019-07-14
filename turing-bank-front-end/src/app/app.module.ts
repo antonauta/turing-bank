@@ -34,6 +34,8 @@ import { displayReducer } from './store/display/display.reducer';
 import { HttpClientModule  } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interfaces/services/auth/auth.interceptor';
+import { AccountValidatorInterface } from './core/interfaces/validations/account.validator.interface';
+import { AccountValidator } from './shared/services/validations/accont.validator';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,9 @@ import { AuthInterceptor } from './core/interfaces/services/auth/auth.intercepto
   providers: [
     {
       provide: UserValidatorInterface, useClass: UserValidator
+    },
+    {
+      provide: AccountValidatorInterface, useClass: AccountValidator
     },
     {
       provide: NotificationServiceInterface, useClass: NotificationService

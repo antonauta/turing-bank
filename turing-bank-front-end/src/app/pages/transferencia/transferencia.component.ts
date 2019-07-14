@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { UserValidatorInterface } from 'src/app/core/interfaces/validations/user.validator.interface';
 import { NotificationServiceInterface } from 'src/app/core/interfaces/services/notification/notification.service.interface';
+import { TransferModel } from 'src/app/models/transfer.model';
+import { ValidationResult } from 'ts.validator.fluent/dist';
+import { AccountValidatorInterface } from 'src/app/core/interfaces/validations/account.validator.interface';
 
 @Component({
   selector: 'app-transferencia',
@@ -34,7 +36,7 @@ export class TransferenciaComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private userValidatorInterface: UserValidatorInterface,
+    private accountValidatorInterface: AccountValidatorInterface,
     private notificationServiceInterface: NotificationServiceInterface,
   ) { }
 
@@ -48,6 +50,17 @@ export class TransferenciaComponent implements OnInit {
   }
 
   submit() {
+
+    const transfer: TransferModel = this.transferenciaForm.value;
+    console.log(transfer, 'transferenciaForm');
+
+    const fields: ValidationResult = this.accountValidatorInterface
+      .trasferValitador(transfer);
+    if (!fields.IsValid) {
+      this.notificationServiceInterface.notify(fields.Errors);
+      return;
+    }
+
   }
 
 }
