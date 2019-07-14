@@ -22,10 +22,21 @@ const routes: Routes = [
     pathMatch: 'full',
     component: HomeComponent
   },
-  {path: 'dados-bancarios', component: DadosBancarioComponent},
-  {path: 'extrato', component: ExtratoComponent},
-  {path: 'transferencia', component: TransferenciaComponent},
-  {path: 'pagamentos', component: PagamentosComponent},
+  {
+    path: 'dados-bancarios', 
+    component: DadosBancarioComponent
+  },
+  {
+    path: 'extrato', 
+    component: ExtratoComponent
+  },
+  {
+    path: 'transferencia', 
+    component: TransferenciaComponent
+  },
+  {
+    path: 'pagamentos', 
+    component: PagamentosComponent},
   {
     path: 'cadastro',
     component: CadastroComponent
