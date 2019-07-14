@@ -13,8 +13,9 @@ export class UserRulesValidator implements UserRulesValidatorInterface {
     return validator
       // cpf
       .NotEmpty(m => m.cpf, 'Campo obrigatório!', 'CPF')
-      .IsNumeric(m => m.cpf, 'CPF ou senha inválida', 'CPF')
-      .Contains(m => String(isValidCpf(m.cpf)), 'true', 'CPF ou senha inválida', 'CPF')
+      .If(m => m.cpf !== null && m.cpf !== '' && m.password !== '', validator => validator 
+        .Contains(m => String(isValidCpf(m.cpf)), 'true', 'CPF ou senha inválida', 'CPF')
+      .ToResult())
       .NotEmpty(m => m.password, 'Campo obrigatório.', 'Senha')
       .ToResult()
   }
@@ -27,26 +28,38 @@ export class UserRulesValidator implements UserRulesValidatorInterface {
 
       // name
       .NotEmpty(m => m.name, 'Campo obrigatório.', 'Nome Completo')
-      .Length(m => m.name, 3, 100, 'Número de caracteres inválido.', 'Nome Completo')
+      .If(m => m.name !== null && m.name !== '', validator => validator 
+        .Length(m => m.name, 3, 100, 'Número de caracteres inválido.', 'Nome Completo')
+      .ToResult())
+      
 
       // cpf
       .NotEmpty(m => m.cpf, 'Campo obrigatório!', 'CPF')
-      .IsNumeric(m => m.cpf, 'CPF inválido', 'CPF')
-      .Contains(m => String(isValidCpf(m.cpf)), 'true', 'CPF inválido', 'CPF')
+      .If(m => m.cpf !== null && m.cpf !== '', validator => validator 
+        .Contains(m => String(isValidCpf(m.cpf)), 'true', 'CPF ou senha inválida', 'CPF')
+      .ToResult())
 
       // preferredName
       .NotEmpty(m => m.preferredName, 'Campo obrigatório.', 'Apelido')
-      .Length(m => m.preferredName, 3, 100, 'Número de caracteres inválido.', 'Apelido')
+      .If(m => m.preferredName !== null && m.preferredName !== '' , validator => validator 
+        .Length(m => m.preferredName, 3, 100, 'Número de caracteres inválido.', 'Apelido')
+      .ToResult())
+      
 
       // email
       .NotEmpty(m => m.email, 'Campo obrigatório!', 'E-mail')
-      .Email(m => m.email, 'E-mail inválido!', ' E-mail')
+      .If(m => m.email !== null && m.email !== '' , validator => validator 
+        .Email(m => m.email, 'E-mail inválido!', ' E-mail')
+      .ToResult())
+      
 
       // password
       .NotEmpty(m => m.password, 'Campo obrigatório.', 'Senha')
-      .Length(m => m.password, 6, 16, 'Senha deve ter entre 6 a 16 caracters', 'Senha')
-      .Matches(m => m.password, "(?=.*?[0-9])(?=.*?[a-z])(?=.*?[A-Z])", ` A sua senha deve ter pelo menos 6
+      .If(m => m.password !== null && m.password !== '' , validator => validator 
+        .Length(m => m.password, 6, 16, ` Senha fraca!`, 'Senha')
+        .Matches(m => m.password, "(?=.*?[0-9])(?=.*?[a-z])(?=.*?[A-Z])", ` A sua senha deve ter de 6 a 16
                caracteres e conter pelo menos: uma letra maiúscula, uma letra minúscula e um dígito. `, "Senha")
+      .ToResult())
       .ToResult();
   }
 
