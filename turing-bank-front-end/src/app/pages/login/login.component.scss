@@ -51,3 +51,9 @@ h2 {
 .mat-raised-button {
     padding: 6px 16px;
 }
+
+@media screen and (max-width: 600px) {
+    .login-card {
+        width: 320px;
+    }
+}
