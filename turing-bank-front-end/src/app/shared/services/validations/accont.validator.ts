@@ -8,6 +8,7 @@ import { AccountRulesValidator } from './rules/account.rules.valitador';
   providedIn: 'root'
 })
 export class AccountValidator implements AccountValidatorInterface {
+  
     
 
   constructor(
@@ -21,6 +22,15 @@ export class AccountValidator implements AccountValidatorInterface {
    */
   trasferValitador(model: TransferModel): ValidationResult {
     return new Validator(model).Validate(this.accountRulesValidator.transferRules);
+  }
+
+
+/**
+   *  Validar pagamento antes do envio
+   * @param model 
+   */
+  paymentValitador(model: TransferModel): ValidationResult {
+    return new Validator(model).Validate(this.accountRulesValidator.paymentRules);
   }
 
 }

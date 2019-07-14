@@ -8,4 +8,5 @@ import { TransferModel } from 'src/app/models/transfer.model';
 })
 export abstract class AccountValidatorInterface {
     abstract trasferValitador(model: TransferModel): ValidationResult;
+    abstract paymentValitador(model: TransferModel): ValidationResult;
 }

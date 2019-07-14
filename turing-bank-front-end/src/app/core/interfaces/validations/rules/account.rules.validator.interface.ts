@@ -7,6 +7,7 @@ export abstract class AccountRulesValidatorInterface {
      * @param validator 
      */
     abstract transferRules(validator: IValidator<TransferModel>): ValidationResult;
+    abstract paymentRules(validator: IValidator<TransferModel>): ValidationResult;
 
   
 }

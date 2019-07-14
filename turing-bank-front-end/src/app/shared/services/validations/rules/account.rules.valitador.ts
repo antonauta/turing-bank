@@ -9,6 +9,14 @@ import { TransferModel } from 'src/app/models/transfer.model';
   providedIn: 'root'
 })
 export class AccountRulesValidator implements AccountRulesValidatorInterface {
+  
+  paymentRules(validator: IValidator<TransferModel>): ValidationResult {
+    return validator
+ 
+      .NotEmpty(m => m.conta, 'Campo obrigatório!', 'Agência')
+      .NotEmpty(m => m.valor, 'Campo obrigatório.', 'Conta')
+      .ToResult()
+  }
 
   transferRules(validator: IValidator<TransferModel>): ValidationResult {
     return validator

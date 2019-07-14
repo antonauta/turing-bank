@@ -3,7 +3,7 @@
         <div class="form-h4">
             <h4>Pagamentos</h4>
         </div>
-        <form>
+        <!-- <form>
 
             <div class="form-group">
                 <label for="name">Conta destino</label>
@@ -13,6 +13,44 @@
             </div>
 
             <button type="submit" class="btn btn-success btn-continue" (click)="depositar()">Continuar</button>
+        </form> -->
+
+
+        <form [formGroup]="pagamentoForm" (ngSubmit)="depositar()" class="pagamento-form">
+            <mat-card class="form-card">
+
+                <mat-form-field class="form-group">
+                    <input matInput
+                            type="number"
+                            placeholder="Conta"
+                            autocomplete="off"
+                            name="conta" id="conta" [formControl]="conta"
+                            >
+                </mat-form-field>
+
+                <mat-form-field class="form-group">
+                    <input matInput
+                            type="number"
+                            placeholder="Valor"
+                            autocomplete="off"
+                            name="valor" id="valor" [formControl]="valor"
+                            >
+                </mat-form-field>
+
+             
+
+                <div class="form-bt-left">
+                    <button mat-raised-button color="primary">Salvar</button>
+                    <div style="margin-left: 5px;"> 
+                      <a mat-raised-button 
+                      color="primary" 
+                      [routerLink]="'/dados-bancarios'">Voltar</a>
+                    </div>
+                    
+                  
+                </div>
+
+            </mat-card>
         </form>
     </div>
 </div>
