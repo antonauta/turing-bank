@@ -8,6 +8,7 @@ import { OperationService } from 'src/app/core/interfaces/services/operation/ope
 import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service';
 import { UserLoggedModel } from 'src/app/models/userLogged.model';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-transferencia',
@@ -26,6 +27,9 @@ export class TransferenciaComponent implements OnInit {
   ]);
 
   contas: Observable<UserLoggedModel[]>;
+  idContaSelecionada = new FormControl('', [
+    Validators.required,
+  ]);
 
   valor = new FormControl('', [
     Validators.required,
@@ -45,18 +49,19 @@ export class TransferenciaComponent implements OnInit {
     private accountValidatorInterface: AccountValidatorInterface,
     private notificationServiceInterface: NotificationServiceInterface,
     private operationService: OperationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
 
     
     this.contas = this.authService.getAllAccounts();
-    console.log(this.contas);   
+    console.log('Teste de transferencia: ', this.contas);   
 
     this.transferenciaForm = this.fb.group({
       agencia: this.agencia,
-      conta: this.contas,
+      conta: this.idContaSelecionada,
       valor: this.valor,
       descricao: this.descricao
     });
@@ -67,6 +72,7 @@ export class TransferenciaComponent implements OnInit {
 
     const transfer: TransferModel = this.transferenciaForm.value;
     console.log(transfer, 'transferenciaForm');
+    console.log(this.idContaSelecionada);
 
     const fields: ValidationResult = this.accountValidatorInterface
       .trasferValitador(transfer);
@@ -75,11 +81,12 @@ export class TransferenciaComponent implements OnInit {
       return;
     }
 
-    console.log(parseFloat(transfer.valor), transfer.conta.id);
+    console.log(transfer.valor, transfer.conta);
 
-    this.operationService.operation(parseFloat(transfer.valor), transfer.conta.id).subscribe(v => {
+    this.operationService.operation(parseInt(transfer.valor), transfer.conta, transfer.descricao).subscribe(v => {
       alert('Trasferência realizada com sucesso!');
-      console.log(v);
+      console.log('Certo? ', v);
+      // this.router.navigateByUrl('/dados-bancarios');
     }, error => {
       console.log(error);
       alert('Erro ao realizar transfência.');

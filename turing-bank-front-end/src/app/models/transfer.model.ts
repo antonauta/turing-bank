@@ -1,8 +1,6 @@
-import { UserLoggedModel } from './userLogged.model';
-
 export interface TransferModel {
     agencia?: string;
-    conta?: UserLoggedModel;
+    conta?: string;
     valor?: string;
     descricao?: string;
   }

@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   getAllAccounts(): Observable<UserLoggedModel[]> {
-    return this.httpClient.get<UserLoggedModel[]>(`${environment.API_URL}/users/`)
+    return this.httpClient.get<UserLoggedModel[]>(`${environment.API_URL}/users`)
   }
 
   getUserAccountDetails(accountNumber: string): Observable<UserLoggedModel> {

@@ -13,11 +13,11 @@ export class OperationService {
 
 
     // 0 = depósito 1 = trasferéncia
-    operation(money: number, accountDestination: string, typeOfOperation: number = 1) {
+    operation(money: number, accountDestination: string, description: string) {
       // const headers_object = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-      console.log(typeOfOperation, money, accountDestination);
+      console.log(description, money, accountDestination);
       return this.httpClient.post(`${environment.API_URL}/operation`, {
-        type: typeOfOperation,
+        description: description,
         value: money,
         destination: accountDestination
       });
@@ -26,9 +26,9 @@ export class OperationService {
     // Gera extrato, padrão de 7 dias caso não informe o período
     getStatement(initDate = '', lastDate = '') {
       if (initDate && lastDate) {
-        return this.httpClient.get(`${environment.API_URL}/operation`);
+        return this.httpClient.get(`${environment.API_URL}/operation/by_user`);
       } else {
-        return this.httpClient.get(`${environment.API_URL}/operation?initDate=${initDate}&lastDate=${lastDate}`);
+        return this.httpClient.get(`${environment.API_URL}/operation/by_user?initDate=${initDate}&lastDate=${lastDate}`);
       }
     }
 }

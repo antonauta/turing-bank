@@ -59,8 +59,8 @@
 
                 <mat-form-field class="form-group">
                         <mat-label>Contas</mat-label>
-                        <mat-select required>
-                          <mat-option *ngFor="let conta of contas | async" [value]="conta.id">
+                        <mat-select  name="idContaSelecionada" [formControl]="idContaSelecionada" id="idContaSelecionada">
+                          <mat-option *ngFor="let conta of contas | async" [value]="conta._id">
                             {{ conta.account }}
                           </mat-option>
                         </mat-select>
@@ -90,7 +90,7 @@
                 </mat-form-field>             
 
                 <div class="form-bt-left">
-                    <button mat-raised-button color="primary" (click)="submit()">Enviar</button>
+                    <button mat-raised-button color="primary">Enviar</button>
                     <div style="margin-left: 5px;"> 
                       <a mat-raised-button 
                       color="primary" 

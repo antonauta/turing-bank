@@ -6,5 +6,5 @@ export interface UserLoggedModel {
   balance: number;
   agency: string;
   account: string;
-  id: string;
+  _id: string;
 }
