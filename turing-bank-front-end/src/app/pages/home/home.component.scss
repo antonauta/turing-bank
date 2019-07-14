@@ -18,6 +18,10 @@
 .btn {
     background-color: $cor-primaria;
     color: $cor-branco;
+
+    &:hover {
+        transform: translateY(-.5rem) scale(1.02);
+    }
 }
 
 .secao-seguro {
