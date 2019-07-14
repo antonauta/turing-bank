@@ -38,6 +38,7 @@ import { AccountValidatorInterface } from './core/interfaces/validations/account
 import { AccountValidator } from './shared/services/validations/accont.validator';
 import { LocalStoreService } from './shared/services/local.store.service';
 import { LocalStoreInterface } from './core/interfaces/global/local.store.interface';
+import { AppGuard } from './app.guard';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { LocalStoreInterface } from './core/interfaces/global/local.store.interf
     NotificationComponent
   ],
   providers: [
+    AppGuard,
     {
       provide: UserValidatorInterface, useClass: UserValidator
     },
