@@ -1,5 +1,7 @@
+@import '../../shared/colors/colors.component.scss';
+
 .navbar {
-    border-bottom: 1px solid #d1d1d1;
+    border-bottom: 1px solid $cor-cinza-claro-2;
     font-family: 'Lato', sans-serif;
     color: rgba(0, 0, 0, .5);
 }
@@ -17,10 +19,38 @@
 }
 
 .links-nav {
-    /* display: flex; */
     justify-content: space-between;
+}
+
+.link-hover {
+
+    &:hover{
+        color: $cor-primaria !important;
+    }
+    
 }
 
 .mr-auto, .mx-auto {
     margin-right: 20px !important;
+}
+
+.destaque {
+    background-color: $cor-primaria;
+    color: $cor-branco !important;
+    padding: 8px 20px;
+    border-radius: 5px;
+
+    &:hover {
+        transform: translateY(-.5rem) scale(1.03);
+    }
+
+}
+
+@media screen and (max-width: 995px) {
+    
+    .destaque {
+        background-color: unset;
+        color: unset !important;
+        padding: 8px 0;
+    }
 }

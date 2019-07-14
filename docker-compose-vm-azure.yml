@@ -16,7 +16,7 @@ services:
     image: djnakudo/backendturingbankavanade
     restart: always
     environment:
-      -AZUREMODE=yes
+      - AZUREMODE=yes
       - BASEURL=http://turingbank.eastus.cloudapp.azure.com/api/v1
     volumes:
       - ./turing-bank-back-end/src:/usr/src/app/src

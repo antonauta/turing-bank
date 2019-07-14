@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateOperationDto } from './dto/create.operation.dto';
 import { UsersService } from '../users/users.service';
-import * as mongoosePaginate from 'mongoose-paginate-v2';
+
 
 @Injectable()
 export class OperationsService {
@@ -68,60 +68,40 @@ export class OperationsService {
     let newOperation = new this.operationModel(createOperationDto);
 
     let findUserDestination, findUserOrigin;
-    switch (createOperationDto.type) {
-      case 0:
-        findUserDestination = await this.userService.findOne(
-          userID
-        );
-        await this.userService.update(
-          {
+    const checkOriginBalance = await this.userService.findOne(
+      userID
+    );
 
-            balance: findUserDestination.balance + createOperationDto.value,
-          },
-          userID
-        );
-        newOperation = new this.operationModel({ ...createOperationDto, destination: userID });
-        break;
-      case 1:
-        const checkOriginBalance = await this.userService.findOne(
-          userID
-        );
-
-        if (
-          !checkOriginBalance ||
-          checkOriginBalance.balance < createOperationDto.value
-        ) {
-          return new Promise((resolve, reject) =>
-            reject({ error: 'Insuficient balance' }),
-          );
-        }
-        findUserDestination = await this.userService.findOne(
-          createOperationDto.destination,
-        );
-        await this.userService.update(
-          {
-
-            balance: findUserDestination.balance + createOperationDto.value,
-          },
-          createOperationDto.destination,
-        );
-        findUserOrigin = await this.userService.findOne(
-          userID
-        );
-        await this.userService.update(
-          {
-
-            balance: findUserOrigin.balance - createOperationDto.value,
-          },
-          userID
-        );
-        newOperation = new this.operationModel({ ...createOperationDto, origin: userID, destination: createOperationDto.destination });
-        break;
-      default:
-        return new Promise((resolve, reject) =>
-          reject({ error: 'Invalid Operation' }),
-        );
+    if (
+      !checkOriginBalance ||
+      checkOriginBalance.balance < createOperationDto.value
+    ) {
+      return new Promise((resolve, reject) =>
+        reject({ error: 'Insuficient balance' }),
+      );
     }
+    findUserDestination = await this.userService.findOne(
+      createOperationDto.destination,
+    );
+    await this.userService.update(
+      {
+
+        balance: findUserDestination.balance + createOperationDto.value,
+      },
+      createOperationDto.destination,
+    );
+    findUserOrigin = await this.userService.findOne(
+      userID
+    );
+    await this.userService.update(
+      {
+
+        balance: findUserOrigin.balance - createOperationDto.value,
+      },
+      userID
+    );
+    newOperation = new this.operationModel({ ...createOperationDto, origin: userID, destination: createOperationDto.destination });
+    
     console.log(newOperation)
     return await newOperation.save();
   }

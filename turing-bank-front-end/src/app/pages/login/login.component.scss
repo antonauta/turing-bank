@@ -7,10 +7,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .login-card {
-    height: 420px;
+    height: 360px;
     width: 380px;
     background-color: $cor-branco;
     padding: 40px 40px;
@@ -23,17 +24,36 @@
     justify-content: flex-start;
 }
 
-/* mat-form-field {
-    display: block;
-} */
+h2 {
+    color: $cor-branco;
+    margin-bottom: 24px;
+}
 
 .form-login {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-direction: column;
+
+    width: 100%;
+}
+
+.form-field {
+    margin-bottom: 35px !important;
 }
 
 .login-btn {
     background-color: $cor-primaria;
     color: $cor-branco;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.mat-raised-button {
+    padding: 6px 16px;
+}
+
+@media screen and (max-width: 600px) {
+    .login-card {
+        width: 320px;
+    }
 }
