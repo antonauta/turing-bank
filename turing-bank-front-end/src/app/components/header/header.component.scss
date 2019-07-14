@@ -45,3 +45,12 @@
     }
 
 }
+
+@media screen and (max-width: 995px) {
+    
+    .destaque {
+        background-color: unset;
+        color: unset !important;
+        padding: 8px 0;
+    }
+}

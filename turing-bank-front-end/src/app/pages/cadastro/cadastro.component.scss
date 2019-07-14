@@ -22,7 +22,7 @@ main {
 
 .cadastro-conteudo {
     overflow: hidden;
-    color: #fffd;
+    color: $cor-branco;
 
     h1,h2 {
         margin-top: $baseline;
@@ -62,4 +62,10 @@ mat-form-field {
 .form-btn {
     background-color: $cor-primaria;
     color: $cor-branco;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.mat-raised-button {
+    padding: 4px 16px;
 }
