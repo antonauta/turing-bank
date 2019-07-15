@@ -17,7 +17,7 @@ export class ExtratoComponent implements OnInit {
   serializedDate = new FormControl((new Date()).toISOString());
   jsonData = [];
   userBalance: number;
-  
+  userID : string;
   dateIni;
   dIniName;
   dateFin;
@@ -31,7 +31,7 @@ export class ExtratoComponent implements OnInit {
     console.log('Pasosu extrato')
 
     const user: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
-
+    this.userID= user._id;
     this.authService.getUserAccountDetails(user.account).subscribe(v => {        
       this.userBalance = v.balance;
     });
@@ -57,7 +57,7 @@ export class ExtratoComponent implements OnInit {
         item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
         item ["lancamentos"] = obj.description;
         item ["valor"] = obj.value;
-        item ["saldo"] = obj.destination==user._id ? obj.destination_balance : obj.origin_balance;
+        item ["saldo"] = obj.destination._id==user._id ? obj.destination_balance : obj.origin_balance;
         jsonSaldo.push(item);
       }  
 
@@ -141,7 +141,7 @@ export class ExtratoComponent implements OnInit {
         item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
         item ["lancamentos"] = obj.description;
         item ["valor"] = obj.value;
-        item ["saldo"] = saldo;
+        item ["saldo"] = obj.destination._id==this.userID ? obj.destination_balance : obj.origin_balance;
         jsonSaldo.push(item);
       }  
 
