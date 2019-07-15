@@ -1,18 +1,25 @@
-<!-- <div class="login">
+<div class="login">
+    <h2>Faça seu login</h2>
     <div class="login-card">
-        <h4>Faça seu login</h4>
-        <form class="form-login">
-            <mat-form-field>
-                <input matInput placeholder="CPF" required>
+        <form  [formGroup]="loginForm" class="form-login">
+            <mat-form-field class="form-field">
+                <input matInput 
+                placeholder="CPF" 
+                name="cpf" id="cpf" [formControl]="cpf"
+                required>
             </mat-form-field>
-            <mat-form-field>
-                <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'">
+            <mat-form-field class="form-field">
+                <input matInput 
+                placeholder="Senha" 
+                [type]="hide ? 'password' : 'text'" 
+                name="password" id="password" [formControl]="password"
+                required>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
             </mat-form-field>
-            <button class="login-btn" mat-raised-button>Continuar</button>
+            <button class="login-btn" mat-raised-button (click)="enviar()">Continuar</button>
         </form>
     </div>
-</div> -->
+</div>

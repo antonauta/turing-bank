@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from 'src/app/models/user.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { UserLoggedModel } from 'src/app/models/userLogged.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +11,16 @@ import { UserModel } from 'src/app/models/user.model';
 
 export class AuthService {
 
+  private pUser = new BehaviorSubject(null);
+  currentUser = this.pUser.asObservable();
+
   constructor(private httpClient: HttpClient) { }
 
-  login(cpf, password) {
+  login(userCpf: string, userPassword: string) {
+    console.log(userCpf, userPassword);
     return this.httpClient.post(`${environment.API_URL}/auth/login`, {
-      cpf,
-      password
+      cpf: userCpf,
+      password: userPassword
     });
   }
 
@@ -22,7 +28,11 @@ export class AuthService {
     return this.httpClient.post(`${environment.API_URL}/auth/register`, user);
   }
 
+  setUser(user) {
+    this.pUser.next(user);
+  }
+
   getUserAccountDetails(accountNumber: string) {
-    return this.httpClient.get(`${environment.API_URL}/users/account/${accountNumber}`);
+    return this.httpClient.get<UserLoggedModel>(`${environment.API_URL}/users/account/${accountNumber}`);
   }
 }

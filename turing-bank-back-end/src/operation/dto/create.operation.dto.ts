@@ -1,8 +1,9 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiModelProperty, ApiModelPropertyOptional } from '@nestjs/swagger';
 
 export class CreateOperationDto {
-    @ApiModelProperty()
-    readonly type: number;
+    
+    @ApiModelPropertyOptional()
+    readonly description: string;
     @ApiModelProperty()
     readonly value: number;
     @ApiModelProperty()

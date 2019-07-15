@@ -13,6 +13,7 @@ services:
   nest:
     build: turing-bank-back-end
     restart: always
+    command:  npm run start:prod 
     environment:
       - BASEURL=http://localhost:3000/api/v1
     ports:

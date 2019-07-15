@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 import * as mongoosePaginate from 'mongoose-paginate-v2';
 export const operationSchema = new mongoose.Schema({
-    type: { type: Number },
+    description: { type: String ,default:''},
     value: { type: Number, default: 0},
     expire_at: {type: Date, default: Date.now, expires:'1y'} , //  dados de op duram 2 anos
     date: { type: Date, default: new Date() },

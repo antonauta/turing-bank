@@ -17,6 +17,9 @@ COPY . .
 
 EXPOSE 3000
 
+
+
 ENTRYPOINT ["/sbin/tini", "--"]
 
-CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:azure"]
+

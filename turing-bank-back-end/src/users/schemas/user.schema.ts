@@ -36,7 +36,8 @@ function LeftPadWithZeros(number, length)
 UserSchema.pre('save', async function(next : mongoose.HookNextFunction) {
 
   const user = this;
-  if(user.isNew){
+  console.log(user)
+  if(user.isNew && !user.account){
     user.account = LeftPadWithZeros(randomatic('0',Math.floor(Math.random() * 6)),6) + `${Math.floor(Math.random() * 9)}`
     user.agency = LeftPadWithZeros(`${Math.floor(Math.random() * 10)}`,2)
   }

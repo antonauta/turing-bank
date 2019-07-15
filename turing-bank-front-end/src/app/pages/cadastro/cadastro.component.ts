@@ -8,6 +8,7 @@ import { NotificationServiceInterface } from 'src/app/core/interfaces/services/n
 import { displayHidden, displayShow } from 'src/app/store/display/display.actions';
 import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service';
 import { UserModel } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,7 +16,7 @@ import { UserModel } from 'src/app/models/user.model';
   styleUrls: ['./cadastro.component.scss']
 })
 export class CadastroComponent implements OnInit, OnDestroy {
- 
+
 
   emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -55,10 +56,10 @@ export class CadastroComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private userValidatorInterface: UserValidatorInterface,
     private notificationServiceInterface: NotificationServiceInterface,
-    private store: Store<{ display: boolean }>
-  ) { 
-    
-    }
+    private store: Store<{ display: boolean }>,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     // hidden header and footer component
@@ -85,8 +86,8 @@ export class CadastroComponent implements OnInit, OnDestroy {
   // cadastrar cliente
   submit() {
 
-    const user: UserModel = this.cadastroForm.value
-    console.log(user,' cadastro');
+    const user: UserModel = this.cadastroForm.value;
+    console.log(user, 'cadastro');
 
     const fields: ValidationResult = this.userValidatorInterface
       .signupValitador(this.cadastroForm.value);
@@ -95,8 +96,16 @@ export class CadastroComponent implements OnInit, OnDestroy {
       return;
     }
 
-    
+    // Registra usuário
+    this.authService.register(user).subscribe((userDate: any) => {
+      alert('Usuário cadastrado com sucesso!');
 
+      // Guarda o token no localstorage
+      localStorage.setItem('token', userDate.token);
+      console.log(userDate.token);
+      this.authService.setUser(userDate.user);
+      console.log(userDate.user);
+      this.router.navigateByUrl('/dados-bancarios');
+    });
   }
-
 }
