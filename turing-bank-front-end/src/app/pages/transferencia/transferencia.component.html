@@ -15,13 +15,10 @@
                     </mat-button-toggle-group>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="name">Para:</label>
-                <div>
-                    <mat-button-toggle-group #group="matButtonToggleGroup" multiple=true>
-                        <mat-button-toggle *ngFor="let item of toggleOptions;" [value]="item">{{item}}
-                        </mat-button-toggle>
-                    </mat-button-toggle-group>
+            <form>
+                <div class="form-group">
+                    <label for="name">Agência</label>
+                    <input type="text" class="form-control" id="name" required placeholder="0000-0">
                 </div>
             </div>
 
@@ -98,6 +95,11 @@
                   
                 </div>
 
+                <div class="form-group">
+                    <label for="alterEgo">Valor</label>
+                    <input type="text" class="form-control" id="alterEgo">
+                </div>
+                <button type="submit" class="btn btn-success btn-continue">Continuar</button>
             </mat-card>
         </form>
     </div>
