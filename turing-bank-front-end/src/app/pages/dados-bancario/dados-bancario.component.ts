@@ -43,9 +43,9 @@ export class DadosBancarioComponent implements OnInit {
     this.router.navigateByUrl('/transferencia');
   }
 
-  goToPagamentos(){
-    this.router.navigateByUrl('/pagamentos');
-  }
+  // goToPagamentos(){
+  //   this.router.navigateByUrl('/pagamentos');
+  // }
 }
 
 function drawBasic() {

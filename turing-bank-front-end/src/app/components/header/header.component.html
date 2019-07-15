@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" routerLink="">
+    <a *ngIf="!currentUser" class="navbar-brand" routerLink="">
+        <img class="logo-header" src="../../assets/logo2.png" alt="Logo Turing Bank">
+    </a>
+    <a *ngIf="currentUser" class="navbar-brand" routerLink="/dados-bancarios">
         <img class="logo-header" src="../../assets/logo2.png" alt="Logo Turing Bank">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -12,11 +15,16 @@
             <li *ngIf="!currentUser" class="nav-item">
                 <a class="nav-link link-hover" routerLink="">Início</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link link-hover" routerLink="#">Conheça o Turing Bank</a>
+            <li *ngIf="currentUser" class="nav-item">
+                <a class="nav-link link-hover" routerLink="/dados-bancarios">Início</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link link-hover" routerLink="#">Nosso Cartão</a>
+                <a *ngIf="!currentUser" class="nav-link link-hover" routerLink="#">Conheça o Turing Bank</a>
+                <a *ngIf="currentUser" class="nav-link link-hover" routerLink="/transferencia">Trasferência</a>
+            </li>
+            <li class="nav-item">
+                <a *ngIf="!currentUser" class="nav-link link-hover" routerLink="#">Nosso Cartão</a>
+                <a *ngIf="currentUser"class="nav-link link-hover" routerLink="/extrato">Extrato</a>
             </li>
         </ul>
         <ul *ngIf="!currentUser" class="navbar-nav mr-auto">
