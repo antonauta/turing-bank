@@ -26,26 +26,26 @@ const routes: Routes = [
   {
     path: 'dados-bancarios', 
     component: DadosBancarioComponent,
-    // canActivate: [AppGuard],
-    // canLoad: [AppGuard]
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
   },
   {
     path: 'extrato', 
     component: ExtratoComponent,
-    // canActivate: [AppGuard],
-    // canLoad: [AppGuard]
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
   },
   {
     path: 'transferencia', 
     component: TransferenciaComponent,
-    // canActivate: [AppGuard],
-    // canLoad: [AppGuard]
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
   },
   {
     path: 'pagamentos', 
     component: PagamentosComponent,
-    // canActivate: [AppGuard],
-    // canLoad: [AppGuard]
+    canActivate: [AppGuard],
+    canLoad: [AppGuard]
   },
   {
     path: 'cadastro',
