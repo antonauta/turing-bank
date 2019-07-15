@@ -86,7 +86,6 @@ export class TransferenciaComponent implements OnInit {
     if (parseInt(transfer.valor) >= usuarioAtual.balance) {
       this.operationService.operation(parseInt(transfer.valor), transfer.conta, transfer.descricao).subscribe(v => {
         alert('Trasferência realizada com sucesso!');
-        console.log('Certo? ', v);
         this.router.navigateByUrl('/dados-bancarios');
       }, error => {
         console.log(error);
