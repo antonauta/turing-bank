@@ -28,8 +28,7 @@ export class DadosBancarioComponent implements OnInit {
     google.charts.setOnLoadCallback(drawBasic);
     const user: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
 
-      this.authService.getUserAccountDetails(user.account).subscribe(v => {
-        console.log(v.balance);
+      this.authService.getUserAccountDetails(user.account).subscribe(v => {        
         this.userBalance = v.balance;
       });
       this.userAccount = user.account;

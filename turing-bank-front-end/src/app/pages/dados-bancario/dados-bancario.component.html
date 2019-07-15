@@ -12,14 +12,12 @@
             <div class="sub-2">
                 <h3>Saldo:</h3>
                 <div class="div-info">
-                    <p id="saldoId"> R${{ userBalance }}  </p>
+                    <p id="saldoId"> {{ userBalance | currency:'BRL':true }}  </p>
                 </div>
             </div>
-
             <div class="sub-3">
                 <button type="button" class="btn btn-success" (click)="goToExtrato()">Extrato</button>
                 <button type="button" class="btn btn-success" (click)="goToTransferencia()">Transferência</button>
-                <button type="button" class="btn btn-success" (click)="goToPagamentos()">Pagamentos</button>
             </div>
     </div>
 

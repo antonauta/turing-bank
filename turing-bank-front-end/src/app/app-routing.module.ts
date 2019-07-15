@@ -14,10 +14,10 @@ const routes: Routes = [
     path: '*',
     redirectTo: 'home',
   },
-  // {
-  //   path: '',
-  //   component: HomeComponent,
-  // },
+  {
+    path: '',
+    component: HomeComponent,
+  },
   {
     path: 'home',
     pathMatch: 'full',

@@ -28,13 +28,13 @@
             </li>
         </ul>
         <ul *ngIf="currentUser" class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link link-hover" routerLink="">Olá {{currentUser}}</a>
-                </li>
-                <li class="nav-item">
-                    <a (click)="logout()" class="nav-link link-hover">Sair</a>
-                </li>
-            </ul>
+            <li class="nav-item">
+                <span class="nav-link">Olá <b>{{currentUser}}</b></span>
+            </li>
+            <li class="nav-item btn-conta">
+                <a (click)="logout()" class="nav-link destaque">Sair</a>                
+            </li>
+        </ul>
     </div>
 </nav>
 

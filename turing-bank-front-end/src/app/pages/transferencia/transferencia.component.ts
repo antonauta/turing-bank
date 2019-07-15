@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service'
 import { UserLoggedModel } from 'src/app/models/userLogged.model';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-transferencia',
@@ -50,7 +52,8 @@ export class TransferenciaComponent implements OnInit {
     private notificationServiceInterface: NotificationServiceInterface,
     private operationService: OperationService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private localStoreInterface: LocalStoreInterface
   ) { }
 
   ngOnInit() {
@@ -64,15 +67,12 @@ export class TransferenciaComponent implements OnInit {
       conta: this.idContaSelecionada,
       valor: this.valor,
       descricao: this.descricao
-    });
-    console.log(this.transferenciaForm); 
+    }); 
   }
 
   submit() {    
 
     const transfer: TransferModel = this.transferenciaForm.value;
-    console.log(transfer, 'transferenciaForm');
-    console.log(this.idContaSelecionada);
 
     const fields: ValidationResult = this.accountValidatorInterface
       .trasferValitador(transfer);
@@ -81,15 +81,19 @@ export class TransferenciaComponent implements OnInit {
       return;
     }
 
-    console.log(transfer.valor, transfer.conta);
+    const usuarioAtual: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
 
-    this.operationService.operation(parseInt(transfer.valor), transfer.conta, transfer.descricao).subscribe(v => {
-      alert('Trasferência realizada com sucesso!');
-      console.log('Certo? ', v);
-      // this.router.navigateByUrl('/dados-bancarios');
-    }, error => {
-      console.log(error);
-      alert('Erro ao realizar transfência.');
-    });
+    if (parseInt(transfer.valor) >= usuarioAtual.balance) {
+      this.operationService.operation(parseInt(transfer.valor), transfer.conta, transfer.descricao).subscribe(v => {
+        alert('Trasferência realizada com sucesso!');
+        console.log('Certo? ', v);
+        this.router.navigateByUrl('/dados-bancarios');
+      }, error => {
+        console.log(error);
+        alert('Erro ao realizar transfência.');
+      });
+    } else {
+      alert("Trasferência não realizada, saldo insuficiente.");
+    }
   }
 }

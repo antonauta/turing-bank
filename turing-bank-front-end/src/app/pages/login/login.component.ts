@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
 
           const user: UserModel = userDate.user;
 
- 
+          console.log(JSON.stringify(user))
           this.localStoreInterface.create('token', userDate.token);
           this.localStoreInterface.create('user_data', JSON.stringify(user));
           this.localStoreInterface.create('currentUser', user.preferredName);
@@ -81,6 +81,7 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           console.log(error);
+          alert("Não foi possivel acessar, login ou senha incorretos")
         });
   }
 

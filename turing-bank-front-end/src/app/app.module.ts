@@ -39,6 +39,12 @@ import { AccountValidator } from './shared/services/validations/accont.validator
 import { LocalStoreService } from './shared/services/local.store.service';
 import { LocalStoreInterface } from './core/interfaces/global/local.store.interface';
 import { AppGuard } from './app.guard';
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt, 'pt-BR');
+
+
 
 @NgModule({
   declarations: [
@@ -72,7 +78,7 @@ import { AppGuard } from './app.guard';
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ 'display': displayReducer })
+    StoreModule.forRoot({ 'display': displayReducer }),    
   ],
   exports: [
     MaterialModule,
@@ -98,6 +104,9 @@ import { AppGuard } from './app.guard';
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
     },
+    {
+      provide: LOCALE_ID, useValue: 'pt-BR'  
+    }
   ],
   bootstrap: [AppComponent]
 })
