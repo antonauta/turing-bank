@@ -3,6 +3,8 @@ import {FormControl} from '@angular/forms';
 import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service';
 import { OperationService } from 'src/app/core/interfaces/services/operation/operation.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker/typings/public-api';
+import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-extrato',
@@ -18,19 +20,18 @@ export class ExtratoComponent implements OnInit {
   date2;
   date3;
 
-  constructor(private authService: AuthService, private operationService: OperationService) { }
+  constructor(private authService: AuthService, 
+    private operationService: OperationService,
+    private localStoreInterface: LocalStoreInterface,) { }
 
   ngOnInit() {
     console.log('Pasosu extrato')
 
-    this.authService.currentUser.subscribe(user => {
-      this.authService.getUserAccountDetails(user.account).subscribe(v => {
-        console.log(v.balance);
-        this.userBalance = v.balance;
-      });
-      console.log(user);
-    });
+    const user: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
 
+    this.authService.getUserAccountDetails(user.account).subscribe(v => {        
+      this.userBalance = v.balance;
+    });
     this.operationService.getStatement().subscribe((res: any)=> {  
       const operations = res.operations;
       console.log(operations);
