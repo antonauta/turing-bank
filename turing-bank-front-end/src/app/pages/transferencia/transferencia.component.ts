@@ -18,9 +18,18 @@ import { UserModel } from 'src/app/models/user.model';
   styleUrls: ['./transferencia.component.scss']
 })
 export class TransferenciaComponent implements OnInit {
-
+  showUserDestinationDetails = false;
   title = 'button-toggle-app';
-
+  accountSelected : UserLoggedModel = {
+    _id:'',
+    account:'',
+    agency:'',
+    balance:0,
+    cpf:'',
+    email:'',
+    name:'',
+    preferredName:''
+  }
   toggleOptions: Array<String> = ["Conta Corrente", "Conta Poupança"];
 
   agencia = new FormControl('', [
@@ -72,6 +81,32 @@ export class TransferenciaComponent implements OnInit {
     }); 
   }
 
+  updateUserAccountTyped(value){
+    if(value.length!==6) {
+      
+      this.showUserDestinationDetails= false;
+      this.accountSelected={
+        _id:'',
+        account:'',
+        agency:'',
+        balance:0,
+        cpf:'',
+        email:'',
+        name:'',
+        preferredName:''
+      }
+    }
+    if(value.length===6){
+      this.authService.getUserAccountDetails(value).subscribe(value=>{
+        console.log(value)
+        if(!value) return this.showUserDestinationDetails=false;
+        this.accountSelected = value;
+        this.showUserDestinationDetails = true;
+        
+      })
+    }
+  }
+
   submit() {    
 
     const transfer: TransferModel = this.transferenciaForm.value;
@@ -87,7 +122,7 @@ export class TransferenciaComponent implements OnInit {
     console.log('valor balance atual: ', usuarioAtual.balance);
     console.log('valor balance quer transferir: ', parseInt(transfer.valor));
     if (parseInt(transfer.valor) <= usuarioAtual.balance) {
-      this.operationService.operation(parseInt(transfer.valor), transfer.conta, transfer.descricao).subscribe(v => {
+      this.operationService.operation(parseInt(transfer.valor), this.accountSelected._id, transfer.descricao).subscribe(v => {
         alert('Trasferência realizada com sucesso!');
         this.router.navigateByUrl('/dados-bancarios');
       }, error => {
