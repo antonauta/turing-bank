@@ -5,6 +5,8 @@ import { UserModel } from '../../models/user.model';
 import { UserLoggedModel } from '../../models/userLogged.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { OperationService } from 'src/app/core/interfaces/services/operation/operation.service';
+import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
+
 
 @Component({
   selector: 'app-dados-bancario',
@@ -18,7 +20,12 @@ export class DadosBancarioComponent implements OnInit {
   userBalance: number;
   jsonData = [];
 
-  constructor(private router: Router, private authService: AuthService, private operationService: OperationService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private localStoreInterface: LocalStoreInterface,
+    private operationService: OperationService
+  ) { }
 
   ngOnInit() {
 
@@ -27,31 +34,30 @@ export class DadosBancarioComponent implements OnInit {
 
     //this.populaGrafico();
 
-    this.authService.currentUser.subscribe(user => {
-      this.authService.getUserAccountDetails(user.account).subscribe(v => {
-        console.log(v.balance);
-        this.userBalance = v.balance;
-      });
-      this.userAccount = user.account;
-      this.userAgency = user.agency;
-      console.log(user);
+    const user: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
+
+    this.authService.getUserAccountDetails(user.account).subscribe(v => {        
+      this.userBalance = v.balance;
     });
+    this.userAccount = user.account;
+    this.userAgency = user.agency;
   }
 
-  async teste () {
-    let dateInicial = new Date();
-    dateInicial.setDate(dateInicial.getDate() - 7);
 
-    let res: any = await this.operationService.getStatement(dateInicial.toISOString(), new Date().toISOString());
+  // async teste () {
+  //   let dateInicial = new Date();
+  //   dateInicial.setDate(dateInicial.getDate() - 7);
 
-    let operations = res.operations;
-    console.log('ope', operations)
-    for (let obj of operations) {
-      var date = new Date(obj.date);
-      var saldo = obj.value;
-      console.log([date, saldo])
-    }
-  }
+  //   let res: any = await this.operationService.getStatement(dateInicial.toISOString(), new Date().toISOString());
+
+  //   let operations = res.operations;
+  //   console.log('ope', operations)
+  //   for (let obj of operations) {
+  //     var date = new Date(obj.date);
+  //     var saldo = obj.value;
+  //     console.log([date, saldo])
+  //   }
+  // }
 
   goToExtrato() {
     this.router.navigateByUrl('/extrato');
@@ -90,7 +96,7 @@ export class DadosBancarioComponent implements OnInit {
 }
 
 
-async function drawBasic() {
+function drawBasic() {
   var data = new google.visualization.DataTable();
   data.addColumn('date', 'Time of Day');
   data.addColumn('number', 'R$');
@@ -126,7 +132,7 @@ async function drawBasic() {
     backgroundColor: '#F6F6F6',
     hAxis: {
       title: 'Data',
-      format: 'd/M/yy',
+      format: 'dd/MM/yy',
     },
     vAxis: {
       title: 'Saldo'

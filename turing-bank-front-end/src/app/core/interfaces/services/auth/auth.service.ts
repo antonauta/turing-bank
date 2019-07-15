@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { UserModel } from 'src/app/models/user.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { UserLoggedModel } from 'src/app/models/userLogged.model';
+import { LocalStoreInterface } from '../../global/local.store.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,28 +12,63 @@ import { UserLoggedModel } from 'src/app/models/userLogged.model';
 
 export class AuthService {
 
-  private pUser = new BehaviorSubject(null);
-  currentUser = this.pUser.asObservable();
 
-  constructor(private httpClient: HttpClient) { }
 
+  // private pUser = new BehaviorSubject(null);
+  // currentUser = this.pUser.asObservable();
+
+  constructor(private httpClient: HttpClient, private localStoreInterface: LocalStoreInterface, ) { }
+
+  /**
+   * Login de usuario
+   * @param userCpf 
+   * @param userPassword 
+   */
   login(userCpf: string, userPassword: string) {
-    console.log(userCpf, userPassword);
     return this.httpClient.post(`${environment.API_URL}/auth/login`, {
       cpf: userCpf,
       password: userPassword
     });
   }
 
+  /**
+   * Deslogar usuario
+   */
+  logout() {
+    this.localStoreInterface.cleanAll();
+  }
+
+  /**
+   * Verifoca se usuário esta autenticado
+   */
+  isAuthenticated(): boolean {
+    return !!(this.localStoreInterface.get('user_data') && this.localStoreInterface.get('token'));
+  }
+
+  /**
+   * Cadastra usuario
+   * @param user
+   */
   register(user: UserModel) {
     return this.httpClient.post(`${environment.API_URL}/auth/register`, user);
   }
 
-  setUser(user) {
-    this.pUser.next(user);
+  // setUser(user) {
+  //   this.pUser.next(user);
+  // }
+
+  /**
+   * Obtem numero das contas
+   */
+  getAllAccounts(): Observable<UserLoggedModel[]> {
+    return this.httpClient.get<UserLoggedModel[]>(`${environment.API_URL}/users`)
   }
 
-  getUserAccountDetails(accountNumber: string) {
+  /**
+   * Obter informacao da conta do usuario logado
+   * @param accountNumber 
+   */
+  getUserAccountDetails(accountNumber: string): Observable<UserLoggedModel> {
     return this.httpClient.get<UserLoggedModel>(`${environment.API_URL}/users/account/${accountNumber}`);
   }
 }

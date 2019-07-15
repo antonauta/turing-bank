@@ -60,22 +60,22 @@ export class PagamentosComponent implements OnInit {
       return;
     }
     
-    this.operationService.operation(this.type, this.value, this.destino).subscribe(value => {
-      console.log(value);
-      alert('Deposito realizado com sucesso');
-      // let newUserDate;
-      // this.authService.currentUser.subscribe(v => {
-      //   this.authService.getUserAccountDetails(v.account).subscribe(u => {
-      //     newUserDate = u;
-      //     console.log(newUserDate);
-      //   });
-      //   console.log(newUserDate.balance);
-      //   v.balance = newUserDate.balance;
-      // });
-      this.router.navigateByUrl('/dados-bancarios');
-      }, error => {
-        console.log(error);
-        alert('DEU RUIM AO DEPOSITAR');
-    });
+    // this.operationService.operation(this.type, this.value, this.destino).subscribe(value => {
+    //   console.log(value);
+    //   alert('Deposito realizado com sucesso');
+    //   // let newUserDate;
+    //   // this.authService.currentUser.subscribe(v => {
+    //   //   this.authService.getUserAccountDetails(v.account).subscribe(u => {
+    //   //     newUserDate = u;
+    //   //     console.log(newUserDate);
+    //   //   });
+    //   //   console.log(newUserDate.balance);
+    //   //   v.balance = newUserDate.balance;
+    //   // });
+    //   this.router.navigateByUrl('/dados-bancarios');
+    //   }, error => {
+    //     console.log(error);
+    //     alert('DEU RUIM AO DEPOSITAR');
+    // });
   }
 }

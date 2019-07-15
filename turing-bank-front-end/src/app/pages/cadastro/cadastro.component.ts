@@ -9,6 +9,8 @@ import { displayHidden, displayShow } from 'src/app/store/display/display.action
 import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service';
 import { UserModel } from 'src/app/models/user.model';
 import { Router } from '@angular/router';
+import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
+
 
 @Component({
   selector: 'app-cadastro',
@@ -58,6 +60,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
     private notificationServiceInterface: NotificationServiceInterface,
     private store: Store<{ display: boolean }>,
     private authService: AuthService,
+    private localStoreInterface: LocalStoreInterface,
     private router: Router
   ) {}
 
@@ -87,7 +90,7 @@ export class CadastroComponent implements OnInit, OnDestroy {
   submit() {
 
     const user: UserModel = this.cadastroForm.value;
-    console.log(user, 'cadastro');
+
 
     const fields: ValidationResult = this.userValidatorInterface
       .signupValitador(this.cadastroForm.value);
@@ -99,12 +102,19 @@ export class CadastroComponent implements OnInit, OnDestroy {
     // Registra usuário
     this.authService.register(user).subscribe((userDate: any) => {
       alert('Usuário cadastrado com sucesso!');
+      const user: UserModel = userDate.user;
+
+      this.localStoreInterface.create('token', userDate.token);
+      this.localStoreInterface.create('user_data', JSON.stringify(user));
+      this.localStoreInterface.create('currentUser', user.preferredName);
+
+      
 
       // Guarda o token no localstorage
-      localStorage.setItem('token', userDate.token);
-      console.log(userDate.token);
-      this.authService.setUser(userDate.user);
-      console.log(userDate.user);
+      // localStorage.setItem('token', userDate.token);
+      
+      // this.authService.setUser(userDate.user);
+
       this.router.navigateByUrl('/dados-bancarios');
     });
   }

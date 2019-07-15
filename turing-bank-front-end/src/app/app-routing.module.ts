@@ -7,6 +7,7 @@ import { TransferenciaComponent } from './pages/transferencia/transferencia.comp
 import { PagamentosComponent } from './pages/pagamentos/pagamentos.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AppGuard } from './app.guard';
 
 const routes: Routes = [
   {
@@ -24,19 +25,28 @@ const routes: Routes = [
   },
   {
     path: 'dados-bancarios', 
-    component: DadosBancarioComponent
+    component: DadosBancarioComponent,
+    // canActivate: [AppGuard],
+    // canLoad: [AppGuard]
   },
   {
     path: 'extrato', 
-    component: ExtratoComponent
+    component: ExtratoComponent,
+    // canActivate: [AppGuard],
+    // canLoad: [AppGuard]
   },
   {
     path: 'transferencia', 
-    component: TransferenciaComponent
+    component: TransferenciaComponent,
+    // canActivate: [AppGuard],
+    // canLoad: [AppGuard]
   },
   {
     path: 'pagamentos', 
-    component: PagamentosComponent},
+    component: PagamentosComponent,
+    // canActivate: [AppGuard],
+    // canLoad: [AppGuard]
+  },
   {
     path: 'cadastro',
     component: CadastroComponent

@@ -1,8 +1,11 @@
+@import '../../shared/colors/colors.component';
+
 .base {
     background-color: #F6F6F6;
     margin: 0;
     padding: 0;
     width: 100%;
+    height: 100vh;
 }
 
 .form-group {
@@ -34,4 +37,15 @@
         display: flex;
         justify-content: flex-end;
     }
+}
+
+.form-btn {
+    background-color: $cor-primaria;
+    color: $cor-branco;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.mat-raised-button {
+    padding: 4px 16px;
 }

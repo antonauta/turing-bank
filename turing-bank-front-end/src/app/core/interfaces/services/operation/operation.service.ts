@@ -13,11 +13,11 @@ export class OperationService {
 
 
     // 0 = depósito 1 = trasferéncia
-    operation(typeOfOperation: number, money: number, accountDestination) {
+    operation(money: number, accountDestination: string, description: string) {
       // const headers_object = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-      console.log(typeOfOperation, money, accountDestination);
+      console.log(description, money, accountDestination);
       return this.httpClient.post(`${environment.API_URL}/operation`, {
-        type: typeOfOperation,
+        description: description,
         value: money,
         destination: accountDestination
       });

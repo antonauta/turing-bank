@@ -36,6 +36,15 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interfaces/services/auth/auth.interceptor';
 import { AccountValidatorInterface } from './core/interfaces/validations/account.validator.interface';
 import { AccountValidator } from './shared/services/validations/accont.validator';
+import { LocalStoreService } from './shared/services/local.store.service';
+import { LocalStoreInterface } from './core/interfaces/global/local.store.interface';
+import { AppGuard } from './app.guard';
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt, 'pt-BR');
+
+
 
 @NgModule({
   declarations: [
@@ -69,7 +78,7 @@ import { AccountValidator } from './shared/services/validations/accont.validator
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ 'display': displayReducer })
+    StoreModule.forRoot({ 'display': displayReducer }),    
   ],
   exports: [
     MaterialModule,
@@ -79,6 +88,7 @@ import { AccountValidator } from './shared/services/validations/accont.validator
     NotificationComponent
   ],
   providers: [
+    AppGuard,
     {
       provide: UserValidatorInterface, useClass: UserValidator
     },
@@ -86,11 +96,17 @@ import { AccountValidator } from './shared/services/validations/accont.validator
       provide: AccountValidatorInterface, useClass: AccountValidator
     },
     {
+      provide: LocalStoreInterface, useClass: LocalStoreService
+    },
+    {
       provide: NotificationServiceInterface, useClass: NotificationService
     },
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
     },
+    {
+      provide: LOCALE_ID, useValue: 'pt-BR'  
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -4,6 +4,13 @@ import { NotificationServiceInterface } from 'src/app/core/interfaces/services/n
 import { TransferModel } from 'src/app/models/transfer.model';
 import { ValidationResult } from 'ts.validator.fluent/dist';
 import { AccountValidatorInterface } from 'src/app/core/interfaces/validations/account.validator.interface';
+import { OperationService } from 'src/app/core/interfaces/services/operation/operation.service';
+import { AuthService } from 'src/app/core/interfaces/services/auth/auth.service';
+import { UserLoggedModel } from 'src/app/models/userLogged.model';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-transferencia',
@@ -18,17 +25,22 @@ export class TransferenciaComponent implements OnInit {
 
   agencia = new FormControl('', [
     Validators.required,
-    Validators.maxLength(80),
+    Validators.maxLength(5),
   ]);
 
-  conta = new FormControl('', [
+  contas: Observable<UserLoggedModel[]>;
+  idContaSelecionada = new FormControl('', [
     Validators.required,
-    Validators.maxLength(80),
   ]);
 
   valor = new FormControl('', [
     Validators.required,
-    Validators.maxLength(80),
+    Validators.maxLength(20),
+  ]);
+
+  descricao = new FormControl('', [
+    Validators.required,
+    Validators.maxLength(15),
   ]);
 
   transferenciaForm: FormGroup;
@@ -38,21 +50,29 @@ export class TransferenciaComponent implements OnInit {
     private fb: FormBuilder,
     private accountValidatorInterface: AccountValidatorInterface,
     private notificationServiceInterface: NotificationServiceInterface,
+    private operationService: OperationService,
+    private authService: AuthService,
+    private router: Router,
+    private localStoreInterface: LocalStoreInterface
   ) { }
 
   ngOnInit() {
 
+    
+    this.contas = this.authService.getAllAccounts();
+    console.log('Teste de transferencia: ', this.contas);   
+
     this.transferenciaForm = this.fb.group({
       agencia: this.agencia,
-      conta: this.conta,
-      valor: this.valor
-    });
+      conta: this.idContaSelecionada,
+      valor: this.valor,
+      descricao: this.descricao
+    }); 
   }
 
-  submit() {
+  submit() {    
 
     const transfer: TransferModel = this.transferenciaForm.value;
-    console.log(transfer, 'transferenciaForm');
 
     const fields: ValidationResult = this.accountValidatorInterface
       .trasferValitador(transfer);
@@ -61,6 +81,18 @@ export class TransferenciaComponent implements OnInit {
       return;
     }
 
-  }
+    const usuarioAtual: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
 
+    if (parseInt(transfer.valor) >= usuarioAtual.balance) {
+      this.operationService.operation(parseInt(transfer.valor), transfer.conta, transfer.descricao).subscribe(v => {
+        alert('Trasferência realizada com sucesso!');
+        this.router.navigateByUrl('/dados-bancarios');
+      }, error => {
+        console.log(error);
+        alert('Erro ao realizar transfência.');
+      });
+    } else {
+      alert("Trasferência não realizada, saldo insuficiente.");
+    }
+  }
 }

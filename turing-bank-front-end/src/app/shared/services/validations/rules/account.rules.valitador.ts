@@ -21,9 +21,9 @@ export class AccountRulesValidator implements AccountRulesValidatorInterface {
   transferRules(validator: IValidator<TransferModel>): ValidationResult {
     return validator
  
-      .NotEmpty(m => m.agencia, 'Campo obrigatório!', 'Agência')
+      .NotEmpty(m => String(m.agencia), 'Campo obrigatório!', 'Agência')
       .NotEmpty(m => m.conta, 'Campo obrigatório.', 'Conta')
-      .NotEmpty(m => m.valor, 'Campo obrigatório.', 'Valor')
+      .IsNumeric(m => String(m.valor), 'Campo obrigatório.', 'Valor')
       .ToResult()
   }
 

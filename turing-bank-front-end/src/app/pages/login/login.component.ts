@@ -6,6 +6,9 @@ import { UserModel } from 'src/app/models/user.model';
 import { ValidationResult } from 'ts.validator.fluent/dist';
 import { NotificationServiceInterface } from 'src/app/core/interfaces/services/notification/notification.service.interface';
 import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { LocalStoreInterface } from 'src/app/core/interfaces/global/local.store.interface';
+import { UserRequestModel } from 'src/app/models/user.request.model';
+
 
 @Component({
   selector: 'app-login',
@@ -35,6 +38,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userValidatorInterface: UserValidatorInterface,
     private notificationServiceInterface: NotificationServiceInterface,
+    private localStoreInterface: LocalStoreInterface,
   ) { }
 
   ngOnInit() {
@@ -63,15 +67,21 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(user.cpf, user.password)
       .subscribe(
-        (userDate: any) => {
-          alert('Usuário logado com sucesso');
-          console.log(userDate);
-          localStorage.setItem('token', userDate.token);
-          this.authService.setUser(userDate.user);
+        (userDate: UserRequestModel) => {
+
+          const user: UserModel = userDate.user;
+
+          console.log(JSON.stringify(user))
+          this.localStoreInterface.create('token', userDate.token);
+          this.localStoreInterface.create('user_data', JSON.stringify(user));
+          this.localStoreInterface.create('currentUser', user.preferredName);
+  
+          // this.authService.setUser(userDate.user);
           this.router.navigateByUrl('/dados-bancarios');
         },
         (error) => {
           console.log(error);
+          alert("Não foi possivel acessar, login ou senha incorretos")
         });
   }
 
