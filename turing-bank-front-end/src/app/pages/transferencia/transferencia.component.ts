@@ -45,6 +45,8 @@ export class TransferenciaComponent implements OnInit {
 
   transferenciaForm: FormGroup;
 
+  // Pega a conta do usuário atual para não mostrar na comBox de conta
+  contaUsuarioLogado: string;
 
   constructor(
     private fb: FormBuilder,
@@ -58,9 +60,9 @@ export class TransferenciaComponent implements OnInit {
 
   ngOnInit() {
 
-    
-    this.contas = this.authService.getAllAccounts();
-    console.log('Teste de transferencia: ', this.contas);   
+    const usuarioAtual = JSON.parse(this.localStoreInterface.get('user_data'));
+    this.contaUsuarioLogado = usuarioAtual.account;
+    this.contas = this.authService.getAllAccounts();  
 
     this.transferenciaForm = this.fb.group({
       agencia: this.agencia,
@@ -82,8 +84,9 @@ export class TransferenciaComponent implements OnInit {
     }
 
     const usuarioAtual: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
-
-    if (parseInt(transfer.valor) >= usuarioAtual.balance) {
+    console.log('valor balance atual: ', usuarioAtual.balance);
+    console.log('valor balance quer transferir: ', parseInt(transfer.valor));
+    if (parseInt(transfer.valor) <= usuarioAtual.balance) {
       this.operationService.operation(parseInt(transfer.valor), transfer.conta, transfer.descricao).subscribe(v => {
         alert('Trasferência realizada com sucesso!');
         this.router.navigateByUrl('/dados-bancarios');

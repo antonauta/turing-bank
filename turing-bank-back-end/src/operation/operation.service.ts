@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject, HttpStatus, HttpException } from '@nestjs/common';
 import { Operation } from './interfaces/operation.interface';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -73,12 +73,10 @@ export class OperationsService {
     );
 
     if (
-      !checkOriginBalance ||
-      checkOriginBalance.balance < createOperationDto.value
+      (createOperationDto.destination!==userID)&&(!checkOriginBalance ||
+      checkOriginBalance.balance < createOperationDto.value)
     ) {
-      return new Promise((resolve, reject) =>
-        reject({ error: 'Insuficient balance' }),
-      );
+       throw new HttpException('User out of balance', HttpStatus.BAD_REQUEST);
     }
     findUserDestination = await this.userService.findOne(
       createOperationDto.destination,
