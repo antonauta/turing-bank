@@ -39,18 +39,32 @@ export class ExtratoComponent implements OnInit {
       const operations = res.operations;
       console.log(operations);
 
-      for(let obj of operations){
+      let saldo = this.userBalance;
+
+      let jsonSaldo = []
+
+      for(let i=operations.length-1; i>=0;i--){
+        let obj = operations[i];
+        console.log('for', obj.description);  
+        if(obj.description=="deposito"){
+          saldo = saldo - obj.value;         
+        }
+        if(obj.description=="transferencia"){
+          saldo = saldo + obj.value;   
+        }
         let item = {}
         var date = new Date(obj.date);
         item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
         item ["lancamentos"] = obj.description;
         item ["valor"] = obj.value;
-        item ["saldo"] = ' -- ';
-        this.jsonData.push(item);
-        console.log('Objetos', obj);
+        item ["saldo"] = saldo;
+        jsonSaldo.push(item);
+      }  
+
+      for(let i=jsonSaldo.length-1; i>=0;i--){
+        this.jsonData.push(jsonSaldo[i]);
         this.populaTable();
-      }    
-      
+      }      
     });
   }
 
@@ -108,19 +122,33 @@ export class ExtratoComponent implements OnInit {
       const operations = res.operations;
       console.log(operations);
 
-      this.jsonData = [];
+      let saldo = this.userBalance;
 
-      for(let obj of operations){
+      let jsonSaldo = []
+      this.jsonData = []
+
+      for(let i=operations.length-1; i>=0;i--){
+        let obj = operations[i];
+        console.log('for', obj.description);  
+        if(obj.description=="deposito"){
+          saldo = saldo - obj.value;         
+        }
+        if(obj.description=="transferencia"){
+          saldo = saldo + obj.value;   
+        }
         let item = {}
         var date = new Date(obj.date);
         item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
         item ["lancamentos"] = obj.description;
         item ["valor"] = obj.value;
-        item ["saldo"] = ' -- ';
-        this.jsonData.push(item);
-        console.log('Objetos', obj);
-        this.populaTable();
-      }          
+        item ["saldo"] = saldo;
+        jsonSaldo.push(item);
+      }  
+
+      for(let i=jsonSaldo.length-1; i>=0;i--){
+        this.jsonData.push(jsonSaldo[i]);       
+      }     
+      this.populaTable(); 
     });
   }
 

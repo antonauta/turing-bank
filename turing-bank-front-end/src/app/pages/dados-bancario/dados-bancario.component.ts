@@ -39,9 +39,7 @@ export class DadosBancarioComponent implements OnInit {
     private operationService: OperationService
   ) { }
 
-  ngOnInit() {
-
-    this.populaGrafico();
+  ngOnInit() {   
 
     const user: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
 
@@ -51,6 +49,8 @@ export class DadosBancarioComponent implements OnInit {
     });
     this.userAccount = user.account;
     this.userAgency = user.agency;
+
+    this.populaGrafico();
   }
 
 
@@ -76,15 +76,57 @@ export class DadosBancarioComponent implements OnInit {
 
       this.jsonData = [];
 
-      for (let obj of operations) {
+      let saldo = this.userBalance;
+
+      let jsonSaldo = []
+
+      let jsonData2 = []
+
+      for(let i=operations.length-1; i>=0;i--){
+        let obj = operations[i];
+        console.log('for', obj.description);  
+        if(obj.description=="deposito"){
+          saldo = saldo - obj.value;         
+        }
+        if(obj.description=="transferencia"){
+          saldo = saldo + obj.value;   
+        }
+        let item = {}
         var date = new Date(obj.date);
-        var saldo = obj.value;
+        item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
+        item ["lancamentos"] = obj.description;
+        item ["valor"] = obj.value;
+        item ["saldo"] = saldo;
+        jsonSaldo.push(item);
+      }  
+
+      for(let i=jsonSaldo.length-1; i>=0;i--){
+        jsonData2.push(jsonSaldo[i]);       
+      }  
+
+      let cont = 0;
+      for (let obj of operations) {
+
+        let obj2 = jsonData2[cont]
+
+        console.log('obj2', obj2);  
+
+        var dat = obj2.data;
+        var sau = obj2.saldo;
         let item = [
-          String(date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear()),
-          parseInt(saldo),
+          String(dat),
+          parseInt(sau),
         ]
         this.jsonData.push(item);
+        cont++;
       }
+
+      var date = new Date();
+      let item = [
+        String(date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear()),
+        this.userBalance,
+      ]
+      this.jsonData.push(item);
 
       this.changingChart.data = this.jsonData;
     });
