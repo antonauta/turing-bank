@@ -56,7 +56,7 @@ export class ExtratoComponent implements OnInit {
         var date = new Date(obj.date);
         item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
         item ["lancamentos"] = obj.description;
-        item ["valor"] = obj.value;
+        item ["valor"] = obj.destination_id==user._id ? obj.value : -obj.value;
         item ["saldo"] = obj.destination._id==user._id ? obj.destination_balance : obj.origin_balance;
         jsonSaldo.push(item);
       }  
@@ -140,7 +140,7 @@ export class ExtratoComponent implements OnInit {
         var date = new Date(obj.date);
         item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
         item ["lancamentos"] = obj.description;
-        item ["valor"] = obj.value;
+        item ["valor"] =  obj.destination_id==this.userID? obj.value : -obj.value;
         item ["saldo"] = obj.destination._id==this.userID ? obj.destination_balance : obj.origin_balance;
         jsonSaldo.push(item);
       }  
