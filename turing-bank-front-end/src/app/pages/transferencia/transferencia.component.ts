@@ -62,8 +62,7 @@ export class TransferenciaComponent implements OnInit {
 
     const usuarioAtual = JSON.parse(this.localStoreInterface.get('user_data'));
     this.contaUsuarioLogado = usuarioAtual.account;
-    this.contas = this.authService.getAllAccounts();
-    console.log('Teste de transferencia: ', this.contas);   
+    this.contas = this.authService.getAllAccounts();  
 
     this.transferenciaForm = this.fb.group({
       agencia: this.agencia,
@@ -85,7 +84,8 @@ export class TransferenciaComponent implements OnInit {
     }
 
     const usuarioAtual: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
-
+    console.log('valor balance atual: ', usuarioAtual.balance);
+    console.log('valor balance quer transferir: ', parseInt(transfer.valor));
     if (parseInt(transfer.valor) <= usuarioAtual.balance) {
       this.operationService.operation(parseInt(transfer.valor), transfer.conta, transfer.descricao).subscribe(v => {
         alert('Trasferência realizada com sucesso!');

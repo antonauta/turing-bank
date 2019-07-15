@@ -38,6 +38,7 @@ export class DadosBancarioComponent implements OnInit {
 
     this.authService.getUserAccountDetails(user.account).subscribe(v => {        
       this.userBalance = v.balance;
+      this.localStoreInterface.create('user_data', JSON.stringify(v))
     });
     this.userAccount = user.account;
     this.userAgency = user.agency;
