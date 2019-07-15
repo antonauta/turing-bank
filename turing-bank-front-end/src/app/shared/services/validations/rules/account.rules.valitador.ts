@@ -23,7 +23,7 @@ export class AccountRulesValidator implements AccountRulesValidatorInterface {
 
       .NotEmpty(m => String(m.agencia), 'Campo obrigatório!', 'Agência')
       .NotEmpty(m => m.conta, 'Campo obrigatório.', 'Conta')
-      .IsNumeric(m => String(m.valor).replace(',', '.'), 'Campo obrigatório.', 'Valor')
+      .NotEmpty(m => String(m.valor).replace(',', '.'), 'Campo obrigatório.', 'Valor')
       .ToResult()
   }
 

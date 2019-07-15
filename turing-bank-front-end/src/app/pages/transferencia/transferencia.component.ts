@@ -119,9 +119,10 @@ export class TransferenciaComponent implements OnInit {
     }
 
     const usuarioAtual: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
+    // const valorFloat = transfer.valor.replace(',', '.');
     console.log('valor balance atual: ', usuarioAtual.balance);
     console.log('valor balance quer transferir: ', parseFloat(transfer.valor));
-    transfer.valor.replace(',', '.');
+
     if (parseFloat(transfer.valor) <= usuarioAtual.balance) {
       this.operationService.operation(parseFloat(transfer.valor), this.accountSelected._id, transfer.descricao).subscribe(v => {
         alert('Trasferência realizada com sucesso!');
