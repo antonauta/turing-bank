@@ -67,7 +67,7 @@ export class OperationsService {
   async create(userID: string, createOperationDto: CreateOperationDto): Promise<Operation> {
     let newOperation = new this.operationModel(createOperationDto);
 
-    let findUserDestination, findUserOrigin;
+    let findUserDestination, findUserOrigin,originNewBalance,destinationNewBalance;
     const checkOriginBalance = await this.userService.findOne(
       userID
     );
@@ -88,6 +88,7 @@ export class OperationsService {
       },
       createOperationDto.destination,
     );
+    destinationNewBalance = findUserDestination.balance + createOperationDto.value;
     
     if((createOperationDto.destination!==userID)){
       findUserOrigin = await this.userService.findOne(
@@ -100,9 +101,10 @@ export class OperationsService {
         },
         userID
       );
+      originNewBalance = findUserOrigin.balance - createOperationDto.value;
     }
    
-    newOperation = new this.operationModel({ ...createOperationDto, origin: userID, destination: createOperationDto.destination });
+    newOperation = new this.operationModel({ ...createOperationDto, origin: userID, destination: createOperationDto.destination,destination_balance:destinationNewBalance,origin_balance:originNewBalance });
     
     console.log(newOperation)
     return await newOperation.save();

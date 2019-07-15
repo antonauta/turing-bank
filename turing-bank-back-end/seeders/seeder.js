@@ -55,23 +55,13 @@ var data = [
     {
         model:'Operation',
         'documents':[
-            {
-
-                'value': 500,
-                'description':'deposito',
-                origin:'5d28d2223878dc2db8b24355',
-                destination:'5d28d2223878dc2db8b24355'
-			},
-			{
-                'value': 150,
-                'description':'deposito',
-                origin:'5d28d2223878dc2db8b24356',
-                destination:'5d28d2223878dc2db8b24356'
-      },
+     
       {
         'value':100,
         'description':'transferencia',
         destination:'5d28d2223878dc2db8b24356',
+        origin_balance:400,
+        destination_balance:250,
         origin:'5d28d2223878dc2db8b24355'
       }
         ]

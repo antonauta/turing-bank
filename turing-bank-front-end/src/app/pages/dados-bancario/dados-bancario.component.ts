@@ -29,6 +29,7 @@ export class DadosBancarioComponent implements OnInit {
   userAccount: any;
   userAgency: any;
   userBalance: number;
+  userID: string;
   jsonData = [];
 
  
@@ -49,7 +50,7 @@ export class DadosBancarioComponent implements OnInit {
     });
     this.userAccount = user.account;
     this.userAgency = user.agency;
-
+    this.userID  = user._id;
     this.populaGrafico();
   }
 
@@ -96,7 +97,7 @@ export class DadosBancarioComponent implements OnInit {
         item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
         item ["lancamentos"] = obj.description;
         item ["valor"] = obj.value;
-        item ["saldo"] = saldo;
+        item ["saldo"] = obj.destination==this.userID ? obj.destination_balance : obj.origin_balance;
         jsonSaldo.push(item);
       }  
 

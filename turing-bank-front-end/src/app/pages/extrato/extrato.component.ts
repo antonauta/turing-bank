@@ -57,7 +57,7 @@ export class ExtratoComponent implements OnInit {
         item ["data"] = date.getDate() + '/' + (date.getMonth() + 1)+ '/' +  date.getFullYear();
         item ["lancamentos"] = obj.description;
         item ["valor"] = obj.value;
-        item ["saldo"] = saldo;
+        item ["saldo"] = obj.destination==user._id ? obj.destination_balance : obj.origin_balance;
         jsonSaldo.push(item);
       }  
 
