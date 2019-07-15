@@ -1,28 +1,32 @@
-<app-header ></app-header>
+<app-header></app-header>
 <div class="base">
     <div class="conta">
-            <div class="sub-1">
-                <h3>Dados da conta:</h3>
-                <div class="div-info">
-                    <p><b>Agência:</b> {{ userAgency }} </p>
-                    <p><b>Conta:</b> {{ userAccount }}  </p>
-                </div>
+        <div class="sub-1">
+            <h3>Dados da conta:</h3>
+            <div class="div-info">
+                <p><b>Agência:</b> {{ userAgency }} </p>
+                <p><b>Conta:</b> {{ userAccount }} </p>
             </div>
+        </div>
 
-            <div class="sub-2">
-                <h3>Saldo:</h3>
-                <div class="div-info">
-                    <p id="saldoId"> {{ userBalance | currency:'BRL':true }}  </p>
-                </div>
+        <div class="sub-2">
+            <h3>Saldo:</h3>
+            <div class="div-info">
+                <p id="saldoId"> {{ userBalance | currency:'BRL':true }} </p>
             </div>
-            <div class="sub-3">
-                <button type="button" class="btn btn-success" (click)="goToExtrato()">Extrato</button>
-                <button type="button" class="btn btn-success" (click)="goToTransferencia()">Transferência</button>
-            </div>
+        </div>
+        <div class="sub-3">
+            <button type="button" class="btn btn-success" (click)="goToExtrato()">Extrato</button>
+            <button type="button" class="btn btn-success" (click)="goToTransferencia()">Transferência</button>
+        </div>
     </div>
 
     <div class="conta2">
-        <div id="chart_div"></div>
+        <google-chart class="gchart" #chart [title]="changingChart.title" [type]="changingChart.type"
+            [data]="changingChart.data" [columnNames]="changingChart.columnNames" [options]="changingChart.options">
+        </google-chart>
+
+        
     </div>
 
 </div>

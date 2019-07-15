@@ -17,8 +17,11 @@ export class ExtratoComponent implements OnInit {
   serializedDate = new FormControl((new Date()).toISOString());
   jsonData = [];
   userBalance: number;
-  date2;
-  date3;
+  
+  dateIni;
+  dIniName;
+  dateFin;
+  dFinName;
 
   constructor(private authService: AuthService, 
     private operationService: OperationService,
@@ -73,23 +76,35 @@ export class ExtratoComponent implements OnInit {
   }
 
   getExtrato5Dias(){
-    this.getConnectionByDate(5)
+    let dateInicial = new Date();
+    dateInicial.setDate(dateInicial.getDate() - 5);
+
+    let dateFinal = new Date();
+
+    this.getConnectionByDate(dateInicial, dateFinal);
   }
 
   getExtrat030Dias(){
-    this.getConnectionByDate(30)
+    let dateInicial = new Date();
+    dateInicial.setDate(dateInicial.getDate() - 30);
+
+    let dateFinal = new Date();
+
+    this.getConnectionByDate(dateInicial, dateFinal);
   }
 
   getExtrato60Dias(){
-    this.getConnectionByDate(60)
+    let dateInicial = new Date();
+    dateInicial.setDate(dateInicial.getDate() - 60);
+
+    let dateFinal = new Date();
+
+    this.getConnectionByDate(dateInicial, dateFinal);
   }
 
-  getConnectionByDate(valor){
-    let dateInicial = new Date();
-    dateInicial.setDate(dateInicial.getDate() - valor);
-    console.log(dateInicial)
+  getConnectionByDate(dateInicial, dateFinal){
 
-    this.operationService.getStatement(dateInicial.toISOString(), new Date().toISOString()).subscribe((res: any)=> {  
+    this.operationService.getStatement(dateInicial, dateFinal).subscribe((res: any)=> {  
       const operations = res.operations;
       console.log(operations);
 
@@ -109,8 +124,15 @@ export class ExtratoComponent implements OnInit {
     });
   }
 
-  filtrar() {
-    console.log(this.date3)
+  filtrar() {   
+
+    let dateInicial = new Date(this.dateIni);
+    let dateFinal = new Date(this.dateFin);
+
+    console.log('Data Inicial',dateInicial)
+    console.log('Data Final',dateFinal)
+
+    this.getConnectionByDate(dateInicial, dateFinal);
   }
 
 }

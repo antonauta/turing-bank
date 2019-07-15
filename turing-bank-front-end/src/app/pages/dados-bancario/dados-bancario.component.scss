@@ -19,10 +19,15 @@ h3 {
     justify-content: center;
 }
 
-#chart_div{
-    margin-top: 10px;
+#chart_div, #chart{
     width: 80%;    
     height: 47vh;
+}
+
+.gchart {
+    width: 90%;   
+    height: 260px;
+
 }
 
 @media screen and (max-width: 847px) {
