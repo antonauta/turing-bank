@@ -52,7 +52,7 @@
                         <th>Saldo</th>
                         <th> </th>
                         <th> </th>
-                        <th>{{ userBalance }}</th>
+                        <th>{{ userBalance | currency:'BRL':true }}</th>
                     </tr>
                 </tfoot>
                 <tbody id="table-body">
