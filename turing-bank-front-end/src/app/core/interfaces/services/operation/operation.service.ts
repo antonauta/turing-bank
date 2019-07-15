@@ -26,9 +26,9 @@ export class OperationService {
     // Gera extrato, padrão de 7 dias caso não informe o período
     getStatement(initDate = '', lastDate = '') {
       if (initDate && lastDate) {
-        return this.httpClient.get(`${environment.API_URL}/operation`);
+        return this.httpClient.get(`${environment.API_URL}/operation/by_user`);
       } else {
-        return this.httpClient.get(`${environment.API_URL}/operation?initDate=${initDate}&lastDate=${lastDate}`);
+        return this.httpClient.get(`${environment.API_URL}/operation/by_user?initDate=${initDate}&lastDate=${lastDate}`);
       }
     }
 }
