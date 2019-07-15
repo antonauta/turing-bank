@@ -71,7 +71,7 @@ export class OperationsService {
     const checkOriginBalance = await this.userService.findOne(
       userID
     );
-
+        console.log(userID)
     if (
       (createOperationDto.destination!==userID)&&(!checkOriginBalance ||
       checkOriginBalance.balance < createOperationDto.value)
@@ -88,16 +88,20 @@ export class OperationsService {
       },
       createOperationDto.destination,
     );
-    findUserOrigin = await this.userService.findOne(
-      userID
-    );
-    await this.userService.update(
-      {
-
-        balance: findUserOrigin.balance - createOperationDto.value,
-      },
-      userID
-    );
+    
+    if((createOperationDto.destination!==userID)){
+      findUserOrigin = await this.userService.findOne(
+        userID
+      );
+      await this.userService.update(
+        {
+  
+          balance: findUserOrigin.balance - createOperationDto.value,
+        },
+        userID
+      );
+    }
+   
     newOperation = new this.operationModel({ ...createOperationDto, origin: userID, destination: createOperationDto.destination });
     
     console.log(newOperation)

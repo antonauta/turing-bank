@@ -50,17 +50,23 @@
                             type="number"
                             placeholder="Agência"
                             autocomplete="off"
+                            disabled
+                            [(ngModel)]="accountSelected.agency"
                             name="agencia" id="agencia" [formControl]="agencia"
                             >
                 </mat-form-field>
 
                 <mat-form-field class="form-group">
-                        <mat-label>Contas</mat-label>
-                        <mat-select  name="idContaSelecionada" [formControl]="idContaSelecionada" id="idContaSelecionada">
-                          <mat-option *ngFor="let conta of contas | async" [value]="conta._id">
-                            {{ conta.account }}
-                          </mat-option>
-                        </mat-select>
+                    <input matInput
+                    type="string"
+                    [ngModel]="accountSelected.account" 
+                    (ngModelChange)="updateUserAccountTyped($event)"
+                    placeholder="Número da conta"
+                    autocomplete="off"
+                    name="idContaSelecionada" id="idContaSelecionada" [formControl]="idContaSelecionada"
+                    >
+               
+                
                     <!-- <input matInput
                             type="number"
                             placeholder="Conta"
@@ -68,6 +74,11 @@
                             name="conta" id="conta" [formControl]="conta"
                             > -->
                 </mat-form-field>
+                <div class="form-group" *ngIf="showUserDestinationDetails">
+                    <p><strong>Nome:</strong> {{accountSelected.name}}</p>
+                    <p><strong>CPF: </strong> {{accountSelected.cpf}}</p>
+
+                </div>
 
                 <mat-form-field class="form-group">
                     <input matInput
@@ -87,7 +98,7 @@
                 </mat-form-field>             
 
                 <div class="form-bt-left">
-                    <button mat-raised-button class="form-btn">Enviar</button>
+                    <button mat-raised-button class="form-btn" [disabled]='!showUserDestinationDetails'>Enviar</button>
                     <div style="margin-left: 5px;"> 
                       <a mat-raised-button class="form-btn"
                       [routerLink]="'/dados-bancarios'">Voltar</a>

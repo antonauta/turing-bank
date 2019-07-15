@@ -15,7 +15,7 @@ export const UserSchema = new mongoose.Schema({
   refreshToken:String,
   cpf: { type: String, unique: true,required:true },
 
-  balance: { type: Number, default: 0 },
+  balance: { type: Number, default: 10000 },
   password: { type: String,required:true },
 });
 
