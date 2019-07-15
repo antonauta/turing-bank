@@ -9,7 +9,7 @@
 
     <div class="collapse navbar-collapse links-nav" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
+            <li *ngIf="!currentUser" class="nav-item">
                 <a class="nav-link link-hover" routerLink="">Início</a>
             </li>
             <li class="nav-item">
