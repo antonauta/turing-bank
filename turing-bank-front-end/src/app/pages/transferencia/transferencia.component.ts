@@ -82,7 +82,7 @@ export class TransferenciaComponent implements OnInit {
   }
 
   updateUserAccountTyped(value){
-    if(value.length!==6) {
+    if(value.length<6) {
       
       this.showUserDestinationDetails= false;
       this.accountSelected={
@@ -96,7 +96,7 @@ export class TransferenciaComponent implements OnInit {
         preferredName:''
       }
     }
-    if(value.length===6){
+    if(value.length>==6){
       this.authService.getUserAccountDetails(value).subscribe(value=>{
         console.log(value)
         if(!value) return this.showUserDestinationDetails=false;
