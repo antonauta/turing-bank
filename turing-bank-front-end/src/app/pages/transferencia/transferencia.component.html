@@ -59,14 +59,14 @@
                 <mat-form-field class="form-group">
                     <input matInput
                     type="string"
-                    [ngModel]="accountSelected.account" 
+                    [ngModel]="accountSelected.account"
                     (ngModelChange)="updateUserAccountTyped($event)"
                     placeholder="Número da conta"
                     autocomplete="off"
                     name="idContaSelecionada" id="idContaSelecionada" [formControl]="idContaSelecionada"
                     >
-               
-                
+
+
                     <!-- <input matInput
                             type="number"
                             placeholder="Conta"
@@ -81,11 +81,12 @@
                 </div>
 
                 <mat-form-field class="form-group">
-                    <input matInput
+                    <input currencyMask matInput
                             type="number"
                             placeholder="Valor"
                             autocomplete="off"
                             name="valor" id="valor" [formControl]="valor"
+                            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
                             >
                 </mat-form-field>
                 <mat-form-field class="form-group">
@@ -95,15 +96,15 @@
                             autocomplete="on"
                             name="descricao" id="descricao" [formControl]="descricao"
                             >
-                </mat-form-field>             
+                </mat-form-field>
 
                 <div class="form-bt-left">
                     <button mat-raised-button class="form-btn" [disabled]='!showUserDestinationDetails'>Enviar</button>
-                    <div style="margin-left: 5px;"> 
+                    <div style="margin-left: 5px;">
                       <a mat-raised-button class="form-btn"
                       [routerLink]="'/dados-bancarios'">Voltar</a>
-                    </div>                    
-                  
+                    </div>
+
                 </div>
             </mat-card>
         </form>

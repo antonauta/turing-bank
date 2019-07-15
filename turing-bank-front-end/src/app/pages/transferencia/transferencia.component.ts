@@ -71,19 +71,19 @@ export class TransferenciaComponent implements OnInit {
 
     const usuarioAtual = JSON.parse(this.localStoreInterface.get('user_data'));
     this.contaUsuarioLogado = usuarioAtual.account;
-    this.contas = this.authService.getAllAccounts();  
+    this.contas = this.authService.getAllAccounts();
 
     this.transferenciaForm = this.fb.group({
       agencia: this.agencia,
       conta: this.idContaSelecionada,
       valor: this.valor,
       descricao: this.descricao
-    }); 
+    });
   }
 
   updateUserAccountTyped(value){
     if(value.length<6) {
-      
+
       this.showUserDestinationDetails= false;
       this.accountSelected={
         _id:'',
@@ -102,12 +102,12 @@ export class TransferenciaComponent implements OnInit {
         if(!value) return this.showUserDestinationDetails=false;
         this.accountSelected = value;
         this.showUserDestinationDetails = true;
-        
+
       })
     }
   }
 
-  submit() {    
+  submit() {
 
     const transfer: TransferModel = this.transferenciaForm.value;
 
@@ -120,9 +120,10 @@ export class TransferenciaComponent implements OnInit {
 
     const usuarioAtual: UserModel = JSON.parse(this.localStoreInterface.get('user_data'));
     console.log('valor balance atual: ', usuarioAtual.balance);
-    console.log('valor balance quer transferir: ', parseInt(transfer.valor));
-    if (parseInt(transfer.valor) <= usuarioAtual.balance) {
-      this.operationService.operation(parseInt(transfer.valor), this.accountSelected._id, transfer.descricao).subscribe(v => {
+    console.log('valor balance quer transferir: ', parseFloat(transfer.valor));
+    transfer.valor.replace(',', '.');
+    if (parseFloat(transfer.valor) <= usuarioAtual.balance) {
+      this.operationService.operation(parseFloat(transfer.valor), this.accountSelected._id, transfer.descricao).subscribe(v => {
         alert('Trasferência realizada com sucesso!');
         this.router.navigateByUrl('/dados-bancarios');
       }, error => {

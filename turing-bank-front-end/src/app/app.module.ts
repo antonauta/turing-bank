@@ -42,6 +42,7 @@ import { AppGuard } from './app.guard';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 registerLocaleData(localePt, 'pt-BR');
 
 
@@ -78,11 +79,13 @@ registerLocaleData(localePt, 'pt-BR');
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({ 'display': displayReducer }),    
+    CurrencyMaskModule,
+    StoreModule.forRoot({ 'display': displayReducer }),
   ],
   exports: [
     MaterialModule,
     ReactiveFormsModule,
+    CurrencyMaskModule,
   ],
   entryComponents: [
     NotificationComponent
@@ -105,7 +108,7 @@ registerLocaleData(localePt, 'pt-BR');
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
     },
     {
-      provide: LOCALE_ID, useValue: 'pt-BR'  
+      provide: LOCALE_ID, useValue: 'pt-BR'
     }
   ],
   bootstrap: [AppComponent]

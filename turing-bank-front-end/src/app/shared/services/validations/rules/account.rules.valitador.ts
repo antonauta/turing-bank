@@ -9,21 +9,21 @@ import { TransferModel } from 'src/app/models/transfer.model';
   providedIn: 'root'
 })
 export class AccountRulesValidator implements AccountRulesValidatorInterface {
-  
+
   paymentRules(validator: IValidator<TransferModel>): ValidationResult {
     return validator
- 
+
       .NotEmpty(m => m.conta, 'Campo obrigatório!', 'Agência')
-      .NotEmpty(m => m.valor, 'Campo obrigatório.', 'Conta')
+      .NotEmpty(m => m.valor.replace(',', '.'), 'Campo obrigatório.', 'Conta')
       .ToResult()
   }
 
   transferRules(validator: IValidator<TransferModel>): ValidationResult {
     return validator
- 
+
       .NotEmpty(m => String(m.agencia), 'Campo obrigatório!', 'Agência')
       .NotEmpty(m => m.conta, 'Campo obrigatório.', 'Conta')
-      .IsNumeric(m => String(m.valor), 'Campo obrigatório.', 'Valor')
+      .IsNumeric(m => String(m.valor).replace(',', '.'), 'Campo obrigatório.', 'Valor')
       .ToResult()
   }
 
